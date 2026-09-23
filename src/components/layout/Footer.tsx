@@ -12,7 +12,7 @@ export function Footer() {
     <footer className="relative isolate overflow-hidden bg-paper-50 text-navy-950">
       <GridPaper tone="light" />
 
-      <Container className="relative py-16 lg:py-20">
+      <Container className="relative pt-16 lg:pt-20">
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-8">
           <div className="lg:col-span-5">
             <Logo tone="dark" />
@@ -84,6 +84,20 @@ export function Footer() {
           </p>
           <p className="font-mono text-label uppercase text-navy-600">{SITE.tagline}</p>
         </div>
+
+        {/*
+          Marca de agua con el nombre, recortada por el borde inferior del pie.
+          Es decorativa: el nombre ya está en el logotipo y en el copyright, así
+          que va `aria-hidden`. El tamaño sigue el ancho del contenedor (unos 7
+          em para "Grupo Ventori") y se topa en escritorio para no crecer sin
+          límite en pantallas anchas.
+        */}
+        <p
+          aria-hidden="true"
+          className="stretch-display -mb-[0.2em] mt-10 select-none whitespace-nowrap text-center font-display text-[min(12vw,10.5rem)] font-semibold leading-none text-navy-950/[0.06]"
+        >
+          {SITE.name}
+        </p>
       </Container>
     </footer>
   )
