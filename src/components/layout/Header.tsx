@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { Logo } from '@/components/layout/Logo'
-import { Button } from '@/components/ui/Button'
+import { ShinyButton } from '@/components/ui/ShinyButton'
 import { NAV_LINKS, ROUTES } from '@/lib/constants'
 import { cn } from '@/lib/utils'
 
@@ -92,9 +92,9 @@ export function Header() {
         </nav>
 
         <div className="hidden lg:block">
-          <Button href={ROUTES.contact} className="min-h-11 px-6">
+          <ShinyButton href={ROUTES.contact} className="min-h-11 px-6 py-2 text-sm">
             Hablemos
-          </Button>
+          </ShinyButton>
         </div>
       </div>
     </header>

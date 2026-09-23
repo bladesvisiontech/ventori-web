@@ -3,6 +3,7 @@ import { Headline } from '@/components/motion/Headline'
 import { Reveal } from '@/components/motion/Reveal'
 import { Rule } from '@/components/motion/Rule'
 import { Button } from '@/components/ui/Button'
+import { ShinyButton } from '@/components/ui/ShinyButton'
 import { Container } from '@/components/ui/Container'
 import { HERO } from '@/content/about'
 import { ROUTES } from '@/lib/constants'
@@ -61,7 +62,7 @@ export function Hero() {
 
           <Reveal trigger="mount" delay={0.55}>
             <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-              <Button href={ROUTES.contact}>{HERO.primaryCta}</Button>
+              <ShinyButton href={ROUTES.contact}>{HERO.primaryCta}</ShinyButton>
               <Button href={ROUTES.services} variant="outline">
                 {HERO.secondaryCta}
               </Button>

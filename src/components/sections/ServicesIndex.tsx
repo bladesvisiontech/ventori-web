@@ -1,8 +1,6 @@
 import Link from 'next/link'
 import { ArrowUpRight } from 'lucide-react'
-import { Reveal } from '@/components/motion/Reveal'
 import { Stagger, StaggerItem } from '@/components/motion/Stagger'
-import { Button } from '@/components/ui/Button'
 import { Container } from '@/components/ui/Container'
 import { Icon } from '@/components/ui/Icon'
 import { Section } from '@/components/ui/Section'
@@ -14,6 +12,7 @@ import { formatIndex } from '@/lib/utils'
 
 /**
  * Los nueve servicios como índice numerado, no como retícula de tarjetas.
+ * Apertura de `/servicios`, antes de `<ServicesDetail>`.
  *
  * Nueve tarjetas iguales serían una pared sin jerarquía y obligarían a recortar
  * los títulos, que aquí son largos y específicos por decisión del cliente. Un
@@ -21,7 +20,8 @@ import { formatIndex } from '@/lib/utils'
  * documento técnico y encaja con la numeración que ya recorre todo el sitio.
  *
  * Cada fila entra escalonada y, al pasar el cursor, se desplaza a la derecha
- * como una ficha que se saca del archivador.
+ * como una ficha que se saca del archivador. Cada enlace baja al bloque de
+ * detalle del mismo servicio, más abajo en esta misma página.
  */
 export function ServicesIndex({ index }: { index: number }) {
   const copy = HOME_SECTIONS.services
@@ -29,21 +29,13 @@ export function ServicesIndex({ index }: { index: number }) {
   return (
     <Section tone="navy" grid>
       <Container>
-        <div className="flex flex-col gap-10 lg:flex-row lg:items-end lg:justify-between">
-          <SectionHead
-            index={index}
-            eyebrow={copy.eyebrow}
-            lines={copy.lines}
-            intro={copy.intro}
-            className="lg:max-w-2xl"
-          />
-
-          <Reveal delay={0.3} className="hidden lg:block">
-            <Button href={ROUTES.services} variant="outline">
-              Ver el detalle
-            </Button>
-          </Reveal>
-        </div>
+        <SectionHead
+          index={index}
+          eyebrow={copy.eyebrow}
+          lines={copy.lines}
+          intro={copy.intro}
+          className="lg:max-w-2xl"
+        />
 
         <Stagger as="ul" className="mt-16 border-t border-navy-800" delay={0.1}>
           {SERVICES.map((service, position) => (
@@ -79,12 +71,6 @@ export function ServicesIndex({ index }: { index: number }) {
             </StaggerItem>
           ))}
         </Stagger>
-
-        <Reveal className="mt-10 lg:hidden">
-          <Button href={ROUTES.services} variant="outline">
-            Ver el detalle
-          </Button>
-        </Reveal>
       </Container>
     </Section>
   )

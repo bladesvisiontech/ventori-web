@@ -19,6 +19,12 @@ interface SectionCopy {
  * este archivo: así reordenar una sección no obliga a renumerar el contenido.
  */
 export const HOME_SECTIONS = {
+  projects: {
+    eyebrow: 'Cobertura',
+    lines: ['Nuestros', { text: 'proyectos', accent: true }],
+    intro:
+      'Ejecutamos proyectos de concesión e interventoría del servicio de alumbrado público en varios departamentos del país, con contratos vigentes a 25 y 30 años.',
+  },
   sectors: {
     eyebrow: 'Sectores',
     lines: ['Dónde', { text: 'trabajamos', accent: true }],

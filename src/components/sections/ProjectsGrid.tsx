@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import { Reveal } from '@/components/motion/Reveal'
 import { Stagger, StaggerItem } from '@/components/motion/Stagger'
-import { Button } from '@/components/ui/Button'
+import { ShinyButton } from '@/components/ui/ShinyButton'
 import { Container } from '@/components/ui/Container'
 import { Section } from '@/components/ui/Section'
 import { PAGES } from '@/content/pages'
@@ -35,7 +35,7 @@ export function ProjectsGrid() {
                 {PAGES.projects.empty.text}
               </p>
               <div className="mt-10 flex justify-center">
-                <Button href={ROUTES.contact}>Escríbenos</Button>
+                <ShinyButton href={ROUTES.contact}>Escríbenos</ShinyButton>
               </div>
             </div>
           </Reveal>

@@ -1,23 +1,21 @@
 import { Reveal } from '@/components/motion/Reveal'
-import { Button } from '@/components/ui/Button'
 import { Container } from '@/components/ui/Container'
 import { MediaFrame } from '@/components/ui/MediaFrame'
 import { Section } from '@/components/ui/Section'
 import { SectionHead } from '@/components/ui/SectionHead'
 import { ABOUT } from '@/content/about'
 import { HOME_SECTIONS } from '@/content/sections'
-import { ROUTES } from '@/lib/constants'
 
 /**
  * Presentación de la empresa: texto a la izquierda, fotografía a la derecha.
+ * Apertura de `/nosotros`, antes de `<AboutFull>`.
  *
  * La imagen entra enmascarada desde abajo mientras el texto solo se funde. Que
  * una de las dos columnas pese más en el movimiento es lo que evita que el
  * bloque entre "de golpe" y lo que dirige la mirada a la fotografía primero.
  *
- * En móvil la fotografía va debajo del texto, no encima: el usuario ya vio
- * fotografía en el hero y en el mosaico, y lo que necesita aquí es el
- * argumento.
+ * Sin CTA: nació como teaser de home que enlazaba a esta misma página, y aquí
+ * dentro ese enlace apuntaría a donde el usuario ya está.
  */
 export function AboutSplit({ index }: { index: number }) {
   const copy = HOME_SECTIONS.about
@@ -41,14 +39,6 @@ export function AboutSplit({ index }: { index: number }) {
                 </Reveal>
               ))}
             </div>
-
-            <Reveal delay={0.5}>
-              <div className="mt-10">
-                <Button href={ROUTES.about} variant="onPaper">
-                  Conoce la empresa
-                </Button>
-              </div>
-            </Reveal>
           </div>
 
           <Reveal mask from="bottom" delay={0.15}>

@@ -18,7 +18,7 @@ export function StatsBar() {
   if (!HAS_STATS) return null
 
   return (
-    <Section tone="deep" spacing="tight" grid>
+    <Section tone="navy" spacing="tight" grid>
       <Container width="wide">
         <Stagger className="grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
           {STATS.map((stat) => (

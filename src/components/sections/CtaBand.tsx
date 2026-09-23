@@ -2,7 +2,7 @@ import Image from 'next/image'
 import { Headline } from '@/components/motion/Headline'
 import { Reveal } from '@/components/motion/Reveal'
 import { Rule } from '@/components/motion/Rule'
-import { Button } from '@/components/ui/Button'
+import { ShinyButton } from '@/components/ui/ShinyButton'
 import { Container } from '@/components/ui/Container'
 import { CTA_BAND } from '@/content/about'
 import { MEDIA } from '@/content/media'
@@ -68,7 +68,7 @@ export function CtaBand({ index }: { index: number }) {
 
         <Reveal delay={0.45}>
           <div className="mt-10">
-            <Button href={ROUTES.contact}>{CTA_BAND.cta}</Button>
+            <ShinyButton href={ROUTES.contact}>{CTA_BAND.cta}</ShinyButton>
           </div>
         </Reveal>
       </Container>

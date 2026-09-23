@@ -19,46 +19,51 @@ import { formatIndex } from '@/lib/utils'
  * estrecha a la izquierda y el contenido en las ocho restantes. Es la
  * disposición de una ficha técnica, y sostiene bien títulos largos sin
  * recortarlos.
+ *
+ * Va sobre papel: es la sección más larga de `/servicios`, y encadenarla en
+ * navy justo detrás de `<ServicesIndex>` dejaba la página entera oscura de
+ * arriba abajo. El índice y el icono usan terracota-800, no terracota-500 —
+ * en claro esa es la única combinación que pasa AA (ver AGENTS.md).
  */
 export function ServicesDetail() {
   return (
-    <Section tone="navy" grid>
+    <Section tone="paper" grid>
       <Container>
-        <div className="border-t border-navy-800">
+        <div className="border-t border-paper-300">
           {SERVICES.map((service, position) => (
             <article
               key={service.id}
               id={service.id}
-              className="grid gap-6 border-b border-navy-800 py-14 lg:grid-cols-12 lg:gap-10 lg:py-20"
+              className="grid gap-6 border-b border-paper-300 py-14 lg:grid-cols-12 lg:gap-10 lg:py-20"
             >
               <div className="lg:col-span-3">
                 <Reveal>
                   <div className="flex items-center gap-4">
-                    <span className="font-mono text-label tabular text-terracota-500">
+                    <span className="font-mono text-label tabular text-terracota-800">
                       {formatIndex(position)}
                     </span>
-                    <Rule className="w-8 flex-none text-navy-600" delay={0.1} />
+                    <Rule className="w-8 flex-none text-paper-300" delay={0.1} />
                   </div>
 
-                  <Icon name={service.icon} className="mt-7 size-9 text-terracota-500" />
+                  <Icon name={service.icon} className="mt-7 size-9 text-terracota-800" />
                 </Reveal>
               </div>
 
               <div className="lg:col-span-9">
                 <Reveal delay={0.08}>
-                  <h2 className="stretch-display text-display-sm font-semibold text-white">
+                  <h2 className="stretch-display text-display-sm font-semibold text-navy-950">
                     {service.title}
                   </h2>
                 </Reveal>
 
                 <Reveal delay={0.16}>
-                  <p className="mt-6 max-w-3xl text-base leading-relaxed text-navy-100 sm:text-lg">
+                  <p className="mt-6 max-w-3xl text-base leading-relaxed text-navy-700 sm:text-lg">
                     {service.description}
                   </p>
                 </Reveal>
 
                 <Reveal delay={0.24}>
-                  <h3 className="mt-10 font-mono text-label uppercase text-navy-200">
+                  <h3 className="mt-10 font-mono text-label uppercase text-navy-700">
                     Qué entregamos
                   </h3>
                 </Reveal>
@@ -69,9 +74,9 @@ export function ServicesDetail() {
                       <Check
                         aria-hidden="true"
                         strokeWidth={1.5}
-                        className="mt-0.5 size-4 shrink-0 text-terracota-500"
+                        className="mt-0.5 size-4 shrink-0 text-terracota-800"
                       />
-                      <span className="text-sm leading-relaxed text-navy-100">{deliverable}</span>
+                      <span className="text-sm leading-relaxed text-navy-700">{deliverable}</span>
                     </StaggerItem>
                   ))}
                 </Stagger>

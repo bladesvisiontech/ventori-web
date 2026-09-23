@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { CtaBand } from '@/components/sections/CtaBand'
 import { SectorsGrid } from '@/components/sections/SectorsGrid'
+import { SectorsMosaic } from '@/components/sections/SectorsMosaic'
 import { PageHero } from '@/components/ui/PageHero'
 import { PAGES } from '@/content/pages'
 import { ROUTES } from '@/lib/constants'
@@ -12,6 +13,11 @@ export const metadata: Metadata = buildMetadata({
   path: ROUTES.sectors,
 })
 
+/**
+ * `<SectorsMosaic>` abre como el mismo bloque que antes vivía en la home —hoy
+ * sin su CTA, que apuntaba aquí mismo— y cada pieza baja directo al bloque de
+ * `<SectorsGrid>` del mismo sector, más abajo en esta página.
+ */
 export default function SectorsPage() {
   return (
     <>
@@ -20,8 +26,9 @@ export default function SectorsPage() {
         lines={PAGES.sectors.titleLines}
         lead={PAGES.sectors.lead}
       />
+      <SectorsMosaic index={0} />
       <SectorsGrid />
-      <CtaBand index={0} />
+      <CtaBand index={1} />
     </>
   )
 }

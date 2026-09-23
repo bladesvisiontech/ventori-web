@@ -1,7 +1,5 @@
 import Link from 'next/link'
-import { Reveal } from '@/components/motion/Reveal'
 import { Stagger, StaggerItem } from '@/components/motion/Stagger'
-import { Button } from '@/components/ui/Button'
 import { Container } from '@/components/ui/Container'
 import { MediaFrame } from '@/components/ui/MediaFrame'
 import { Section } from '@/components/ui/Section'
@@ -36,23 +34,15 @@ export function SectorsMosaic({ index }: { index: number }) {
   const copy = HOME_SECTIONS.sectors
 
   return (
-    <Section tone="deep" grid>
+    <Section tone="navy" grid>
       <Container width="wide">
-        <div className="flex flex-col gap-10 lg:flex-row lg:items-end lg:justify-between">
-          <SectionHead
-            index={index}
-            eyebrow={copy.eyebrow}
-            lines={copy.lines}
-            intro={copy.intro}
-            className="lg:max-w-2xl"
-          />
-
-          <Reveal delay={0.3} className="hidden lg:block">
-            <Button href={ROUTES.sectors} variant="outline">
-              Ver todos los sectores
-            </Button>
-          </Reveal>
-        </div>
+        <SectionHead
+          index={index}
+          eyebrow={copy.eyebrow}
+          lines={copy.lines}
+          intro={copy.intro}
+          className="lg:max-w-2xl"
+        />
 
         <Stagger className="mt-16 grid gap-4 lg:grid-cols-12" delay={0.1}>
           {SECTORS.map((sector, position) => {
@@ -99,12 +89,6 @@ export function SectorsMosaic({ index }: { index: number }) {
             )
           })}
         </Stagger>
-
-        <Reveal className="mt-10 lg:hidden">
-          <Button href={ROUTES.sectors} variant="outline">
-            Ver todos los sectores
-          </Button>
-        </Reveal>
       </Container>
     </Section>
   )

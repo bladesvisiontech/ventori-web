@@ -98,3 +98,36 @@ export interface Project {
   image: string
   sectorId: Sector['id']
 }
+
+/**
+ * Proyecto de concesión/interventoría de alumbrado público, para el mapa de
+ * cobertura de la home. Distinto de `Project`: aquí la fuente es el contrato,
+ * no un caso de estudio con foto.
+ */
+export interface ConcessionProject {
+  id: string
+  /** Nombre del municipio, tal como aparece en el contrato. */
+  name: string
+  department: string
+  /** Razón social que ejecuta el contrato. */
+  company: string
+  contract: string
+  object: string
+  /** Formato dd/mm/aaaa, tal como llega del cliente. */
+  startDate: string
+  endDate: string
+  /** Plazo del contrato, en años. */
+  termYears: number
+  luminaires: number
+  /** Centroide del municipio sobre `COLOMBIA_MAP_VIEWBOX`, para el pin. */
+  point: { x: number; y: number }
+  /** Límite real del municipio sobre `COLOMBIA_MAP_VIEWBOX`, para resaltarlo en el mapa. */
+  boundaryPath: string
+  /**
+   * Rutas dentro de /public. PENDIENTE DEL CLIENTE para Timbío y El Tambo:
+   * sin foto propia del municipio se muestra un marcador de "pendiente",
+   * nunca una foto de stock — sería presentar ambientación como si fuera un
+   * proyecto ejecutado real.
+   */
+  images?: readonly string[]
+}

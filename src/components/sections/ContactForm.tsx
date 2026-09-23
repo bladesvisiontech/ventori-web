@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { AlertCircle, CheckCircle2 } from 'lucide-react'
-import { Button } from '@/components/ui/Button'
+import { ShinyButton } from '@/components/ui/ShinyButton'
 import {
   CONTACT_FORM,
   CONTACT_SUBJECTS,
@@ -239,9 +239,9 @@ export function ContactForm() {
       </FieldShell>
 
       <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
-        <Button type="submit" disabled={submitting} withArrow={!submitting}>
+        <ShinyButton type="submit" disabled={submitting}>
           {submitting ? 'Enviando…' : 'Enviar mensaje'}
-        </Button>
+        </ShinyButton>
 
         <p className="font-mono text-label uppercase text-navy-300">
           <span aria-hidden="true" className="text-terracota-500">

@@ -14,10 +14,15 @@ import { cn, formatIndex } from '@/lib/utils'
  * obliga a la vista a recolocarse en cada uno.
  *
  * Cada bloque lleva `id` porque el mosaico de la home enlaza a `#sector`.
+ *
+ * Va sobre papel: `<SectorsMosaic>` justo encima ya cubrió el momento oscuro
+ * de fotografía a sangre, y repetir navy aquí dejaba `/sectores` sin un solo
+ * respiro claro. El índice y el icono usan terracota-800, no terracota-500 —
+ * en claro esa es la única combinación que pasa AA (ver AGENTS.md).
  */
 export function SectorsGrid() {
   return (
-    <Section tone="navy" grid>
+    <Section tone="paper" grid>
       <Container>
         <div className="space-y-20 lg:space-y-32">
           {SECTORS.map((sector, position) => {
@@ -45,21 +50,21 @@ export function SectorsGrid() {
                 <div className={cn(flipped ? 'lg:order-1' : 'lg:order-2')}>
                   <Reveal>
                     <div className="flex items-center gap-4">
-                      <span className="font-mono text-label tabular text-terracota-500">
+                      <span className="font-mono text-label tabular text-terracota-800">
                         {formatIndex(position)}
                       </span>
-                      <Icon name={sector.icon} className="size-6 text-navy-300" />
+                      <Icon name={sector.icon} className="size-6 text-navy-500" />
                     </div>
                   </Reveal>
 
                   <Reveal delay={0.1}>
-                    <h2 className="mt-6 stretch-display text-display-sm font-semibold text-white">
+                    <h2 className="mt-6 stretch-display text-display-sm font-semibold text-navy-950">
                       {sector.title}
                     </h2>
                   </Reveal>
 
                   <Reveal delay={0.18}>
-                    <p className="mt-5 max-w-xl text-base leading-relaxed text-navy-100 sm:text-lg">
+                    <p className="mt-5 max-w-xl text-base leading-relaxed text-navy-700 sm:text-lg">
                       {sector.description}
                     </p>
                   </Reveal>

@@ -1,40 +1,22 @@
-import { AboutSplit } from '@/components/sections/AboutSplit'
-import { CtaBand } from '@/components/sections/CtaBand'
 import { Hero } from '@/components/sections/Hero'
-import { MarqueeBand } from '@/components/sections/MarqueeBand'
-import { ProcessSequence } from '@/components/sections/ProcessSequence'
-import { SectorsMosaic } from '@/components/sections/SectorsMosaic'
-import { ServicesIndex } from '@/components/sections/ServicesIndex'
-import { StatsBar } from '@/components/sections/StatsBar'
-import { WhyUs } from '@/components/sections/WhyUs'
+import { ProjectsMap } from '@/components/sections/ProjectsMap'
 
 /**
  * Home.
  *
- * El orden de tonos marca el avance del scroll y evita que dos bloques seguidos
- * se lean como uno solo:
+ * Solo dos piezas: el hero y la cobertura de proyectos. El resto del
+ * argumento de empresa —sectores, quiénes somos, cómo trabajamos, servicios,
+ * por qué elegirnos— vive en su interna correspondiente, con el mismo diseño
+ * que traía aquí y el contenido propio de esa página.
  *
- *   hero sobre vídeo · cifras en navy profundo · mosaico de sectores ·
- *   banda de términos · quiénes somos sobre papel · las tres fases en navy ·
- *   índice de servicios · por qué elegirnos en terracota · cierre sobre foto ·
- *   pie sobre papel
- *
- * El índice numerado de cada sección sale de su posición aquí, no del contenido:
- * reordenar la página las renumera sin tocar `content/`. El hero no cuenta —no
- * lleva cabecera numerada—, así que la numeración visible arranca en el mosaico.
+ * El hero no lleva cabecera numerada, así que la numeración visible arranca
+ * en `<ProjectsMap>`.
  */
 export default function HomePage() {
   return (
     <>
       <Hero />
-      <StatsBar />
-      <SectorsMosaic index={0} />
-      <MarqueeBand />
-      <AboutSplit index={1} />
-      <ProcessSequence index={2} />
-      <ServicesIndex index={3} />
-      <WhyUs index={4} />
-      <CtaBand index={5} />
+      <ProjectsMap index={0} />
     </>
   )
 }
