@@ -63,7 +63,7 @@ export function Hero() {
           </Reveal>
 
           <Reveal trigger="mount" delay={0.55}>
-            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-center">
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
               <ShinyButton href={ROUTES.contact}>{HERO.primaryCta}</ShinyButton>
               <Button href={ROUTES.services} variant="outline">
                 {HERO.secondaryCta}
