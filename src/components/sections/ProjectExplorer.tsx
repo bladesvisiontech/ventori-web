@@ -80,6 +80,17 @@ export function ProjectExplorer({ projects, children }: ProjectExplorerProps) {
                   strokeWidth={1}
                 />
               ))}
+              {projects.map((project) => (
+                <line
+                  key={`line-${project.id}`}
+                  x1={project.callout.x}
+                  y1={project.callout.y}
+                  x2={project.point.x}
+                  y2={project.point.y}
+                  stroke="var(--color-navy-950)"
+                  strokeWidth={1}
+                />
+              ))}
             </svg>
 
             {projects.map((project, position) => {
@@ -106,6 +117,32 @@ export function ProjectExplorer({ projects, children }: ProjectExplorerProps) {
                       isActive ? 'scale-150' : 'group-hover:scale-125',
                     )}
                   />
+                </button>
+              )
+            })}
+
+            {projects.map((project, position) => {
+              const isActive = project.id === active.id
+
+              return (
+                <button
+                  key={`label-${project.id}`}
+                  type="button"
+                  onClick={() => setActiveIndex(position)}
+                  aria-hidden="true"
+                  tabIndex={-1}
+                  className={cn(
+                    'absolute -translate-x-1/2 -translate-y-1/2 px-3 py-1.5 font-mono text-label uppercase transition-colors duration-300',
+                    isActive
+                      ? 'bg-navy-950 text-white'
+                      : 'bg-white text-navy-950 hover:bg-navy-950 hover:text-white',
+                  )}
+                  style={{
+                    left: `${(project.callout.x / width) * 100}%`,
+                    top: `${(project.callout.y / height) * 100}%`,
+                  }}
+                >
+                  {project.name}
                 </button>
               )
             })}
@@ -190,28 +227,28 @@ export function ProjectExplorer({ projects, children }: ProjectExplorerProps) {
               )}
             </div>
 
-            {/* Datos del contrato, debajo de la foto. */}
-            <div className="mt-6 bevel-sm bg-navy-950 p-6 sm:p-7">
+            {/* Datos del contrato, debajo de la foto, sobre papel. */}
+            <div className="mt-6 border-t border-navy-950/15 pt-6">
               <div className="grid grid-cols-2 gap-x-6 gap-y-5 sm:grid-cols-3">
                 <div>
                   <p className="font-mono text-label uppercase text-navy-500">Fecha de inicio</p>
-                  <p className="mt-1 font-mono text-label tabular text-white">{active.startDate}</p>
+                  <p className="mt-1 font-mono text-label tabular text-navy-950">{active.startDate}</p>
                 </div>
                 <div>
                   <p className="font-mono text-label uppercase text-navy-500">Vigencia</p>
-                  <p className="mt-1 font-mono text-label tabular text-white">{active.termYears} años</p>
+                  <p className="mt-1 font-mono text-label tabular text-navy-950">{active.termYears} años</p>
                 </div>
                 <div>
                   <p className="font-mono text-label uppercase text-navy-500">N.º luminarias</p>
-                  <p className="mt-1 font-mono text-label tabular text-white">
+                  <p className="mt-1 font-mono text-label tabular text-navy-950">
                     {active.luminaires.toLocaleString('es-CO')}
                   </p>
                 </div>
               </div>
 
-              <p className="mt-6 text-sm leading-relaxed text-navy-100">{active.object}</p>
+              <p className="mt-6 text-sm leading-relaxed text-navy-950">{active.object}</p>
 
-              <p className="mt-5 font-mono text-label uppercase text-navy-400">
+              <p className="mt-5 font-mono text-label uppercase text-navy-700">
                 Contrato {active.contract} · {active.company}
               </p>
             </div>

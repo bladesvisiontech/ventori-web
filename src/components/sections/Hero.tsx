@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import { HeroVideo } from '@/components/sections/HeroVideo'
 import { Headline } from '@/components/motion/Headline'
 import { Reveal } from '@/components/motion/Reveal'
@@ -24,7 +25,7 @@ import { formatIndex } from '@/lib/utils'
  */
 export function Hero() {
   return (
-    <section className="relative isolate flex min-h-dvh flex-col justify-end overflow-hidden pt-(--header-height) pb-[calc(var(--mobile-bar-clearance)+2rem)] sm:pb-[calc(var(--mobile-bar-clearance)+3rem)] lg:pt-(--header-height-lg) lg:pb-24">
+    <section className="relative isolate z-10 flex min-h-dvh flex-col justify-end pt-(--header-height) pb-[calc(var(--mobile-bar-clearance)+6rem)] sm:pb-[calc(var(--mobile-bar-clearance)+7rem)] lg:pt-(--header-height-lg) lg:pb-52">
       <HeroVideo />
 
       <Container width="wide" className="relative">
@@ -53,7 +54,7 @@ export function Hero() {
           className="mt-8 max-w-6xl text-display-xl font-semibold text-white"
         />
 
-        <div className="mt-10 flex flex-col gap-10 lg:flex-row lg:items-end lg:justify-between">
+        <div className="mt-10 flex flex-col gap-10">
           <Reveal trigger="mount" delay={0.45}>
             <p className="max-w-xl text-base leading-relaxed text-navy-100 sm:text-lg">
               {HERO.subheadline}
@@ -61,7 +62,7 @@ export function Hero() {
           </Reveal>
 
           <Reveal trigger="mount" delay={0.55}>
-            <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-center">
               <ShinyButton href={ROUTES.contact}>{HERO.primaryCta}</ShinyButton>
               <Button href={ROUTES.services} variant="outline">
                 {HERO.secondaryCta}
@@ -70,6 +71,15 @@ export function Hero() {
           </Reveal>
         </div>
       </Container>
+
+      <Image
+        src="/icon.svg"
+        alt=""
+        width={59}
+        height={65}
+        aria-hidden="true"
+        className="pointer-events-none absolute bottom-0 left-1/2 w-24 -translate-x-1/2 translate-y-1/2 sm:w-32 lg:w-52"
+      />
     </section>
   )
 }

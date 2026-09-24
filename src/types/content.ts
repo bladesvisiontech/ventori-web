@@ -121,6 +121,8 @@ export interface ConcessionProject {
   luminaires: number
   /** Centroide del municipio sobre `COLOMBIA_MAP_VIEWBOX`, para el pin. */
   point: { x: number; y: number }
+  /** Posición de la etiqueta con línea guía sobre `COLOMBIA_MAP_VIEWBOX`. */
+  callout: { x: number; y: number }
   /** Límite real del municipio sobre `COLOMBIA_MAP_VIEWBOX`, para resaltarlo en el mapa. */
   boundaryPath: string
   /**
