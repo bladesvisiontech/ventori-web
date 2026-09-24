@@ -17,7 +17,7 @@ export default function NotFound() {
   return (
     <>
       <PageHero eyebrow={copy.eyebrow} lines={copy.titleLines} lead={copy.lead} />
-      <section className="bg-navy-950 pb-24">
+      <section className="bg-navy-hero pb-24">
         <Container>
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
             <ShinyButton href={ROUTES.home}>{copy.primaryCta}</ShinyButton>

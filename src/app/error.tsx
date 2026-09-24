@@ -14,9 +14,9 @@ export default function Error({ error, reset }: { error: Error & { digest?: stri
   }, [error])
 
   return (
-    <section className="bg-navy-950 pt-(--header-height) pb-24 text-white lg:pt-(--header-height-lg)">
+    <section className="bg-navy-hero pt-(--header-height) pb-24 text-white lg:pt-(--header-height-lg)">
       <Container className="pt-16 lg:pt-24">
-        <p className="font-mono text-label uppercase text-terracota-500">{copy.eyebrow}</p>
+        <p className="font-mono text-label uppercase text-navy-100">{copy.eyebrow}</p>
         <h1 className="stretch-display mt-6 font-display text-display-md font-semibold">{copy.title}</h1>
         <p className="mt-6 max-w-xl text-lg leading-relaxed text-navy-100">{copy.lead}</p>
         <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center">

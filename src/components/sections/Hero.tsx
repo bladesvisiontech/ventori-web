@@ -33,7 +33,7 @@ export function Hero() {
           <ul className="flex flex-wrap items-center gap-x-7 gap-y-2">
             {HERO.disciplines.map((discipline, index) => (
               <li key={discipline} className="flex items-baseline gap-2">
-                <span className="font-mono text-label tabular text-terracota-500">
+                <span className="font-mono text-label tabular text-terracota-300">
                   {formatIndex(index)}
                 </span>
                 <span className="font-mono text-label uppercase text-navy-100">{discipline}</span>
@@ -51,6 +51,7 @@ export function Hero() {
           lines={HERO.lines}
           delay={0.2}
           trigger="mount"
+          accentClassName="text-terracota-300"
           className="mt-8 max-w-6xl text-display-xl font-semibold text-white"
         />
 

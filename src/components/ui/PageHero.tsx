@@ -23,14 +23,14 @@ interface PageHeroProps {
  */
 export function PageHero({ eyebrow, lines, lead }: PageHeroProps) {
   return (
-    <section className="relative isolate overflow-hidden bg-navy-950 pt-(--header-height) pb-16 sm:pb-20 lg:pt-(--header-height-lg) lg:pb-28">
+    <section className="relative isolate overflow-hidden bg-navy-hero pt-(--header-height) pb-16 sm:pb-20 lg:pt-(--header-height-lg) lg:pb-28">
       <GridPaper />
 
       <Container className="relative pt-16 lg:pt-24">
         <Reveal trigger="mount">
           <div className="flex items-center gap-4">
             <Rule trigger="mount" className="w-10 flex-none text-terracota-500" />
-            <span className="font-mono text-label uppercase text-navy-200">{eyebrow}</span>
+            <span className="font-mono text-label uppercase text-navy-100">{eyebrow}</span>
           </div>
         </Reveal>
 
@@ -39,6 +39,7 @@ export function PageHero({ eyebrow, lines, lead }: PageHeroProps) {
           lines={lines}
           delay={0.12}
           trigger="mount"
+          accentClassName="text-terracota-400"
           className="mt-7 max-w-4xl text-display-lg font-semibold text-white"
         />
 

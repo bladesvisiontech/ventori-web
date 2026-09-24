@@ -103,9 +103,9 @@ export function HeroVideo() {
         inferior asienta el titular sobre la zona más oscura; el lateral abre
         contraste en el borde izquierdo, que es donde arranca la lectura.
       */}
-      <div className="absolute inset-0 bg-navy-950/60" />
-      <div className="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/30 to-navy-950/50" />
-      <div className="absolute inset-0 bg-gradient-to-r from-navy-950/80 via-transparent to-transparent" />
+      <div className="absolute inset-0 bg-navy-950/35" />
+      <div className="absolute inset-0 bg-gradient-to-t from-navy-950/70 via-navy-950/15 to-navy-950/25" />
+      <div className="absolute inset-0 bg-gradient-to-r from-navy-950/75 via-navy-950/45 via-45% to-transparent to-75% max-sm:from-navy-950/60 max-sm:via-navy-950/55 max-sm:to-navy-950/40" />
     </div>
   )
 }
