@@ -6,7 +6,9 @@
 export const SITE = {
   /** Nombre de marca tal como aparece en el logotipo oficial. */
   name: 'Grupo Ventori',
-  legalName: 'Grupo Ventori',
+  legalName: 'Grupo Ventori S.A.S.',
+  /** PENDIENTE DEL CLIENTE. La política de privacidad lo muestra solo cuando tenga dato. */
+  nit: '',
   tagline: 'Ingeniería, consultoría e interventoría',
   description:
     'Empresa colombiana especializada en ingeniería, consultoría e interventoría, enfocada en soluciones técnicas integrales para proyectos de infraestructura pública y privada.',
@@ -34,6 +36,9 @@ export const ROUTES = {
   sectors: '/sectores',
   projects: '/proyectos',
   contact: '/contacto',
+  privacy: '/politica-de-privacidad',
+  terms: '/terminos-y-condiciones',
+  cookies: '/politica-de-cookies',
 } as const
 
 export type Route = (typeof ROUTES)[keyof typeof ROUTES]
@@ -47,6 +52,13 @@ export const NAV_LINKS = [
   { label: 'Contacto', href: ROUTES.contact },
 ] as const
 
+/** Enlaces legales del pie de página. */
+export const LEGAL_LINKS = [
+  { label: 'Política de privacidad', href: ROUTES.privacy },
+  { label: 'Términos y condiciones', href: ROUTES.terms },
+  { label: 'Política de cookies', href: ROUTES.cookies },
+] as const
+
 /**
  * Barra de acciones fija al pie, solo en móvil.
  *
@@ -58,6 +70,7 @@ export const NAV_LINKS = [
  * número al que llamar es peor que no tenerlo.
  */
 export const MOBILE_BAR = {
+  label: 'Acciones rápidas',
   menu: { label: 'Menú', open: 'Abrir menú', close: 'Cerrar menú' },
   call: { label: 'Llamar' },
   cta: { label: 'Contacto', href: ROUTES.contact },
@@ -141,7 +154,10 @@ export type FormStatus = (typeof FORM_STATUS)[keyof typeof FORM_STATUS]
 
 export const FORM_MESSAGES = {
   success: 'Gracias por escribirnos. Un miembro del equipo se pondrá en contacto contigo.',
-  error: 'No pudimos enviar tu mensaje. Intenta de nuevo o escríbenos directamente por correo.',
+  /* Solo remite al correo cuando hay uno publicado al que escribir. */
+  error: CONTACT.email
+    ? `No pudimos enviar tu mensaje. Intenta de nuevo o escríbenos a ${CONTACT.email}.`
+    : 'No pudimos enviar tu mensaje. Intenta de nuevo en unos minutos.',
   rateLimited:
     'Recibimos varios envíos desde esta conexión. Espera un momento antes de volver a intentar.',
 } as const

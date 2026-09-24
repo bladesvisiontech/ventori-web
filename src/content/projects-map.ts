@@ -150,3 +150,52 @@ export const CONCESSION_PROJECTS: readonly ConcessionProject[] = [
 ] as const
 
 export const HAS_CONCESSION_PROJECTS = CONCESSION_PROJECTS.length > 0
+
+/** Rótulos de la ficha de proyecto, compartidos por el mapa y la página de proyectos. */
+export const PROJECT_LABELS = {
+  startDate: 'Fecha de inicio',
+  endDate: 'Fecha de terminación',
+  term: 'Vigencia',
+  termUnit: 'años',
+  luminaires: 'N.º luminarias',
+  contract: 'Contrato',
+  company: 'Ejecuta',
+  object: 'Objeto del contrato',
+  department: 'Departamento',
+  gallery: 'Registro fotográfico',
+  photosPending: 'Registro fotográfico pendiente de publicación.',
+  photoAltPending: 'Registro fotográfico próximamente',
+  previousPhoto: 'Foto anterior',
+  nextPhoto: 'Foto siguiente',
+  photoOf: 'de',
+  moreInfo: 'Más información',
+  mapLabel: 'Mapa de Colombia con los municipios donde hay proyectos',
+  selectorLabel: 'Seleccionar proyecto',
+} as const
+
+/** Cifras de conjunto calculadas de los contratos cargados, nunca escritas a mano. */
+export const CONCESSION_TOTALS = {
+  projects: CONCESSION_PROJECTS.length,
+  departments: new Set(CONCESSION_PROJECTS.map((project) => project.department)).size,
+  luminaires: CONCESSION_PROJECTS.reduce((sum, project) => sum + project.luminaires, 0),
+} as const
+
+/** Encabezados de la página de proyectos. */
+export const PROJECTS_PAGE = {
+  map: {
+    eyebrow: 'Cobertura',
+    lines: ['Dónde están', { text: 'nuestros proyectos', accent: true }],
+    intro:
+      'Selecciona un municipio en el mapa o en la lista para ver su contrato y sus fotos.',
+  },
+  records: {
+    eyebrow: 'Fichas',
+    lines: ['Proyecto', { text: 'por proyecto', accent: true }],
+    intro: 'El detalle completo de cada contrato vigente.',
+  },
+  totals: {
+    projects: 'Municipios',
+    departments: 'Departamentos',
+    luminaires: 'Luminarias',
+  },
+} as const

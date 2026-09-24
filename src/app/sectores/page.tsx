@@ -2,10 +2,11 @@ import type { Metadata } from 'next'
 import { CtaBand } from '@/components/sections/CtaBand'
 import { SectorsGrid } from '@/components/sections/SectorsGrid'
 import { SectorsMosaic } from '@/components/sections/SectorsMosaic'
+import { JsonLd } from '@/components/seo/JsonLd'
 import { PageHero } from '@/components/ui/PageHero'
 import { PAGES } from '@/content/pages'
 import { ROUTES } from '@/lib/constants'
-import { buildMetadata } from '@/lib/seo'
+import { buildBreadcrumbJsonLd, buildMetadata } from '@/lib/seo'
 
 export const metadata: Metadata = buildMetadata({
   title: PAGES.sectors.metaTitle,
@@ -29,6 +30,7 @@ export default function SectorsPage() {
       <SectorsMosaic index={0} />
       <SectorsGrid />
       <CtaBand index={1} />
+      <JsonLd data={buildBreadcrumbJsonLd(PAGES.sectors.metaTitle, ROUTES.sectors)} />
     </>
   )
 }

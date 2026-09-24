@@ -3,13 +3,16 @@
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { AlertCircle, CheckCircle2 } from 'lucide-react'
+import { AlertCircle, Check, CheckCircle2 } from 'lucide-react'
+import Link from 'next/link'
 import { ShinyButton } from '@/components/ui/ShinyButton'
+import { CONTACT_CONSENT } from '@/content/legal'
 import {
   CONTACT_FORM,
   CONTACT_SUBJECTS,
   FORM_MESSAGES,
   FORM_STATUS,
+  ROUTES,
   type FormStatus,
 } from '@/lib/constants'
 import { cn } from '@/lib/utils'
@@ -20,7 +23,7 @@ import { contactSchema, type ContactInput } from '@/lib/validation/contact'
 const FIELD =
   'min-h-12 w-full border border-navy-700 bg-navy-900 px-4 py-3 text-base text-white ' +
   'placeholder:text-navy-400 transition-colors duration-200 ' +
-  'hover:border-navy-600 focus:border-terracota-500 focus:outline-none'
+  'hover:border-navy-600 focus:border-terracota-500 focus:outline-none focus:ring-1 focus:ring-terracota-500'
 
 const FIELD_INVALID = 'border-terracota-400'
 
@@ -95,7 +98,7 @@ export function ContactForm() {
     /* Se valida al salir del campo, no en cada pulsación: marcar en rojo un
        correo a medio escribir es corregir al usuario antes de que termine. */
     mode: 'onBlur',
-    defaultValues: { subject: CONTACT_SUBJECTS[0].value },
+    defaultValues: { subject: CONTACT_SUBJECTS[0].value, consent: false },
   })
 
   const onSubmit = async (values: ContactInput) => {
@@ -237,6 +240,52 @@ export function ContactForm() {
           {...register('message')}
         />
       </FieldShell>
+
+      <div>
+        <div className="flex items-start gap-3">
+          <span className="relative mt-0.5 flex size-5 shrink-0">
+            <input
+              id="consent"
+              type="checkbox"
+              aria-invalid={Boolean(errors.consent)}
+              aria-describedby={errors.consent ? 'consent-error' : undefined}
+              className="peer size-5 cursor-pointer appearance-none border border-navy-600 bg-navy-900 transition-colors duration-200 checked:border-terracota-500 checked:bg-terracota-500 hover:border-navy-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-terracota-500"
+              {...register('consent')}
+            />
+            <Check
+              aria-hidden="true"
+              strokeWidth={2.5}
+              className="pointer-events-none absolute inset-0.5 size-4 text-navy-950 opacity-0 peer-checked:opacity-100"
+            />
+          </span>
+          <label htmlFor="consent" className="cursor-pointer text-sm leading-relaxed text-navy-100">
+            {CONTACT_CONSENT.before}
+            <Link
+              href={ROUTES.privacy}
+              target="_blank"
+              className="text-white underline underline-offset-4 hover:text-terracota-300"
+            >
+              {CONTACT_CONSENT.link}
+            </Link>
+            {CONTACT_CONSENT.after}
+            <span aria-hidden="true" className="ml-1 text-terracota-500">
+              *
+            </span>
+            <span className="sr-only"> (obligatorio)</span>
+          </label>
+        </div>
+
+        {errors.consent && (
+          <p
+            id="consent-error"
+            role="alert"
+            className="mt-2 flex items-start gap-1.5 text-sm text-terracota-300"
+          >
+            <AlertCircle aria-hidden="true" strokeWidth={1.5} className="mt-0.5 size-4 shrink-0" />
+            {errors.consent.message}
+          </p>
+        )}
+      </div>
 
       <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
         <ShinyButton type="submit" disabled={submitting}>

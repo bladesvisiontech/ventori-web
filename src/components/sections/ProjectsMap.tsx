@@ -4,6 +4,7 @@ import { Section } from '@/components/ui/Section'
 import { SectionHead } from '@/components/ui/SectionHead'
 import { CONCESSION_PROJECTS, HAS_CONCESSION_PROJECTS } from '@/content/projects-map'
 import { HOME_SECTIONS } from '@/content/sections'
+import { ROUTES } from '@/lib/constants'
 
 /**
  * Cobertura de proyectos, justo debajo del hero.
@@ -28,7 +29,7 @@ export function ProjectsMap({ index }: { index: number }) {
   return (
     <Section tone="paper" grid>
       <Container width="wide">
-        <ProjectExplorer projects={CONCESSION_PROJECTS}>
+        <ProjectExplorer projects={CONCESSION_PROJECTS} moreHref={ROUTES.projects}>
           <SectionHead
             index={index}
             eyebrow={copy.eyebrow}

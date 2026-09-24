@@ -1,0 +1,274 @@
+import { CONTACT, ROUTES, SITE } from '@/lib/constants'
+import type { HeadlineLine } from '@/types/content'
+
+export interface LegalSection {
+  heading: string
+  paragraphs?: readonly string[]
+  items?: readonly string[]
+}
+
+export interface LegalDocument {
+  eyebrow: string
+  titleLines: readonly HeadlineLine[]
+  lead: string
+  metaTitle: string
+  description: string
+  updatedAt: string
+  sections: readonly LegalSection[]
+}
+
+export const LEGAL_UPDATED_LABEL = 'Última actualización'
+
+/** Fecha de la versión vigente. Se actualiza cada vez que cambie el texto. */
+const PRIVACY_UPDATED_AT = '24 de septiembre de 2026'
+const TERMS_UPDATED_AT = PRIVACY_UPDATED_AT
+const COOKIES_UPDATED_AT = PRIVACY_UPDATED_AT
+
+/**
+ * Canal para ejercer los derechos del titular: el correo cuando exista y, en
+ * todo caso, el formulario de contacto.
+ */
+const REQUEST_CHANNEL = CONTACT.email
+  ? `el correo ${CONTACT.email} o el formulario de la página de contacto (${ROUTES.contact})`
+  : `el formulario de la página de contacto (${ROUTES.contact})`
+
+const CONTROLLER_ID = [SITE.legalName, SITE.nit ? `NIT ${SITE.nit}` : null, 'Colombia']
+  .filter(Boolean)
+  .join(' · ')
+
+/**
+ * Política de tratamiento de datos personales, conforme a la Ley 1581 de 2012
+ * y al Decreto 1377 de 2013 (compilado en el Decreto Único 1074 de 2015).
+ */
+export const PRIVACY_POLICY: LegalDocument = {
+  eyebrow: 'Legal',
+  titleLines: [
+    'Política de',
+    { text: 'privacidad', accent: true },
+  ] as const satisfies readonly HeadlineLine[],
+  lead: 'Cómo tratamos los datos personales que nos entregas a través de este sitio web y cómo puedes ejercer tus derechos sobre ellos.',
+  metaTitle: 'Política de privacidad',
+  description: `Política de tratamiento de datos personales de ${SITE.legalName}, conforme a la Ley 1581 de 2012: finalidades, derechos del titular y procedimiento de consultas y reclamos.`,
+  updatedAt: PRIVACY_UPDATED_AT,
+  sections: [
+    {
+      heading: 'Responsable del tratamiento',
+      paragraphs: [
+        `${CONTROLLER_ID}. Responsable del tratamiento de los datos personales recolectados en este sitio web.`,
+        `Canal de atención para asuntos de datos personales: ${REQUEST_CHANNEL}.`,
+      ],
+    },
+    {
+      heading: 'Marco legal',
+      paragraphs: [
+        'Esta política se rige por el artículo 15 de la Constitución Política de Colombia, la Ley Estatutaria 1581 de 2012, el Decreto 1377 de 2013 (compilado en el Decreto 1074 de 2015) y las demás normas que los modifiquen o complementen.',
+      ],
+    },
+    {
+      heading: 'Datos que recolectamos',
+      paragraphs: [
+        'Solo recolectamos los datos que tú mismo escribes en el formulario de contacto:',
+      ],
+      items: [
+        'Nombre completo.',
+        'Correo electrónico.',
+        'Teléfono.',
+        'Entidad o empresa (opcional).',
+        'Asunto y mensaje.',
+      ],
+    },
+    {
+      heading: 'Datos técnicos y cookies',
+      paragraphs: [
+        `Este sitio no usa cookies de analítica, publicidad ni seguimiento, y no crea perfiles de navegación. El detalle está en la política de cookies (${ROUTES.cookies}).`,
+        'Para proteger el formulario contra envíos automáticos se usa la dirección IP de forma transitoria y en memoria, sin almacenarla. El proveedor de alojamiento puede registrar datos técnicos de acceso (dirección IP, navegador, fecha y hora) con fines exclusivos de seguridad y operación del servicio.',
+      ],
+    },
+    {
+      heading: 'Finalidades del tratamiento',
+      items: [
+        'Responder tu solicitud, consulta o petición de cotización.',
+        'Contactarte para dar seguimiento a la propuesta o al proyecto sobre el que escribiste.',
+        'Llevar registro de las solicitudes recibidas y de la autorización otorgada.',
+        'Cumplir obligaciones legales y atender requerimientos de autoridades competentes.',
+      ],
+    },
+    {
+      heading: 'Autorización',
+      paragraphs: [
+        'Al marcar la casilla de autorización del formulario y enviarlo, otorgas tu autorización previa, expresa e informada para el tratamiento de tus datos con las finalidades descritas. Sin esa autorización el formulario no se envía.',
+        'No solicitamos datos sensibles ni datos de niñas, niños y adolescentes. Te pedimos no incluirlos en el mensaje.',
+      ],
+    },
+    {
+      heading: 'Derechos del titular',
+      paragraphs: ['Como titular de los datos tienes derecho a:'],
+      items: [
+        'Conocer, actualizar y rectificar tus datos personales.',
+        'Solicitar prueba de la autorización otorgada.',
+        'Ser informado sobre el uso que se ha dado a tus datos.',
+        'Presentar quejas ante la Superintendencia de Industria y Comercio por infracciones a la ley.',
+        'Revocar la autorización y solicitar la supresión de tus datos cuando no exista un deber legal o contractual de conservarlos.',
+        'Acceder gratuitamente a tus datos personales.',
+      ],
+    },
+    {
+      heading: 'Consultas y reclamos',
+      paragraphs: [
+        `Puedes ejercer tus derechos a través de ${REQUEST_CHANNEL}, indicando tu nombre, el medio para responderte y la descripción de tu solicitud.`,
+        'Las consultas se atienden en un máximo de diez (10) días hábiles desde su recepción, prorrogables por cinco (5) días hábiles más, informándote el motivo.',
+        'Los reclamos se atienden en un máximo de quince (15) días hábiles desde el día siguiente a su recepción, prorrogables por ocho (8) días hábiles más, informándote el motivo. Si el reclamo está incompleto, te pediremos completarlo dentro de los cinco (5) días siguientes.',
+      ],
+    },
+    {
+      heading: 'Encargados y transferencia de datos',
+      paragraphs: [
+        'Para operar el sitio usamos proveedores tecnológicos que actúan como encargados del tratamiento: el servicio de alojamiento web y el servicio de envío de correo que entrega los mensajes del formulario. Estos proveedores pueden tener servidores fuera de Colombia, incluidos los Estados Unidos, y solo tratan los datos para prestar el servicio contratado, bajo medidas de seguridad y confidencialidad.',
+        'No vendemos, alquilamos ni cedemos tus datos a terceros con fines comerciales.',
+      ],
+    },
+    {
+      heading: 'Seguridad y conservación',
+      paragraphs: [
+        'El sitio se sirve exclusivamente por HTTPS y aplicamos medidas técnicas y administrativas razonables para proteger los datos contra acceso no autorizado, pérdida o alteración.',
+        'Conservamos los datos durante el tiempo necesario para atender tu solicitud y la relación comercial que se derive de ella, y el que exijan las normas aplicables. Después se suprimen.',
+      ],
+    },
+    {
+      heading: 'Vigencia y cambios',
+      paragraphs: [
+        `Esta política rige desde el ${PRIVACY_UPDATED_AT}. Cualquier cambio sustancial se publicará en esta misma página con su nueva fecha de actualización.`,
+      ],
+    },
+  ],
+}
+
+export const TERMS: LegalDocument = {
+  eyebrow: 'Legal',
+  titleLines: ['Términos y', { text: 'condiciones', accent: true }],
+  lead: 'Las condiciones de uso de este sitio web y de sus contenidos.',
+  metaTitle: 'Términos y condiciones',
+  description: `Términos y condiciones de uso del sitio web de ${SITE.legalName}: propiedad intelectual, uso permitido, responsabilidad y ley aplicable.`,
+  updatedAt: TERMS_UPDATED_AT,
+  sections: [
+    {
+      heading: 'Titular del sitio',
+      paragraphs: [
+        `${CONTROLLER_ID}. Contacto: ${REQUEST_CHANNEL}.`,
+        'Al navegar por este sitio aceptas estos términos. Si no estás de acuerdo con ellos, te pedimos no usarlo.',
+      ],
+    },
+    {
+      heading: 'Objeto del sitio',
+      paragraphs: [
+        `El sitio presenta de forma informativa los servicios de ingeniería, consultoría e interventoría de ${SITE.name} y los proyectos en los que participa.`,
+        'Su contenido no constituye una oferta comercial vinculante. Toda propuesta de servicios se formaliza por escrito mediante cotización o contrato, que prevalece sobre cualquier información publicada aquí.',
+      ],
+    },
+    {
+      heading: 'Información de proyectos',
+      paragraphs: [
+        'Los datos de proyectos (contrato, objeto, fechas, vigencia y número de luminarias) provienen de los contratos correspondientes y se publican con fines informativos. Pueden variar por modificaciones contractuales posteriores a su publicación.',
+      ],
+    },
+    {
+      heading: 'Propiedad intelectual',
+      paragraphs: [
+        `La marca, el logotipo, los textos, el diseño del sitio y las fotografías de proyectos pertenecen a ${SITE.legalName} o se usan con autorización de sus titulares, y están protegidos por la Ley 23 de 1982, la Decisión Andina 351 de 1993 y las demás normas sobre derecho de autor y propiedad industrial.`,
+        'Algunas fotografías y vídeos de ambientación proceden de bancos de imágenes con licencia de uso comercial. Ilustran sectores y tipos de trabajo, y no representan proyectos ejecutados por la empresa salvo que se indique expresamente.',
+        'No está permitido reproducir, distribuir, modificar ni usar comercialmente estos contenidos sin autorización previa y por escrito.',
+      ],
+    },
+    {
+      heading: 'Uso permitido',
+      paragraphs: ['Al usar el sitio te comprometes a no:'],
+      items: [
+        'Enviar información falsa o de terceros sin su autorización a través del formulario.',
+        'Intentar acceder sin autorización a sistemas, datos o áreas no públicas del sitio.',
+        'Enviar mensajes automatizados, masivos o con contenido malicioso.',
+        'Usar el sitio para fines ilícitos o contrarios a estos términos.',
+      ],
+    },
+    {
+      heading: 'Responsabilidad',
+      paragraphs: [
+        'Procuramos que la información del sitio sea exacta y esté actualizada, pero no garantizamos que esté libre de errores ni que el sitio funcione de forma ininterrumpida. No respondemos por daños derivados del uso de la información publicada sin la validación de un contrato o una propuesta formal.',
+      ],
+    },
+    {
+      heading: 'Datos personales',
+      paragraphs: [
+        `El tratamiento de los datos que envías por el formulario se rige por la política de privacidad (${ROUTES.privacy}).`,
+      ],
+    },
+    {
+      heading: 'Ley aplicable',
+      paragraphs: [
+        'Estos términos se rigen por las leyes de la República de Colombia. Cualquier controversia se someterá a los jueces competentes de Colombia.',
+      ],
+    },
+    {
+      heading: 'Cambios',
+      paragraphs: [
+        'Podemos actualizar estos términos. La versión vigente es siempre la publicada en esta página, con su fecha de actualización.',
+      ],
+    },
+  ],
+}
+
+/**
+ * Política de cookies. El sitio no escribe cookies ni usa almacenamiento local:
+ * si algún día se añade analítica o publicidad, hay que actualizar esta página
+ * e implementar un aviso con consentimiento previo antes de activarla.
+ */
+export const COOKIES_POLICY: LegalDocument = {
+  eyebrow: 'Legal',
+  titleLines: ['Política de', { text: 'cookies', accent: true }],
+  lead: 'Qué son las cookies y por qué este sitio no necesita pedirte consentimiento para usarlas.',
+  metaTitle: 'Política de cookies',
+  description: `Política de cookies del sitio web de ${SITE.legalName}: el sitio no usa cookies de analítica, publicidad ni seguimiento.`,
+  updatedAt: COOKIES_UPDATED_AT,
+  sections: [
+    {
+      heading: 'Qué son las cookies',
+      paragraphs: [
+        'Las cookies son pequeños archivos que un sitio web guarda en tu navegador para recordar información entre visitas, por ejemplo preferencias, sesiones o hábitos de navegación.',
+      ],
+    },
+    {
+      heading: 'Cookies que usa este sitio',
+      paragraphs: [
+        'Ninguna. Este sitio no instala cookies propias ni de terceros: no usamos herramientas de analítica, publicidad, redes sociales ni seguimiento, y tampoco guardamos información en el almacenamiento local de tu navegador.',
+        'Las fuentes tipográficas, las imágenes y los vídeos se sirven desde nuestro propio dominio, sin llamadas a servicios externos que puedan identificarte.',
+      ],
+    },
+    {
+      heading: 'Por qué no te pedimos consentimiento',
+      paragraphs: [
+        'Como no usamos cookies ni tecnologías de seguimiento, no hay nada que aceptar o rechazar. Por eso el sitio no muestra un aviso de cookies.',
+      ],
+    },
+    {
+      heading: 'Cómo gestionar las cookies en tu navegador',
+      paragraphs: [
+        'Puedes configurar tu navegador para bloquear o eliminar cookies en cualquier momento desde su menú de privacidad. Esto no afecta al funcionamiento de este sitio.',
+      ],
+    },
+    {
+      heading: 'Cambios',
+      paragraphs: [
+        `Si en el futuro incorporamos cookies que no sean estrictamente necesarias, actualizaremos esta política y te pediremos tu consentimiento previo antes de activarlas, conforme a la Ley 1581 de 2012. Para dudas sobre privacidad, consulta la política de privacidad (${ROUTES.privacy}).`,
+      ],
+    },
+  ],
+}
+
+/** Texto de la casilla de autorización del formulario de contacto. */
+export const CONTACT_CONSENT = {
+  before: 'Autorizo el tratamiento de mis datos personales conforme a la ',
+  link: 'política de privacidad',
+  after: '.',
+  error: 'Necesitamos tu autorización para responder tu mensaje.',
+  /** Línea que se añade al correo como prueba de la autorización. */
+  record: 'Autorización de tratamiento de datos: otorgada en el formulario web',
+} as const

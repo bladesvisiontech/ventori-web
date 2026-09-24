@@ -1,9 +1,10 @@
 import type { Metadata } from 'next'
 import { ContactPanel } from '@/components/sections/ContactPanel'
+import { JsonLd } from '@/components/seo/JsonLd'
 import { PageHero } from '@/components/ui/PageHero'
 import { PAGES } from '@/content/pages'
 import { ROUTES } from '@/lib/constants'
-import { buildMetadata } from '@/lib/seo'
+import { buildBreadcrumbJsonLd, buildMetadata } from '@/lib/seo'
 
 export const metadata: Metadata = buildMetadata({
   title: PAGES.contact.metaTitle,
@@ -24,6 +25,7 @@ export default function ContactPage() {
         lead={PAGES.contact.lead}
       />
       <ContactPanel />
+      <JsonLd data={buildBreadcrumbJsonLd(PAGES.contact.metaTitle, ROUTES.contact)} />
     </>
   )
 }

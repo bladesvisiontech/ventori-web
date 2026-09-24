@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { Logo } from '@/components/layout/Logo'
 import { GridPaper } from '@/components/ui/GridPaper'
 import { Container } from '@/components/ui/Container'
-import { CONTACT, NAV_LINKS, SITE, getContactChannels } from '@/lib/constants'
+import { CONTACT, LEGAL_LINKS, NAV_LINKS, SITE, getContactChannels } from '@/lib/constants'
 
 export function Footer() {
   const channels = getContactChannels()
@@ -82,6 +82,20 @@ export function Footer() {
           <p className="font-mono text-label uppercase text-navy-600">
             © {year} {SITE.legalName}
           </p>
+          <nav aria-label="Legal">
+            <ul className="flex flex-wrap gap-x-6">
+              {LEGAL_LINKS.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className="inline-flex min-h-11 items-center font-mono text-label uppercase text-navy-700 underline-offset-4 transition-colors duration-200 hover:text-terracota-800 hover:underline"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
           <p className="font-mono text-label uppercase text-navy-600">{SITE.tagline}</p>
         </div>
 

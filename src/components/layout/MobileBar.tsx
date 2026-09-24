@@ -167,7 +167,10 @@ export function MobileBar() {
         Barra fija al pie. El relleno inferior respeta el indicador de inicio de
         los iPhone sin gastarlo en los teléfonos que no lo tienen.
       */}
-      <div className="fixed inset-x-0 bottom-0 z-[60] flex border-t border-paper-300 bg-paper-50 pb-[env(safe-area-inset-bottom)] lg:hidden">
+      <nav
+        aria-label={MOBILE_BAR.label}
+        className="fixed inset-x-0 bottom-0 z-[60] flex border-t border-paper-300 bg-paper-50 pb-[env(safe-area-inset-bottom)] lg:hidden"
+      >
         <button
           ref={toggleRef}
           type="button"
@@ -200,7 +203,7 @@ export function MobileBar() {
           {MOBILE_BAR.cta.label}
           <ArrowRight aria-hidden="true" strokeWidth={1.5} className="size-4" />
         </Link>
-      </div>
+      </nav>
     </>
   )
 }

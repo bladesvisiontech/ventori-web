@@ -87,18 +87,6 @@ export interface Stat {
   label: string
 }
 
-export interface Project {
-  id: string
-  title: string
-  client: string
-  location: string
-  year: string
-  scope: string
-  /** Ruta dentro de /public. */
-  image: string
-  sectorId: Sector['id']
-}
-
 /**
  * Proyecto de concesión/interventoría de alumbrado público, para el mapa de
  * cobertura de la home. Distinto de `Project`: aquí la fuente es el contrato,

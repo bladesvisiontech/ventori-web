@@ -57,19 +57,15 @@ export const PAGES = {
   },
   projects: {
     eyebrow: 'Proyectos',
-    title: 'Proyectos de referencia',
+    title: 'Alumbrado público con contratos a largo plazo',
     titleLines: [
-      'Proyectos',
-      { text: 'de referencia', accent: true },
+      'Alumbrado público',
+      'con contratos a',
+      { text: 'largo plazo', accent: true },
     ] as const satisfies readonly HeadlineLine[],
-    lead: 'Una selección de los proyectos en los que hemos participado, con su alcance, ubicación y año de ejecución.',
+    lead: 'Concesiones e interventorías del servicio de alumbrado público en Cauca y Norte de Santander. Cada ficha recoge el contrato, su objeto, la vigencia y el registro fotográfico del proyecto.',
     metaTitle: 'Proyectos',
-    description: `Proyectos de infraestructura vial, obras civiles y equipamientos públicos en los que ${SITE.name} ha participado como consultor o interventor.`,
-    /** Estado cuando `PROJECTS` todavía está vacío. */
-    empty: {
-      title: 'Estamos preparando esta sección',
-      text: 'Muy pronto publicaremos aquí los proyectos de referencia. Mientras tanto, escríbenos y con gusto compartimos nuestra experiencia aplicable a tu proyecto.',
-    },
+    description: `Proyectos de concesión e interventoría de alumbrado público de ${SITE.name} en Timbío, El Tambo, Chitagá y Mutiscua: contratos, vigencia, luminarias y registro fotográfico.`,
   },
   contact: {
     eyebrow: 'Contacto',
@@ -81,5 +77,24 @@ export const PAGES = {
     lead: 'Escríbenos con el contexto del proyecto y la etapa en la que se encuentra. Te respondemos con una propuesta de alcance concreta.',
     metaTitle: 'Contacto',
     description: `Contacta al equipo de ${SITE.name} para proyectos de ingeniería, consultoría e interventoría en Colombia. Atención de lunes a viernes.`,
+  },
+} as const
+
+/** Páginas de sistema: ruta inexistente y fallo inesperado. */
+export const SYSTEM_PAGES = {
+  notFound: {
+    eyebrow: 'Error 404',
+    titleLines: ['Esta página', { text: 'no existe', accent: true }] as const satisfies readonly HeadlineLine[],
+    lead: 'Es posible que la dirección haya cambiado o que el enlace esté mal escrito.',
+    metaTitle: 'Página no encontrada',
+    primaryCta: 'Ir al inicio',
+    secondaryCta: 'Contactarnos',
+  },
+  error: {
+    eyebrow: 'Error',
+    title: 'Algo salió mal',
+    lead: 'No pudimos cargar esta página. Intenta de nuevo en unos segundos.',
+    retry: 'Intentar de nuevo',
+    home: 'Ir al inicio',
   },
 } as const

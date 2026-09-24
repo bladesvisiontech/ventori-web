@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server'
 import { Resend } from 'resend'
+import { CONTACT_CONSENT } from '@/content/legal'
 import { CONTACT_SUBJECTS, FORM_MESSAGES, SITE } from '@/lib/constants'
 import {
   getContactFromEmail,
@@ -8,6 +9,9 @@ import {
   isContactMailConfigured,
 } from '@/lib/env'
 import { contactSchema } from '@/lib/validation/contact'
+
+/** Tamaño máximo del cuerpo. El formulario completo al límite cabe holgado en 16 KB. */
+const MAX_BODY_BYTES = 16_384
 
 /** Ventana y cupo del limitador por IP. */
 const RATE_LIMIT = { windowMs: 60_000, maxRequests: 3 } as const
@@ -21,6 +25,13 @@ const attempts = new Map<string, { count: number; resetAt: number }>()
 
 function isRateLimited(ip: string) {
   const now = Date.now()
+
+  /* Se purgan las entradas vencidas para que el mapa no crezca sin límite. */
+  if (attempts.size > 1000) {
+    for (const [key, entry] of attempts) {
+      if (now > entry.resetAt) attempts.delete(key)
+    }
+  }
   const entry = attempts.get(ip)
 
   if (!entry || now > entry.resetAt) {
@@ -36,18 +47,46 @@ function clientIp(request: Request) {
   return request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ?? 'desconocida'
 }
 
+/**
+ * Rechaza envíos desde otros sitios. El navegador manda `Origin` en todo POST
+ * con `fetch`; si viene, tiene que coincidir con el host que atiende la petición.
+ */
+function isSameOrigin(request: Request) {
+  const origin = request.headers.get('origin')
+  if (!origin) return true
+
+  const host = request.headers.get('x-forwarded-host') ?? request.headers.get('host')
+  try {
+    return new URL(origin).host === host
+  } catch {
+    return false
+  }
+}
+
 function subjectLabel(value: string) {
   return CONTACT_SUBJECTS.find((subject) => subject.value === value)?.label ?? value
 }
 
 export async function POST(request: Request) {
+  if (!isSameOrigin(request)) {
+    return NextResponse.json({ message: FORM_MESSAGES.error }, { status: 403 })
+  }
+
+  if (!request.headers.get('content-type')?.includes('application/json')) {
+    return NextResponse.json({ message: FORM_MESSAGES.error }, { status: 415 })
+  }
+
   if (isRateLimited(clientIp(request))) {
     return NextResponse.json({ message: FORM_MESSAGES.rateLimited }, { status: 429 })
   }
 
   let body: unknown
   try {
-    body = await request.json()
+    const raw = await request.text()
+    if (new TextEncoder().encode(raw).length > MAX_BODY_BYTES) {
+      return NextResponse.json({ message: FORM_MESSAGES.error }, { status: 413 })
+    }
+    body = JSON.parse(raw)
   } catch {
     return NextResponse.json({ message: FORM_MESSAGES.error }, { status: 400 })
   }
@@ -89,6 +128,8 @@ export async function POST(request: Request) {
         '',
         'Mensaje:',
         data.message,
+        '',
+        `${CONTACT_CONSENT.record} el ${new Date().toISOString()}.`,
       ]
         .filter(Boolean)
         .join('\n'),

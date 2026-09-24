@@ -3,9 +3,11 @@ import { Archivo, Inter, JetBrains_Mono } from 'next/font/google'
 import { Footer } from '@/components/layout/Footer'
 import { Header } from '@/components/layout/Header'
 import { MobileBar } from '@/components/layout/MobileBar'
+import { JsonLd } from '@/components/seo/JsonLd'
 import { MotionProvider } from '@/components/motion/MotionProvider'
 import { ScrollProgress } from '@/components/motion/ScrollProgress'
 import { PAGES } from '@/content/pages'
+import { BRAND_COLORS } from '@/lib/brand'
 import { ROUTES, SITE } from '@/lib/constants'
 import { buildMetadata, buildOrganizationJsonLd } from '@/lib/seo'
 import './globals.css'
@@ -55,6 +57,13 @@ export const metadata: Metadata = {
     default: PAGES.home.metaTitle,
     template: `%s | ${SITE.name}`,
   },
+  applicationName: SITE.name,
+  authors: [{ name: SITE.legalName, url: SITE.url }],
+  creator: SITE.legalName,
+  publisher: SITE.legalName,
+  category: 'business',
+  robots: { index: true, follow: true },
+  formatDetection: { telephone: false, email: false, address: false },
 }
 
 /**
@@ -63,7 +72,7 @@ export const metadata: Metadata = {
  * ampliar un formulario a quien lo necesita.
  */
 export const viewport: Viewport = {
-  themeColor: '#010133',
+  themeColor: BRAND_COLORS.navy,
   colorScheme: 'dark',
 }
 
@@ -109,10 +118,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <MobileBar />
         </MotionProvider>
 
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(buildOrganizationJsonLd()) }}
-        />
+        <JsonLd data={buildOrganizationJsonLd()} />
       </body>
     </html>
   )

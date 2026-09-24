@@ -1,11 +1,17 @@
 import type { Metadata } from 'next'
 import { CtaBand } from '@/components/sections/CtaBand'
-import { ProjectsGrid } from '@/components/sections/ProjectsGrid'
+import { ProjectExplorer } from '@/components/sections/ProjectExplorer'
+import { ProjectRecords } from '@/components/sections/ProjectRecords'
 import { StatsBar } from '@/components/sections/StatsBar'
+import { Container } from '@/components/ui/Container'
+import { JsonLd } from '@/components/seo/JsonLd'
 import { PageHero } from '@/components/ui/PageHero'
+import { Section } from '@/components/ui/Section'
+import { SectionHead } from '@/components/ui/SectionHead'
 import { PAGES } from '@/content/pages'
+import { CONCESSION_PROJECTS, PROJECTS_PAGE } from '@/content/projects-map'
 import { ROUTES } from '@/lib/constants'
-import { buildMetadata } from '@/lib/seo'
+import { buildBreadcrumbJsonLd, buildMetadata, buildProjectsJsonLd } from '@/lib/seo'
 
 export const metadata: Metadata = buildMetadata({
   title: PAGES.projects.metaTitle,
@@ -13,12 +19,6 @@ export const metadata: Metadata = buildMetadata({
   path: ROUTES.projects,
 })
 
-/**
- * `<StatsBar>` bajó aquí desde la home: no se renderiza mientras el cliente no
- * entregue cifras (ver `content/stats.ts`), y las cifras de una empresa
- * —proyectos ejecutados, municipios atendidos— encajan mejor junto a los casos
- * que en una home que ahora abre directo con la cobertura de proyectos.
- */
 export default function ProjectsPage() {
   return (
     <>
@@ -27,9 +27,28 @@ export default function ProjectsPage() {
         lines={PAGES.projects.titleLines}
         lead={PAGES.projects.lead}
       />
-      <ProjectsGrid />
+
+      <Section tone="paper" grid>
+        <Container width="wide">
+          <ProjectExplorer projects={CONCESSION_PROJECTS}>
+            <SectionHead
+              index={0}
+              eyebrow={PROJECTS_PAGE.map.eyebrow}
+              lines={PROJECTS_PAGE.map.lines}
+              intro={PROJECTS_PAGE.map.intro}
+              tone="light"
+            />
+          </ProjectExplorer>
+        </Container>
+      </Section>
+
+      <ProjectRecords index={1} />
       <StatsBar />
-      <CtaBand index={0} />
+      <CtaBand index={2} />
+
+      <JsonLd
+        data={[buildProjectsJsonLd(), buildBreadcrumbJsonLd(PAGES.projects.metaTitle, ROUTES.projects)]}
+      />
     </>
   )
 }
