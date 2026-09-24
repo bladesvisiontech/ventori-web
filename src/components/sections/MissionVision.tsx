@@ -4,6 +4,7 @@ import { Icon } from '@/components/ui/Icon'
 import { Section } from '@/components/ui/Section'
 import { MISSION, VISION } from '@/content/about'
 import { formatIndex } from '@/lib/utils'
+import { cmsField } from '@/lib/cms'
 
 /**
  * Misión y visión, en dos paneles biselados.
@@ -33,7 +34,7 @@ export function MissionVision({ index }: { index: number }) {
   ]
 
   return (
-    <Section tone="paper">
+    <Section tone="paper" cms="nosotros:missionVision">
       <Container>
         <div className="grid gap-6 lg:grid-cols-2">
           {panels.map((panel, position) => (
@@ -44,13 +45,14 @@ export function MissionVision({ index }: { index: number }) {
                   <span className={`font-mono text-label tabular ${panel.meta}`}>
                     {formatIndex(index + position)}
                   </span>
-                  <span className={`font-mono text-label uppercase ${panel.meta}`}>
+                  <span className={`font-mono text-label uppercase ${panel.meta}`} {...cmsField(`nosotros:${position === 0 ? 'mission' : 'vision'}.eyebrow`)}>
                     {panel.eyebrow}
                   </span>
                 </div>
 
                 <p
                   className={`mt-8 text-lg leading-relaxed sm:text-xl ${panel.body}`}
+                  {...cmsField(`nosotros:${position === 0 ? 'mission' : 'vision'}.text`)}
                 >
                   {panel.text}
                 </p>

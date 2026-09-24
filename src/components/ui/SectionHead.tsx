@@ -2,6 +2,7 @@ import { Headline } from '@/components/motion/Headline'
 import { Reveal } from '@/components/motion/Reveal'
 import type { EntranceTrigger } from '@/components/motion/entrance'
 import { Rule } from '@/components/motion/Rule'
+import { cmsField } from '@/lib/cms'
 import { cn, formatIndex } from '@/lib/utils'
 import type { HeadlineLine } from '@/types/content'
 
@@ -24,6 +25,10 @@ interface SectionHeadProps {
   as?: 'h1' | 'h2'
   /** `mount` cuando la cabecera está en pantalla al cargar (ver AGENTS.md). */
   trigger?: EntranceTrigger
+  /** Ruta de la cabecera en el CMS ("archivo:ruta"), con eyebrow, lines e intro dentro. */
+  cms?: string
+  /** "heading" cuando el título es un solo texto en el CMS en vez de `lines`. */
+  cmsHeading?: 'lines' | 'heading'
 }
 
 /*
@@ -88,6 +93,8 @@ export function SectionHead({
   className,
   as = 'h2',
   trigger = 'view',
+  cms,
+  cmsHeading = 'lines',
 }: SectionHeadProps) {
   const palette = TONES[tone]
 
@@ -101,7 +108,9 @@ export function SectionHead({
 
           <Rule trigger={trigger} className={cn('w-10 flex-none', palette.rule)} delay={0.1} />
 
-          <span className={cn('font-mono text-label uppercase', palette.eyebrow)}>{eyebrow}</span>
+          <span className={cn('font-mono text-label uppercase', palette.eyebrow)} {...cmsField(cms && `${cms}.eyebrow`)}>
+            {eyebrow}
+          </span>
         </div>
       </Reveal>
 
@@ -109,6 +118,8 @@ export function SectionHead({
         as={as}
         trigger={trigger}
         lines={lines}
+        cms={cms && cmsHeading === 'lines' ? `${cms}.lines` : undefined}
+        cmsSingle={cms && cmsHeading === 'heading' ? `${cms}.heading` : undefined}
         delay={0.15}
         accentClassName={palette.accent}
         className={cn(
@@ -120,7 +131,10 @@ export function SectionHead({
 
       {intro && (
         <Reveal trigger={trigger} delay={0.25}>
-          <p className={cn('mt-7 max-w-2xl text-base leading-relaxed sm:text-lg', palette.intro)}>
+          <p
+            className={cn('mt-7 max-w-2xl text-base leading-relaxed sm:text-lg', palette.intro)}
+            {...cmsField(cms && `${cms}.intro`)}
+          >
             {intro}
           </p>
         </Reveal>

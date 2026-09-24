@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next'
 import { Archivo, Inter, JetBrains_Mono } from 'next/font/google'
+import { CmsPreviewBridge } from '@/components/cms/CmsPreviewBridge'
 import { Footer } from '@/components/layout/Footer'
 import { Header } from '@/components/layout/Header'
 import { MobileBar } from '@/components/layout/MobileBar'
@@ -116,6 +117,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
           <Footer />
           <MobileBar />
+          <CmsPreviewBridge />
         </MotionProvider>
 
         <JsonLd data={buildOrganizationJsonLd()} />

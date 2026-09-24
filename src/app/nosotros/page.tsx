@@ -30,6 +30,7 @@ export default function AboutPage() {
   return (
     <>
       <PageHero
+        cms="nosotros:hero"
         eyebrow={PAGES.about.eyebrow}
         lines={PAGES.about.titleLines}
         lead={PAGES.about.lead}

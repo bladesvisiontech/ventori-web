@@ -6,6 +6,7 @@ import { SectionHead } from '@/components/ui/SectionHead'
 import { DIFFERENTIATORS } from '@/content/differentiators'
 import { HOME_SECTIONS } from '@/content/sections'
 import { formatIndex } from '@/lib/utils'
+import { cmsField } from '@/lib/cms'
 
 /**
  * "Por qué elegirnos", sobre el bloque de terracota.
@@ -22,7 +23,7 @@ export function WhyUs({ index }: { index: number }) {
   const copy = HOME_SECTIONS.whyUs
 
   return (
-    <Section tone="terracota" grid>
+    <Section tone="terracota" grid cms="nosotros:whyUs">
       <Container>
         <SectionHead
           index={index}
@@ -30,6 +31,7 @@ export function WhyUs({ index }: { index: number }) {
           lines={copy.lines}
           intro={copy.intro}
           tone="accent"
+          cms="nosotros:whyUs.section"
         />
 
         <Stagger as="ul" className="mt-16 grid gap-x-10 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
@@ -42,11 +44,13 @@ export function WhyUs({ index }: { index: number }) {
                 </span>
               </div>
 
-              <h3 className="mt-5 stretch-display text-lg font-semibold leading-snug tracking-tight text-navy-950">
+              <h3 className="mt-5 stretch-display text-lg font-semibold leading-snug tracking-tight text-navy-950" {...cmsField(`nosotros:whyUs.items.${position}.title`)}>
                 {item.title}
               </h3>
 
-              <p className="mt-3 text-sm leading-relaxed text-navy-800">{item.description}</p>
+              <p className="mt-3 text-sm leading-relaxed text-navy-800" {...cmsField(`nosotros:whyUs.items.${position}.description`)}>
+                {item.description}
+              </p>
             </StaggerItem>
           ))}
         </Stagger>

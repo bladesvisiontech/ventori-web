@@ -23,6 +23,7 @@ export default function SectorsPage() {
   return (
     <>
       <PageHero
+        cms="sectores:hero"
         eyebrow={PAGES.sectors.eyebrow}
         lines={PAGES.sectors.titleLines}
         lead={PAGES.sectors.lead}

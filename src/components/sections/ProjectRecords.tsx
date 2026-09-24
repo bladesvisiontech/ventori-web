@@ -10,6 +10,7 @@ import {
   PROJECT_LABELS,
   PROJECTS_PAGE,
 } from '@/content/projects-map'
+import { cmsField } from '@/lib/cms'
 import { formatIndex } from '@/lib/utils'
 
 /**
@@ -22,21 +23,23 @@ export function ProjectRecords({ index }: { index: number }) {
   const copy = PROJECTS_PAGE.records
 
   const totals = [
-    { label: PROJECTS_PAGE.totals.projects, value: CONCESSION_TOTALS.projects },
-    { label: PROJECTS_PAGE.totals.departments, value: CONCESSION_TOTALS.departments },
-    { label: PROJECTS_PAGE.totals.luminaires, value: CONCESSION_TOTALS.luminaires },
+    { label: PROJECTS_PAGE.totals.projects, value: CONCESSION_TOTALS.projects, cms: 'proyectos:totals.projects' },
+    { label: PROJECTS_PAGE.totals.departments, value: CONCESSION_TOTALS.departments, cms: 'proyectos:totals.departments' },
+    { label: PROJECTS_PAGE.totals.luminaires, value: CONCESSION_TOTALS.luminaires, cms: 'proyectos:totals.luminaires' },
   ]
 
   return (
-    <Section tone="navy" grid>
+    <Section tone="navy" grid cms="proyectos:records">
       <Container width="wide">
-        <SectionHead index={index} eyebrow={copy.eyebrow} lines={copy.lines} intro={copy.intro} />
+        <SectionHead index={index} eyebrow={copy.eyebrow} lines={copy.lines} intro={copy.intro} cms="proyectos:records" />
 
         <Reveal>
           <dl className="mt-14 grid gap-6 border-y border-navy-800 py-8 sm:grid-cols-3">
             {totals.map((total) => (
               <div key={total.label}>
-                <dt className="font-mono text-label uppercase text-navy-200">{total.label}</dt>
+                <dt className="font-mono text-label uppercase text-navy-200" {...cmsField(total.cms)}>
+                  {total.label}
+                </dt>
                 <dd className="stretch-display mt-2 font-display text-display-sm font-semibold tabular text-white">
                   {total.value.toLocaleString('es-CO')}
                 </dd>
@@ -50,18 +53,22 @@ export function ProjectRecords({ index }: { index: number }) {
             const photos = project.images ?? []
 
             const facts = [
-              { label: PROJECT_LABELS.department, value: project.department },
-              { label: PROJECT_LABELS.company, value: project.company },
-              { label: PROJECT_LABELS.contract, value: project.contract },
-              { label: PROJECT_LABELS.startDate, value: project.startDate },
-              { label: PROJECT_LABELS.endDate, value: project.endDate },
+              { label: PROJECT_LABELS.department, value: project.department, field: 'department', labelKey: 'department' },
+              { label: PROJECT_LABELS.company, value: project.company, field: 'company', labelKey: 'company' },
+              { label: PROJECT_LABELS.contract, value: project.contract, field: 'contract', labelKey: 'contract' },
+              { label: PROJECT_LABELS.startDate, value: project.startDate, field: 'startDate', labelKey: 'startDate' },
+              { label: PROJECT_LABELS.endDate, value: project.endDate, field: 'endDate', labelKey: 'endDate' },
               {
                 label: PROJECT_LABELS.term,
                 value: `${project.termYears} ${PROJECT_LABELS.termUnit}`,
+                field: 'termYears',
+                labelKey: 'term',
               },
               {
                 label: PROJECT_LABELS.luminaires,
                 value: project.luminaires.toLocaleString('es-CO'),
+                field: '',
+                labelKey: 'luminaires',
               },
             ]
 
@@ -81,14 +88,18 @@ export function ProjectRecords({ index }: { index: number }) {
                       id={`${project.id}-title`}
                       className="stretch-display mt-4 font-display text-display-sm font-semibold text-white"
                     >
-                      {project.name}
+                      <span {...cmsField(`proyectos:projects.${position}.name`)}>{project.name}</span>
                     </h3>
 
                     <dl className="mt-8 grid grid-cols-2 gap-x-6 gap-y-5">
                       {facts.map((fact) => (
                         <div key={fact.label}>
-                          <dt className="font-mono text-label uppercase text-navy-200">{fact.label}</dt>
-                          <dd className="mt-1 text-sm tabular text-white">{fact.value}</dd>
+                          <dt className="font-mono text-label uppercase text-navy-200" {...cmsField(`proyectos:labels.${fact.labelKey}`)}>
+                            {fact.label}
+                          </dt>
+                          <dd className="mt-1 text-sm tabular text-white" {...cmsField(fact.field === 'termYears' || !fact.field ? undefined : `proyectos:projects.${position}.${fact.field}`)}>
+                            {fact.value}
+                          </dd>
                         </div>
                       ))}
                     </dl>
@@ -96,7 +107,9 @@ export function ProjectRecords({ index }: { index: number }) {
                     <h4 className="mt-8 font-mono text-label uppercase text-navy-200">
                       {PROJECT_LABELS.object}
                     </h4>
-                    <p className="mt-2 text-sm leading-relaxed text-navy-100">{project.object}</p>
+                    <p className="mt-2 text-sm leading-relaxed text-navy-100" {...cmsField(`proyectos:projects.${position}.object`)}>
+                      {project.object}
+                    </p>
                   </Reveal>
 
                   <div className="lg:col-span-7">

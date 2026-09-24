@@ -7,6 +7,7 @@ import { SectionHead } from '@/components/ui/SectionHead'
 import { HOME_SECTIONS } from '@/content/sections'
 import { SECTORS } from '@/content/sectors'
 import { ROUTES } from '@/lib/constants'
+import { cmsField } from '@/lib/cms'
 import { cn, formatIndex } from '@/lib/utils'
 
 /**
@@ -34,13 +35,14 @@ export function SectorsMosaic({ index }: { index: number }) {
   const copy = HOME_SECTIONS.sectors
 
   return (
-    <Section tone="navy" grid>
+    <Section tone="navy" grid cms="sectores:mosaic">
       <Container width="wide">
         <SectionHead
           index={index}
           eyebrow={copy.eyebrow}
           lines={copy.lines}
           intro={copy.intro}
+          cms="sectores:mosaic"
           className="lg:max-w-2xl"
         />
 
@@ -61,6 +63,7 @@ export function SectorsMosaic({ index }: { index: number }) {
                 >
                   <MediaFrame
                     image={sector.image}
+                    cms={`sectores:sectors.${position}.image`}
                     ratio={layout.ratio}
                     sizes={layout.sizes}
                     className={cn(
@@ -79,7 +82,7 @@ export function SectorsMosaic({ index }: { index: number }) {
                       <span className="font-mono text-label tabular text-terracota-500">
                         {formatIndex(position)}
                       </span>
-                      <h3 className="stretch-display text-xl font-semibold tracking-tight text-white sm:text-2xl">
+                      <h3 className="stretch-display text-xl font-semibold tracking-tight text-white sm:text-2xl" {...cmsField(`sectores:sectors.${position}.title`)}>
                         {sector.title}
                       </h3>
                     </div>

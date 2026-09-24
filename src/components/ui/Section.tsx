@@ -1,5 +1,6 @@
 import { GridPaper } from '@/components/ui/GridPaper'
 import { cn } from '@/lib/utils'
+import { cmsSection } from '@/lib/cms'
 
 export type SectionTone = 'navy' | 'deep' | 'paper' | 'terracota'
 
@@ -13,6 +14,8 @@ interface SectionProps {
   spacing?: 'tight' | 'default' | 'loose' | 'none'
   /** Retícula técnica de fondo. Se apaga donde hay fotografía a sangre. */
   grid?: boolean
+  /** Sección del CMS a la que corresponde ("archivo:clave"), para la vista previa. */
+  cms?: string
 }
 
 /*
@@ -48,6 +51,7 @@ export function Section({
   tone = 'navy',
   spacing = 'default',
   grid = false,
+  cms,
 }: SectionProps) {
   return (
     /*
@@ -58,6 +62,7 @@ export function Section({
      */
     <section
       id={id}
+      {...cmsSection(cms)}
       className={cn('relative isolate overflow-clip', TONES[tone], SPACING[spacing], className)}
     >
       {grid && <GridPaper tone={tone === 'paper' || tone === 'terracota' ? 'light' : 'dark'} />}

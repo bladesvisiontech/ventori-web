@@ -7,6 +7,7 @@ import { ArrowRight, Menu, Phone, X } from 'lucide-react'
 import { Logo } from '@/components/layout/Logo'
 import { CONTACT, MOBILE_BAR, NAV_LINKS, ROUTES } from '@/lib/constants'
 import { cn, formatIndex } from '@/lib/utils'
+import { cmsField, cmsSection } from '@/lib/cms'
 
 /**
  * Navegación de móvil: barra fija al pie y menú a pantalla completa.
@@ -143,7 +144,7 @@ export function MobileBar() {
                   isActive(link.href) ? 'text-terracota-800' : 'text-navy-950',
                 )}
               >
-                {link.label}
+                <span {...cmsField(link.cms)}>{link.label}</span>
               </span>
             </Link>
           ))}
@@ -157,7 +158,7 @@ export function MobileBar() {
             onClick={() => setOpen(false)}
             className="mt-6 flex min-h-14 w-full cursor-pointer items-center justify-center gap-3 bevel-sm bg-terracota-500 font-mono text-label uppercase text-navy-950"
           >
-            {MOBILE_BAR.cta.label}
+            <span {...cmsField('global:ui.mobileBar.cta')}>{MOBILE_BAR.cta.label}</span>
             <ArrowRight aria-hidden="true" strokeWidth={1.5} className="size-4" />
           </Link>
         </div>
@@ -169,6 +170,7 @@ export function MobileBar() {
       */}
       <nav
         aria-label={MOBILE_BAR.label}
+        {...cmsSection('global:mobileBar')}
         className="fixed inset-x-0 bottom-0 z-[60] flex border-t border-paper-300 bg-paper-50 pb-[env(safe-area-inset-bottom)] lg:hidden"
       >
         <button
@@ -181,7 +183,7 @@ export function MobileBar() {
           className="flex min-h-16 flex-1 cursor-pointer flex-col items-center justify-center gap-1 text-navy-950"
         >
           <Menu aria-hidden="true" strokeWidth={1.75} className="size-5" />
-          <span className="font-mono text-label uppercase">{MOBILE_BAR.menu.label}</span>
+          <span className="font-mono text-label uppercase" {...cmsField('global:ui.mobileBar.menu')}>{MOBILE_BAR.menu.label}</span>
         </button>
 
         {hasPhone && (
@@ -200,7 +202,7 @@ export function MobileBar() {
           href={MOBILE_BAR.cta.href}
           className="flex min-h-16 flex-[1.6] cursor-pointer items-center justify-center gap-3 bg-terracota-500 font-mono text-label uppercase text-navy-950"
         >
-          {MOBILE_BAR.cta.label}
+          <span {...cmsField('global:ui.mobileBar.cta')}>{MOBILE_BAR.cta.label}</span>
           <ArrowRight aria-hidden="true" strokeWidth={1.5} className="size-4" />
         </Link>
       </nav>

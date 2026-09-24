@@ -8,6 +8,7 @@ import { SectionHead } from '@/components/ui/SectionHead'
 import { HOME_SECTIONS } from '@/content/sections'
 import { SERVICES } from '@/content/services'
 import { ROUTES } from '@/lib/constants'
+import { cmsField } from '@/lib/cms'
 import { formatIndex } from '@/lib/utils'
 
 /**
@@ -27,13 +28,14 @@ export function ServicesIndex({ index }: { index: number }) {
   const copy = HOME_SECTIONS.services
 
   return (
-    <Section tone="navy" grid>
+    <Section tone="navy" grid cms="servicios:index">
       <Container>
         <SectionHead
           index={index}
           eyebrow={copy.eyebrow}
           lines={copy.lines}
           intro={copy.intro}
+          cms="servicios:index"
           className="lg:max-w-2xl"
         />
 
@@ -54,10 +56,10 @@ export function ServicesIndex({ index }: { index: number }) {
                 />
 
                 <div className="flex-1">
-                  <h3 className="stretch-display text-lg font-semibold tracking-tight text-white sm:text-xl lg:text-2xl">
+                  <h3 className="stretch-display text-lg font-semibold tracking-tight text-white sm:text-xl lg:text-2xl" {...cmsField(`servicios:services.${position}.title`)}>
                     {service.title}
                   </h3>
-                  <p className="mt-2 max-w-2xl text-sm leading-relaxed text-navy-200 sm:text-base">
+                  <p className="mt-2 max-w-2xl text-sm leading-relaxed text-navy-200 sm:text-base" {...cmsField(`servicios:services.${position}.summary`)}>
                     {service.summary}
                   </p>
                 </div>

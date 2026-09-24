@@ -9,6 +9,7 @@ import { Container } from '@/components/ui/Container'
 import { HERO } from '@/content/about'
 import { ROUTES } from '@/lib/constants'
 import { formatIndex } from '@/lib/utils'
+import { cmsField, cmsSection } from '@/lib/cms'
 
 /**
  * Apertura de la home.
@@ -25,7 +26,9 @@ import { formatIndex } from '@/lib/utils'
  */
 export function Hero() {
   return (
-    <section className="relative isolate z-10 flex min-h-dvh flex-col justify-end pt-(--header-height) pb-[calc(var(--mobile-bar-clearance)+6rem)] sm:pb-[calc(var(--mobile-bar-clearance)+7rem)] lg:pt-(--header-height-lg) lg:pb-52">
+    <section
+      {...cmsSection('home:hero')}
+      className="relative isolate z-10 flex min-h-dvh flex-col justify-end pt-(--header-height) pb-[calc(var(--mobile-bar-clearance)+6rem)] sm:pb-[calc(var(--mobile-bar-clearance)+7rem)] lg:pt-(--header-height-lg) lg:pb-52">
       <HeroVideo />
 
       <Container width="wide" className="relative">
@@ -36,7 +39,9 @@ export function Hero() {
                 <span className="font-mono text-label tabular text-terracota-300">
                   {formatIndex(index)}
                 </span>
-                <span className="font-mono text-label uppercase text-navy-100">{discipline}</span>
+                <span className="font-mono text-label uppercase text-navy-100" {...cmsField(`home:hero.disciplines.${index}`)}>
+                  {discipline}
+                </span>
               </li>
             ))}
           </ul>
@@ -49,6 +54,7 @@ export function Hero() {
         <Headline
           as="h1"
           lines={HERO.lines}
+          cms="home:hero.lines"
           delay={0.2}
           trigger="mount"
           accentClassName="text-terracota-300"
@@ -57,16 +63,18 @@ export function Hero() {
 
         <div className="mt-10 flex flex-col gap-10">
           <Reveal trigger="mount" delay={0.45}>
-            <p className="max-w-xl text-base leading-relaxed text-navy-100 sm:text-lg">
+            <p className="max-w-xl text-base leading-relaxed text-navy-100 sm:text-lg" {...cmsField('home:hero.subheadline')}>
               {HERO.subheadline}
             </p>
           </Reveal>
 
           <Reveal trigger="mount" delay={0.55}>
             <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-              <ShinyButton href={ROUTES.contact}>{HERO.primaryCta}</ShinyButton>
+              <ShinyButton href={ROUTES.contact}>
+                <span {...cmsField('home:hero.primaryCta')}>{HERO.primaryCta}</span>
+              </ShinyButton>
               <Button href={ROUTES.services} variant="outline">
-                {HERO.secondaryCta}
+                <span {...cmsField('home:hero.secondaryCta')}>{HERO.secondaryCta}</span>
               </Button>
             </div>
           </Reveal>

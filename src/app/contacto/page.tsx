@@ -20,6 +20,7 @@ export default function ContactPage() {
   return (
     <>
       <PageHero
+        cms="contacto:hero"
         eyebrow={PAGES.contact.eyebrow}
         lines={PAGES.contact.titleLines}
         lead={PAGES.contact.lead}

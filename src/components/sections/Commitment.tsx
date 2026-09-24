@@ -4,6 +4,7 @@ import { MediaFrame } from '@/components/ui/MediaFrame'
 import { Section } from '@/components/ui/Section'
 import { SectionHead } from '@/components/ui/SectionHead'
 import { COMMITMENT } from '@/content/about'
+import { cmsField } from '@/lib/cms'
 
 /**
  * Cierre de la página de empresa: el compromiso, con la fotografía a la
@@ -15,11 +16,11 @@ import { COMMITMENT } from '@/content/about'
  */
 export function Commitment({ index }: { index: number }) {
   return (
-    <Section tone="navy" grid>
+    <Section tone="navy" grid cms="nosotros:commitment">
       <Container>
         <div className="grid items-center gap-14 lg:grid-cols-2 lg:gap-20">
           <Reveal mask from="bottom" className="lg:order-1">
-            <MediaFrame image={COMMITMENT.image} ratio="landscape" sizes="(min-width: 1024px) 45vw, 100vw" />
+            <MediaFrame image={COMMITMENT.image} cms="nosotros:commitment.image" ratio="landscape" sizes="(min-width: 1024px) 45vw, 100vw" />
           </Reveal>
 
           <div className="lg:order-2">
@@ -27,10 +28,12 @@ export function Commitment({ index }: { index: number }) {
               index={index}
               eyebrow={COMMITMENT.eyebrow}
               lines={[COMMITMENT.heading]}
+              cms="nosotros:commitment"
+              cmsHeading="heading"
             />
 
             <Reveal delay={0.3}>
-              <p className="mt-8 text-base leading-relaxed text-navy-100 sm:text-lg">
+              <p className="mt-8 text-base leading-relaxed text-navy-100 sm:text-lg" {...cmsField('nosotros:commitment.text')}>
                 {COMMITMENT.text}
               </p>
             </Reveal>

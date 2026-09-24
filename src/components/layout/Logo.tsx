@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { ROUTES, SITE } from '@/lib/constants'
 import { cn } from '@/lib/utils'
+import { cmsField } from '@/lib/cms'
 
 interface LogoProps {
   className?: string
@@ -53,7 +54,7 @@ export function Logo({ className, tone = 'light', onNavigate }: LogoProps) {
           tone === 'light' ? 'text-white' : 'text-navy-950',
         )}
       >
-        {SITE.name}
+        <span {...cmsField('global:site.name')}>{SITE.name}</span>
       </span>
     </Link>
   )

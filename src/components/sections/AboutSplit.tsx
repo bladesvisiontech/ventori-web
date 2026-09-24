@@ -5,6 +5,7 @@ import { Section } from '@/components/ui/Section'
 import { SectionHead } from '@/components/ui/SectionHead'
 import { ABOUT } from '@/content/about'
 import { HOME_SECTIONS } from '@/content/sections'
+import { cmsField } from '@/lib/cms'
 
 /**
  * Presentación de la empresa: texto a la izquierda, fotografía a la derecha.
@@ -21,7 +22,7 @@ export function AboutSplit({ index }: { index: number }) {
   const copy = HOME_SECTIONS.about
 
   return (
-    <Section tone="paper">
+    <Section tone="paper" cms="nosotros:about">
       <Container>
         <div className="grid items-start gap-14 lg:grid-cols-2 lg:gap-20">
           <div>
@@ -30,12 +31,15 @@ export function AboutSplit({ index }: { index: number }) {
               eyebrow={copy.eyebrow}
               lines={copy.lines}
               tone="light"
+              cms="nosotros:about.section"
             />
 
             <div className="mt-8 space-y-5">
               {ABOUT.paragraphs.map((paragraph, position) => (
                 <Reveal key={paragraph.slice(0, 40)} delay={0.3 + position * 0.06}>
-                  <p className="text-base leading-relaxed text-navy-700 sm:text-lg">{paragraph}</p>
+                  <p className="text-base leading-relaxed text-navy-700 sm:text-lg" {...cmsField(`nosotros:about.paragraphs.${position}`)}>
+                    {paragraph}
+                  </p>
                 </Reveal>
               ))}
             </div>
@@ -44,6 +48,7 @@ export function AboutSplit({ index }: { index: number }) {
           <Reveal mask from="bottom" delay={0.15}>
             <MediaFrame
               image={ABOUT.image}
+              cms="nosotros:about.image"
               ratio="portrait"
               sizes="(min-width: 1024px) 45vw, 100vw"
             />

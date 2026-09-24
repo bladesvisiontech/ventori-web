@@ -10,5 +10,5 @@ import { MARQUEE_TERMS } from '@/content/sections'
  * aparecen como texto real en servicios y sectores.
  */
 export function MarqueeBand() {
-  return <Marquee items={MARQUEE_TERMS} />
+  return <Marquee items={MARQUEE_TERMS} cms="servicios:marquee" />
 }

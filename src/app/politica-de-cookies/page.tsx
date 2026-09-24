@@ -11,5 +11,5 @@ export const metadata: Metadata = buildMetadata({
 })
 
 export default function CookiesPage() {
-  return <LegalPage document={COOKIES_POLICY} path={ROUTES.cookies} />
+  return <LegalPage document={COOKIES_POLICY} docKey="cookies" path={ROUTES.cookies} />
 }

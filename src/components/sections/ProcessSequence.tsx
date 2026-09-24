@@ -21,17 +21,18 @@ export function ProcessSequence({ index }: { index: number }) {
   const copy = HOME_SECTIONS.process
 
   return (
-    <Section tone="navy" spacing="none" className="pt-20 sm:pt-28 lg:pt-36">
+    <Section tone="navy" cms="servicios:process" spacing="none" className="pt-20 sm:pt-28 lg:pt-36">
       <Container>
         <SectionHead
           index={index}
           eyebrow={copy.eyebrow}
           lines={copy.lines}
           intro={copy.intro}
+          cms="servicios:process.section"
         />
 
         <div className="mt-8 lg:mt-4">
-          <PinnedSequence items={PILLARS} />
+          <PinnedSequence items={PILLARS} cms="servicios:process.pillars" />
         </div>
       </Container>
     </Section>

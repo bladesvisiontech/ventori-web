@@ -14,7 +14,7 @@ export default function NotFound() {
   const copy = GLOBAL.systemPages.notFound
 
   return (
-    <PageHero eyebrow={copy.eyebrow} lines={copy.titleLines} lead={copy.lead}>
+    <PageHero cms="global:systemPages.notFound" eyebrow={copy.eyebrow} lines={copy.titleLines} lead={copy.lead}>
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
         <ShinyButton href={ROUTES.home}>{copy.primaryCta}</ShinyButton>
         <Button href={ROUTES.contact} variant="onPaper">

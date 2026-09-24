@@ -5,9 +5,12 @@ import Image from 'next/image'
 import { useInView } from 'framer-motion'
 import { cn, formatIndex } from '@/lib/utils'
 import type { Pillar } from '@/types/content'
+import { cmsField } from '@/lib/cms'
 
 interface PinnedSequenceProps {
   items: readonly Pillar[]
+  /** Ruta de la lista en el CMS ("archivo:ruta"), para la vista previa. */
+  cms?: string
 }
 
 interface PhaseProps {
@@ -16,6 +19,7 @@ interface PhaseProps {
   /** La última fase no reserva pantalla completa. Ver el comentario en el JSX. */
   last: boolean
   onEnter: (index: number) => void
+  cms?: string
 }
 
 /*
@@ -26,7 +30,8 @@ interface PhaseProps {
  */
 const CENTER_BAND = '-50% 0px -50% 0px'
 
-function Phase({ item, index, last, onEnter }: PhaseProps) {
+function Phase({ item, index, last, onEnter, cms }: PhaseProps) {
+  const key = cms && `${cms}.${index}`
   const ref = useRef<HTMLDivElement>(null)
   const inView = useInView(ref, { margin: CENTER_BAND })
 
@@ -56,12 +61,16 @@ function Phase({ item, index, last, onEnter }: PhaseProps) {
         <span className="font-mono text-label tabular text-terracota-500">
           {formatIndex(index)}
         </span>
-        <span className="font-mono text-label uppercase text-navy-200">{item.label}</span>
+        <span className="font-mono text-label uppercase text-navy-200" {...cmsField(key && `${key}.label`)}>
+          {item.label}
+        </span>
       </div>
 
-      <h3 className="mt-6 stretch-display text-display-sm text-white">{item.title}</h3>
+      <h3 className="mt-6 stretch-display text-display-sm text-white" {...cmsField(key && `${key}.title`)}>
+        {item.title}
+      </h3>
 
-      <p className="mt-5 max-w-md text-base leading-relaxed text-navy-100 sm:text-lg">
+      <p className="mt-5 max-w-md text-base leading-relaxed text-navy-100 sm:text-lg" {...cmsField(key && `${key}.description`)}>
         {item.description}
       </p>
 
@@ -78,6 +87,8 @@ function Phase({ item, index, last, onEnter }: PhaseProps) {
           fill
           sizes="(min-width: 1024px) 1px, 100vw"
           className="object-cover"
+          {...cmsField(key && `${key}.image`)}
+          data-cms-kind={key ? 'image' : undefined}
         />
       </div>
     </div>
@@ -101,7 +112,7 @@ function Phase({ item, index, last, onEnter }: PhaseProps) {
  * las otras. El fundido es una transición CSS, de modo que la regla global de
  * movimiento reducido lo anula sin que este componente tenga que consultarla.
  */
-export function PinnedSequence({ items }: PinnedSequenceProps) {
+export function PinnedSequence({ items, cms }: PinnedSequenceProps) {
   const [active, setActive] = useState(0)
 
   /* Estable entre renders: si cambiara de identidad, el `useInView` de cada
@@ -120,6 +131,7 @@ export function PinnedSequence({ items }: PinnedSequenceProps) {
             index={index}
             last={index === items.length - 1}
             onEnter={handleEnter}
+            cms={cms}
           />
         ))}
       </div>
@@ -135,6 +147,8 @@ export function PinnedSequence({ items }: PinnedSequenceProps) {
                 fill
                 sizes="(min-width: 1024px) 45vw, 1px"
                 priority={index === 0}
+                {...cmsField(cms && `${cms}.${index}.image`)}
+                data-cms-kind={cms ? 'image' : undefined}
                 className={cn(
                   'object-cover transition-opacity duration-700 ease-[var(--ease-in-out-soft)]',
                   index === active ? 'opacity-100' : 'opacity-0',

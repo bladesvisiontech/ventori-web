@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 import { useReducedMotion } from 'framer-motion'
 import { HERO_CLIPS } from '@/content/hero-video'
 import { cn } from '@/lib/utils'
+import { cmsField } from '@/lib/cms'
 
 /**
  * Milisegundos que permanece cada clip antes de fundir al siguiente.
@@ -92,6 +93,8 @@ export function HeroVideo() {
             loop
             playsInline
             preload="none"
+            {...cmsField(`home:hero.videos.${index}`)}
+            data-cms-kind="video"
             className="size-full object-cover"
           />
         </div>

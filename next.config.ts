@@ -46,6 +46,8 @@ const securityHeaders = [
 
 const nextConfig: NextConfig = {
   poweredByHeader: false,
+  /* El puente de vista previa necesita saber, en el navegador, de qué dominio aceptar mensajes. */
+  env: { NEXT_PUBLIC_CMS_ORIGIN: CMS_ORIGIN },
   images: {
     remotePatterns: [{ protocol: 'https', hostname: '*.public.blob.vercel-storage.com' }],
   },

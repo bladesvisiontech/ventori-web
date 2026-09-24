@@ -4,6 +4,7 @@ import { ContactForm } from '@/components/sections/ContactForm'
 import { Container } from '@/components/ui/Container'
 import { Section } from '@/components/ui/Section'
 import { CONTACTO } from '@/content/data/contacto'
+import { cmsField } from '@/lib/cms'
 import { CONTACT, getContactChannels } from '@/lib/constants'
 
 /**
@@ -22,12 +23,14 @@ export function ContactPanel() {
   const channels = getContactChannels()
 
   return (
-    <Section tone="navy" grid>
+    <Section tone="navy" grid cms="contacto:panel">
       <Container>
         <div className="grid gap-14 lg:grid-cols-12 lg:gap-16">
           <div className="lg:col-span-4">
             <Reveal>
-              <h2 className="font-mono text-label uppercase text-navy-200">{CONTACTO.panel.channelsHeading}</h2>
+              <h2 className="font-mono text-label uppercase text-navy-200" {...cmsField('contacto:panel.channelsHeading')}>
+                {CONTACTO.panel.channelsHeading}
+              </h2>
               <Rule className="mt-4 w-12 text-terracota-500" delay={0.1} />
             </Reveal>
 
@@ -57,7 +60,9 @@ export function ContactPanel() {
 
             <Reveal delay={0.3}>
               <div className="mt-8">
-                <p className="font-mono text-label uppercase text-navy-300">{CONTACTO.panel.scheduleHeading}</p>
+                <p className="font-mono text-label uppercase text-navy-300" {...cmsField('contacto:panel.scheduleHeading')}>
+                  {CONTACTO.panel.scheduleHeading}
+                </p>
                 <p className="mt-1.5 text-base text-white">{CONTACT.schedule.days}</p>
                 <p className="tabular text-base text-white">{CONTACT.schedule.hours}</p>
               </div>

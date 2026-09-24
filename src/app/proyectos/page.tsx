@@ -23,6 +23,7 @@ export default function ProjectsPage() {
     <>
       {/* Sin hero: la página abre en el mapa. El relleno superior reserva el header fijo. */}
       <Section
+        cms="proyectos:map"
         tone="paper"
         grid
         className="pt-(--header-height) sm:pt-[calc(var(--header-height)+1rem)] lg:pt-(--header-height-lg)"
@@ -36,6 +37,7 @@ export default function ProjectsPage() {
               intro={PROJECTS_PAGE.map.intro}
               tone="light"
               as="h1"
+              cms="proyectos:map"
               trigger="mount"
             />
           </ProjectExplorer>

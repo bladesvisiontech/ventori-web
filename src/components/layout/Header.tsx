@@ -7,6 +7,7 @@ import { Logo } from '@/components/layout/Logo'
 import { ShinyButton } from '@/components/ui/ShinyButton'
 import { HEADER_CTA, NAV_LINKS, ROUTES, TRANSPARENT_HEADER_ROUTES } from '@/lib/constants'
 import { cn } from '@/lib/utils'
+import { cmsField, cmsSection } from '@/lib/cms'
 
 /** Desplazamiento a partir del cual el header deja de ser transparente. */
 const SOLID_AT = 24
@@ -41,6 +42,7 @@ export function Header() {
 
   return (
     <header
+      {...cmsSection('global:nav')}
       className={cn(
         'fixed inset-x-0 top-0 z-50 h-(--header-height) transition-colors duration-300 lg:h-(--header-height-lg)',
         isSolid ? 'bg-navy-950/95 backdrop-blur-md' : 'bg-transparent',
@@ -77,7 +79,7 @@ export function Header() {
                 className="group flex min-h-11 items-center font-mono text-label uppercase text-navy-100 transition-colors duration-200 hover:text-white"
               >
                 <span className="relative">
-                  {link.label}
+                  <span {...cmsField(link.cms)}>{link.label}</span>
                   {/* Presente y al 100 % en la ruta activa; trazado desde la
                       izquierda al pasar el cursor por las demás. */}
                   <span
@@ -95,7 +97,7 @@ export function Header() {
 
         <div className="hidden lg:block">
           <ShinyButton href={ROUTES.contact} className="min-h-11 px-6 py-2 text-sm">
-            {HEADER_CTA}
+            <span {...cmsField('global:nav.headerCta')}>{HEADER_CTA}</span>
           </ShinyButton>
         </div>
       </div>

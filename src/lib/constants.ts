@@ -42,11 +42,11 @@ export type Route = (typeof ROUTES)[keyof typeof ROUTES]
 
 /** Navegación principal. El orden aquí es el orden en header, menú móvil y footer. */
 export const NAV_LINKS = [
-  { label: GLOBAL.nav.links.about, href: ROUTES.about },
-  { label: GLOBAL.nav.links.services, href: ROUTES.services },
-  { label: GLOBAL.nav.links.sectors, href: ROUTES.sectors },
-  { label: GLOBAL.nav.links.projects, href: ROUTES.projects },
-  { label: GLOBAL.nav.links.contact, href: ROUTES.contact },
+  { label: GLOBAL.nav.links.about, href: ROUTES.about, cms: 'global:nav.links.about' },
+  { label: GLOBAL.nav.links.services, href: ROUTES.services, cms: 'global:nav.links.services' },
+  { label: GLOBAL.nav.links.sectors, href: ROUTES.sectors, cms: 'global:nav.links.sectors' },
+  { label: GLOBAL.nav.links.projects, href: ROUTES.projects, cms: 'global:nav.links.projects' },
+  { label: GLOBAL.nav.links.contact, href: ROUTES.contact, cms: 'global:nav.links.contact' },
 ] as const
 
 export const HEADER_CTA = GLOBAL.nav.headerCta
@@ -60,9 +60,9 @@ export const TRANSPARENT_HEADER_ROUTES: readonly string[] = [ROUTES.home]
 
 /** Enlaces legales del pie de página. */
 export const LEGAL_LINKS = [
-  { label: GLOBAL.nav.legalLinks.privacy, href: ROUTES.privacy },
-  { label: GLOBAL.nav.legalLinks.terms, href: ROUTES.terms },
-  { label: GLOBAL.nav.legalLinks.cookies, href: ROUTES.cookies },
+  { label: GLOBAL.nav.legalLinks.privacy, href: ROUTES.privacy, cms: 'global:nav.legalLinks.privacy' },
+  { label: GLOBAL.nav.legalLinks.terms, href: ROUTES.terms, cms: 'global:nav.legalLinks.terms' },
+  { label: GLOBAL.nav.legalLinks.cookies, href: ROUTES.cookies, cms: 'global:nav.legalLinks.cookies' },
 ] as const
 
 /**

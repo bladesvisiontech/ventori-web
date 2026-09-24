@@ -3,10 +3,15 @@
 import { motion } from 'framer-motion'
 import { entranceTriggerProps, type EntranceTrigger } from '@/components/motion/entrance'
 import { MOTION } from '@/lib/constants'
+import { cmsField } from '@/lib/cms'
 import { cn } from '@/lib/utils'
 import type { HeadlineLine } from '@/types/content'
 
 interface HeadlineProps {
+  /** Ruta del titular para la vista previa del CMS ("archivo:ruta"). */
+  cms?: string
+  /** Para titulares que en el CMS son un solo texto (no una lista de líneas). */
+  cmsSingle?: string
   /**
    * Las líneas se declaran en `content/`, no se calculan midiendo el texto
    * renderizado. Medir obligaría a un efecto en cliente y a un salto de layout
@@ -67,6 +72,8 @@ export function Headline({
   delay = 0,
   accentClassName = 'text-terracota-500',
   trigger = 'view',
+  cms,
+  cmsSingle,
 }: HeadlineProps) {
   const Tag = motion[as]
 
@@ -83,6 +90,7 @@ export function Headline({
               className={cn('block', accent && accentClassName)}
               variants={LINE}
               custom={delay + index * MOTION.staggerLines}
+              {...cmsField(cmsSingle ?? (cms && `${cms}.${index}`))}
             >
               {text}
             </motion.span>

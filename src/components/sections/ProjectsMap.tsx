@@ -27,7 +27,7 @@ export function ProjectsMap({ index }: { index: number }) {
   const copy = HOME_SECTIONS.projects
 
   return (
-    <Section tone="paper" grid>
+    <Section tone="paper" grid cms="home:projects">
       <Container width="wide">
         <ProjectExplorer projects={CONCESSION_PROJECTS} moreHref={ROUTES.projects}>
           <SectionHead
@@ -36,6 +36,7 @@ export function ProjectsMap({ index }: { index: number }) {
             lines={copy.lines}
             intro={copy.intro}
             tone="light"
+            cms="home:projects"
           />
         </ProjectExplorer>
       </Container>

@@ -7,6 +7,7 @@ import { Container } from '@/components/ui/Container'
 import { CTA_BAND } from '@/content/about'
 import { ROUTES } from '@/lib/constants'
 import { formatIndex } from '@/lib/utils'
+import { cmsField, cmsSection } from '@/lib/cms'
 
 /**
  * Banda de cierre, reutilizada al final de la home y de cada página interna.
@@ -23,7 +24,7 @@ export function CtaBand({ index }: { index: number }) {
   const asset = CTA_BAND.image
 
   return (
-    <section className="relative isolate overflow-hidden bg-navy-950">
+    <section {...cmsSection('global:ctaBand')} className="relative isolate overflow-hidden bg-navy-950">
       <Image
         src={asset.src}
         alt=""
@@ -31,6 +32,8 @@ export function CtaBand({ index }: { index: number }) {
         fill
         sizes="100vw"
         className="object-cover"
+        {...cmsField('global:ctaBand.image')}
+        data-cms-kind="image"
       />
 
       {/* Velo doble: uno general para el contraste y otro desde la izquierda,
@@ -48,26 +51,31 @@ export function CtaBand({ index }: { index: number }) {
               {formatIndex(index)}
             </span>
             <Rule className="w-10 flex-none text-navy-600" delay={0.1} />
-            <span className="font-mono text-label uppercase text-navy-200">{CTA_BAND.eyebrow}</span>
+            <span className="font-mono text-label uppercase text-navy-200" {...cmsField('global:ctaBand.eyebrow')}>
+              {CTA_BAND.eyebrow}
+            </span>
           </div>
         </Reveal>
 
         <Headline
           as="h2"
           lines={CTA_BAND.lines}
+          cms="global:ctaBand.lines"
           delay={0.15}
           className="mt-7 max-w-3xl text-display-lg font-semibold text-white"
         />
 
         <Reveal delay={0.35}>
-          <p className="mt-7 max-w-xl text-base leading-relaxed text-navy-100 sm:text-lg">
+          <p className="mt-7 max-w-xl text-base leading-relaxed text-navy-100 sm:text-lg" {...cmsField('global:ctaBand.text')}>
             {CTA_BAND.text}
           </p>
         </Reveal>
 
         <Reveal delay={0.45}>
           <div className="mt-10">
-            <ShinyButton href={ROUTES.contact}>{CTA_BAND.cta}</ShinyButton>
+            <ShinyButton href={ROUTES.contact}>
+              <span {...cmsField('global:ctaBand.cta')}>{CTA_BAND.cta}</span>
+            </ShinyButton>
           </div>
         </Reveal>
       </Container>

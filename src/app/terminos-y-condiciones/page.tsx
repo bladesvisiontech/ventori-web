@@ -11,5 +11,5 @@ export const metadata: Metadata = buildMetadata({
 })
 
 export default function TermsPage() {
-  return <LegalPage document={TERMS} path={ROUTES.terms} />
+  return <LegalPage document={TERMS} docKey="terms" path={ROUTES.terms} />
 }

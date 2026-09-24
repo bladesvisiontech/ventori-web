@@ -11,8 +11,11 @@ import {
   useVelocity,
   wrap,
 } from 'framer-motion'
+import { cmsField, cmsSection } from '@/lib/cms'
 
 interface MarqueeProps {
+  /** Ruta de la lista en el CMS, para la vista previa. */
+  cms?: string
   /** Términos que desfilan. Se repiten hasta cubrir el ancho. */
   items: readonly string[]
   /** Píxeles por segundo en reposo. */
@@ -37,7 +40,7 @@ const COPIES = 3
  * y se envuelve en el rango [-100 %, 0]: al llegar al final, el salto cae justo
  * donde empieza una copia idéntica y no se percibe corte.
  */
-export function Marquee({ items, baseSpeed = 28 }: MarqueeProps) {
+export function Marquee({ items, baseSpeed = 28, cms }: MarqueeProps) {
   const offset = useMotionValue(0)
   const containerRef = useRef<HTMLDivElement>(null)
 
@@ -66,18 +69,19 @@ export function Marquee({ items, baseSpeed = 28 }: MarqueeProps) {
   return (
     <div
       data-marquee
+      {...cmsSection(cms)}
       aria-hidden="true"
       className="overflow-hidden border-y border-terracota-600/40 bg-terracota-500 py-4"
     >
       <motion.div ref={containerRef} style={{ x }} className="flex w-max whitespace-nowrap">
         {Array.from({ length: COPIES }).map((_, copy) => (
           <div key={copy} className="flex">
-            {items.map((item) => (
+            {items.map((item, position) => (
               <span
                 key={`${copy}-${item}`}
                 className="flex items-center gap-8 px-8 font-mono text-label uppercase text-navy-950"
               >
-                {item}
+                <span {...cmsField(cms && `${cms}.${position}`)}>{item}</span>
                 <span className="h-1 w-1 shrink-0 bg-navy-950" />
               </span>
             ))}

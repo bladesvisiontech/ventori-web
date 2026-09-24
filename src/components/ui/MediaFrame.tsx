@@ -1,9 +1,12 @@
 import Image from 'next/image'
 import { Parallax } from '@/components/motion/Parallax'
 import type { MediaImage } from '@/types/content'
+import { cmsField } from '@/lib/cms'
 import { cn } from '@/lib/utils'
 
 interface MediaFrameProps {
+  /** Ruta de la foto en el CMS ("archivo:ruta" del objeto { src, alt }). */
+  cms?: string
   image: MediaImage
   /** Proporción del marco. La fotografía se recorta para llenarlo. */
   ratio?: 'portrait' | 'landscape' | 'square' | 'wide' | 'fill'
@@ -43,6 +46,7 @@ export function MediaFrame({
   priority = false,
   parallax = true,
   className,
+  cms,
   children,
 }: MediaFrameProps) {
 
@@ -58,7 +62,7 @@ export function MediaFrame({
   )
 
   return (
-    <div className={cn('relative overflow-hidden bevel', RATIOS[ratio], className)}>
+    <div className={cn('relative overflow-hidden bevel', RATIOS[ratio], className)} {...cmsField(cms)} data-cms-kind={cms ? 'image' : undefined}>
       {parallax ? <Parallax>{photo}</Parallax> : photo}
       {children}
     </div>

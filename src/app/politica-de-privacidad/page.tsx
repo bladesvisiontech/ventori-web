@@ -11,5 +11,5 @@ export const metadata: Metadata = buildMetadata({
 })
 
 export default function PrivacyPage() {
-  return <LegalPage document={PRIVACY_POLICY} path={ROUTES.privacy} />
+  return <LegalPage document={PRIVACY_POLICY} docKey="privacy" path={ROUTES.privacy} />
 }

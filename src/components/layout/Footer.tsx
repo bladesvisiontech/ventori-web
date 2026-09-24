@@ -3,26 +3,27 @@ import { Logo } from '@/components/layout/Logo'
 import { GridPaper } from '@/components/ui/GridPaper'
 import { Container } from '@/components/ui/Container'
 import { CONTACT, LEGAL_LINKS, NAV_LINKS, SITE, UI_TEXT, getContactChannels } from '@/lib/constants'
+import { cmsField, cmsSection } from '@/lib/cms'
 
 export function Footer() {
   const channels = getContactChannels()
   const year = new Date().getFullYear()
 
   return (
-    <footer className="relative isolate overflow-hidden bg-paper-50 text-navy-950">
+    <footer {...cmsSection('global:footer')} className="relative isolate overflow-hidden bg-paper-50 text-navy-950">
       <GridPaper tone="light" />
 
       <Container className="relative pt-16 lg:pt-20">
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-8">
           <div className="lg:col-span-5">
             <Logo tone="dark" />
-            <p className="mt-6 max-w-sm text-sm leading-relaxed text-navy-700">
+            <p className="mt-6 max-w-sm text-sm leading-relaxed text-navy-700" {...cmsField('global:site.description')}>
               {SITE.description}
             </p>
           </div>
 
           <nav aria-label="Pie de página" className="lg:col-span-3">
-            <h2 className="font-mono text-label uppercase text-navy-600">{UI_TEXT.footer.navHeading}</h2>
+            <h2 className="font-mono text-label uppercase text-navy-600" {...cmsField('global:footer.navHeading')}>{UI_TEXT.footer.navHeading}</h2>
             {/*
               Los enlaces son `flex min-h-11`, no texto suelto: como texto en
               línea el área táctil quedaba en 17 px de alto. El mínimo de 44 px
@@ -36,7 +37,7 @@ export function Footer() {
                     href={link.href}
                     className="flex min-h-11 items-center text-sm text-navy-950 underline-offset-4 transition-colors duration-200 hover:text-terracota-800 hover:underline"
                   >
-                    {link.label}
+                    <span {...cmsField(link.cms)}>{link.label}</span>
                   </Link>
                 </li>
               ))}
@@ -44,7 +45,7 @@ export function Footer() {
           </nav>
 
           <div className="lg:col-span-4">
-            <h2 className="font-mono text-label uppercase text-navy-600">{UI_TEXT.footer.contactHeading}</h2>
+            <h2 className="font-mono text-label uppercase text-navy-600" {...cmsField('global:footer.contactHeading')}>{UI_TEXT.footer.contactHeading}</h2>
 
             {/*
               Solo se listan los canales que ya tienen dato. Mientras el cliente
@@ -72,15 +73,15 @@ export function Footer() {
             )}
 
             <div className="mt-5 text-sm text-navy-700">
-              <p>{CONTACT.schedule.days}</p>
-              <p className="tabular">{CONTACT.schedule.hours}</p>
+              <p {...cmsField('global:contact.schedule.days')}>{CONTACT.schedule.days}</p>
+              <p className="tabular" {...cmsField('global:contact.schedule.hours')}>{CONTACT.schedule.hours}</p>
             </div>
           </div>
         </div>
 
         <div className="mt-14 flex flex-col gap-3 border-t border-paper-200 pt-7 sm:flex-row sm:items-center sm:justify-between">
           <p className="font-mono text-label uppercase text-navy-600">
-            © {year} {SITE.legalName}
+            © {year} <span {...cmsField('global:site.legalName')}>{SITE.legalName}</span>
           </p>
           <nav aria-label="Legal">
             <ul className="flex flex-wrap gap-x-6">
@@ -90,13 +91,13 @@ export function Footer() {
                     href={link.href}
                     className="inline-flex min-h-11 items-center font-mono text-label uppercase text-navy-700 underline-offset-4 transition-colors duration-200 hover:text-terracota-800 hover:underline"
                   >
-                    {link.label}
+                    <span {...cmsField(link.cms)}>{link.label}</span>
                   </Link>
                 </li>
               ))}
             </ul>
           </nav>
-          <p className="font-mono text-label uppercase text-navy-600">{SITE.tagline}</p>
+          <p className="font-mono text-label uppercase text-navy-600" {...cmsField('global:site.tagline')}>{SITE.tagline}</p>
         </div>
 
         {/*

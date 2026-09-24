@@ -8,6 +8,7 @@ import Link from 'next/link'
 import { ShinyButton } from '@/components/ui/ShinyButton'
 import { CONTACT_CONSENT } from '@/content/consent'
 import { CONTACTO } from '@/content/data/contacto'
+import { cmsField, cmsSection } from '@/lib/cms'
 import {
   CONTACT_FORM,
   CONTACT_SUBJECTS,
@@ -40,6 +41,8 @@ interface FieldShellProps {
   error?: string
   required?: boolean
   children: React.ReactNode
+  /** Ruta de la etiqueta en el CMS, para la vista previa. */
+  cmsLabel?: string
 }
 
 /**
@@ -49,11 +52,11 @@ interface FieldShellProps {
  * El error va en un `role="alert"`, de modo que un lector de pantalla lo anuncia
  * en cuanto aparece sin que el usuario tenga que ir a buscarlo.
  */
-function FieldShell({ id, label, hint, error, required, children }: FieldShellProps) {
+function FieldShell({ id, label, hint, error, required, children, cmsLabel }: FieldShellProps) {
   return (
     <div>
       <label htmlFor={id} className={LABEL}>
-        {label}
+        <span {...cmsField(cmsLabel)}>{label}</span>
         {required && (
           <>
             <span aria-hidden="true" className="ml-1 text-terracota-500">
@@ -142,7 +145,12 @@ export function ContactForm() {
   const submitting = status === FORM_STATUS.submitting
 
   return (
-    <form onSubmit={handleSubmit(onSubmit, onInvalid)} noValidate className="space-y-7">
+    <form
+      onSubmit={handleSubmit(onSubmit, onInvalid)}
+      noValidate
+      className="space-y-7"
+      {...cmsSection('contacto:form')}
+    >
       {/*
         Campo trampa. `tabIndex={-1}` y `aria-hidden` lo sacan del recorrido de
         teclado y del árbol de accesibilidad: solo un bot que rellena por
@@ -154,7 +162,8 @@ export function ContactForm() {
       </div>
 
       <div className="grid gap-7 sm:grid-cols-2">
-        <FieldShell id="name" label={FORM_TEXT.labels.name} error={errors.name?.message} required>
+        <FieldShell id="name" label={FORM_TEXT.labels.name}
+          cmsLabel="contacto:form.labels.name" error={errors.name?.message} required>
           <input
             id="name"
             type="text"
@@ -169,6 +178,7 @@ export function ContactForm() {
         <FieldShell
           id="organization"
           label={FORM_TEXT.labels.organization}
+          cmsLabel="contacto:form.labels.organization"
           hint={FORM_TEXT.labels.organizationHint}
           error={errors.organization?.message}
         >
@@ -183,7 +193,8 @@ export function ContactForm() {
           />
         </FieldShell>
 
-        <FieldShell id="email" label={FORM_TEXT.labels.email} error={errors.email?.message} required>
+        <FieldShell id="email" label={FORM_TEXT.labels.email}
+          cmsLabel="contacto:form.labels.email" error={errors.email?.message} required>
           {/* `type="email"` abre el teclado con arroba en móvil. */}
           <input
             id="email"
@@ -197,7 +208,8 @@ export function ContactForm() {
           />
         </FieldShell>
 
-        <FieldShell id="phone" label={FORM_TEXT.labels.phone} error={errors.phone?.message} required>
+        <FieldShell id="phone" label={FORM_TEXT.labels.phone}
+          cmsLabel="contacto:form.labels.phone" error={errors.phone?.message} required>
           <input
             id="phone"
             type="tel"
@@ -211,7 +223,8 @@ export function ContactForm() {
         </FieldShell>
       </div>
 
-      <FieldShell id="subject" label={FORM_TEXT.labels.subject} error={errors.subject?.message} required>
+      <FieldShell id="subject" label={FORM_TEXT.labels.subject}
+          cmsLabel="contacto:form.labels.subject" error={errors.subject?.message} required>
         <select
           id="subject"
           aria-invalid={Boolean(errors.subject)}
@@ -230,6 +243,7 @@ export function ContactForm() {
       <FieldShell
         id="message"
         label={FORM_TEXT.labels.message}
+          cmsLabel="contacto:form.labels.message"
         hint={`${FORM_TEXT.labels.messageHint} Mínimo ${CONTACT_FORM.minMessageLength} caracteres.`}
         error={errors.message?.message}
         required
@@ -292,14 +306,14 @@ export function ContactForm() {
 
       <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
         <ShinyButton type="submit" disabled={submitting}>
-          {submitting ? FORM_TEXT.submitting : FORM_TEXT.submit}
+          <span {...cmsField('contacto:form.submit')}>{submitting ? FORM_TEXT.submitting : FORM_TEXT.submit}</span>
         </ShinyButton>
 
         <p className="font-mono text-label uppercase text-navy-300">
           <span aria-hidden="true" className="text-terracota-500">
             *
           </span>{' '}
-          {FORM_TEXT.requiredNote}
+          <span {...cmsField('contacto:form.requiredNote')}>{FORM_TEXT.requiredNote}</span>
         </p>
       </div>
 

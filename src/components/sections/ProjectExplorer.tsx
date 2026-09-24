@@ -6,6 +6,7 @@ import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { Reveal } from '@/components/motion/Reveal'
 import { ShinyButton } from '@/components/ui/ShinyButton'
 import { COLOMBIA_MAP_VIEWBOX, DEPARTMENT_PATHS, PROJECT_LABELS } from '@/content/projects-map'
+import { cmsField, cmsSection } from '@/lib/cms'
 import { cn, formatIndex } from '@/lib/utils'
 import type { ConcessionProject } from '@/types/content'
 
@@ -65,7 +66,7 @@ export function ProjectExplorer({ projects, children, moreHref }: ProjectExplore
     <div className="mt-16">
       {children}
 
-      <div className="mt-14 grid gap-10 lg:grid-cols-12 lg:gap-14">
+      <div {...cmsSection('proyectos:projects')} className="mt-14 grid gap-10 lg:grid-cols-12 lg:gap-14">
         <Reveal className="lg:col-span-7">
           <div className="relative w-full" style={{ aspectRatio: `${width} / ${height}` }}>
             <svg
@@ -192,7 +193,9 @@ export function ProjectExplorer({ projects, children, moreHref }: ProjectExplore
                   >
                     {formatIndex(position)}
                   </span>
-                  <span className="uppercase">{project.name}</span>
+                  <span className="uppercase" {...cmsField(`proyectos:projects.${position}.name`)}>
+                    {project.name}
+                  </span>
                 </button>
               </li>
             ))}
@@ -234,10 +237,10 @@ export function ProjectExplorer({ projects, children, moreHref }: ProjectExplore
               <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-4 p-6">
                 <div>
                   <p className="stretch-display text-xl font-semibold text-white sm:text-2xl">
-                    {active.name}
+                    <span {...cmsField(`proyectos:projects.${activeIndex}.name`)}>{active.name}</span>
                   </p>
                   <p className="mt-1 font-mono text-label uppercase text-navy-200">
-                    {active.department}
+                    <span {...cmsField(`proyectos:projects.${activeIndex}.department`)}>{active.department}</span>
                   </p>
                 </div>
                 {photos.length > 1 && (
@@ -273,9 +276,11 @@ export function ProjectExplorer({ projects, children, moreHref }: ProjectExplore
               <dl className="grid grid-cols-2 gap-x-6 gap-y-5 sm:grid-cols-3">
                 <div>
                   <dt className="font-mono text-label uppercase text-navy-700">
-                    {PROJECT_LABELS.startDate}
+                    <span {...cmsField('proyectos:labels.startDate')}>{PROJECT_LABELS.startDate}</span>
                   </dt>
-                  <dd className="mt-1 font-mono text-label tabular text-navy-950">{active.startDate}</dd>
+                  <dd className="mt-1 font-mono text-label tabular text-navy-950" {...cmsField(`proyectos:projects.${activeIndex}.startDate`)}>
+                    {active.startDate}
+                  </dd>
                 </div>
                 <div>
                   <dt className="font-mono text-label uppercase text-navy-700">{PROJECT_LABELS.term}</dt>
@@ -293,7 +298,9 @@ export function ProjectExplorer({ projects, children, moreHref }: ProjectExplore
                 </div>
               </dl>
 
-              <p className="mt-6 text-sm leading-relaxed text-navy-950">{active.object}</p>
+              <p className="mt-6 text-sm leading-relaxed text-navy-950" {...cmsField(`proyectos:projects.${activeIndex}.object`)}>
+                {active.object}
+              </p>
 
               <p className="mt-5 font-mono text-label uppercase text-navy-700">
                 {PROJECT_LABELS.contract} {active.contract} · {active.company}

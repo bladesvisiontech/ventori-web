@@ -28,6 +28,7 @@ export default function ServicesPage() {
   return (
     <>
       <PageHero
+        cms="servicios:hero"
         eyebrow={PAGES.services.eyebrow}
         lines={PAGES.services.titleLines}
         lead={PAGES.services.lead}

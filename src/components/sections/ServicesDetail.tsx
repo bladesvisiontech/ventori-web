@@ -6,6 +6,7 @@ import { Container } from '@/components/ui/Container'
 import { Icon } from '@/components/ui/Icon'
 import { Section } from '@/components/ui/Section'
 import { SERVICE_DETAIL, SERVICES } from '@/content/services'
+import { cmsField } from '@/lib/cms'
 import { formatIndex } from '@/lib/utils'
 
 /**
@@ -27,7 +28,7 @@ import { formatIndex } from '@/lib/utils'
  */
 export function ServicesDetail() {
   return (
-    <Section tone="paper" grid>
+    <Section tone="paper" grid cms="servicios:services">
       <Container>
         <div className="border-t border-paper-300">
           {SERVICES.map((service, position) => (
@@ -51,32 +52,34 @@ export function ServicesDetail() {
 
               <div className="lg:col-span-9">
                 <Reveal delay={0.08}>
-                  <h2 className="stretch-display text-display-sm font-semibold text-navy-950">
+                  <h2 className="stretch-display text-display-sm font-semibold text-navy-950" {...cmsField(`servicios:services.${position}.title`)}>
                     {service.title}
                   </h2>
                 </Reveal>
 
                 <Reveal delay={0.16}>
-                  <p className="mt-6 max-w-3xl text-base leading-relaxed text-navy-700 sm:text-lg">
+                  <p className="mt-6 max-w-3xl text-base leading-relaxed text-navy-700 sm:text-lg" {...cmsField(`servicios:services.${position}.description`)}>
                     {service.description}
                   </p>
                 </Reveal>
 
                 <Reveal delay={0.24}>
-                  <h3 className="mt-10 font-mono text-label uppercase text-navy-700">
+                  <h3 className="mt-10 font-mono text-label uppercase text-navy-700" {...cmsField('servicios:detail.deliverablesHeading')}>
                     {SERVICE_DETAIL.deliverablesHeading}
                   </h3>
                 </Reveal>
 
                 <Stagger as="ul" className="mt-5 grid gap-3 sm:grid-cols-2" delay={0.28}>
-                  {service.deliverables.map((deliverable) => (
+                  {service.deliverables.map((deliverable, item) => (
                     <StaggerItem as="li" key={deliverable} className="flex items-start gap-3">
                       <Check
                         aria-hidden="true"
                         strokeWidth={1.5}
                         className="mt-0.5 size-4 shrink-0 text-terracota-800"
                       />
-                      <span className="text-sm leading-relaxed text-navy-700">{deliverable}</span>
+                      <span className="text-sm leading-relaxed text-navy-700" {...cmsField(`servicios:services.${position}.deliverables.${item}`)}>
+                        {deliverable}
+                      </span>
                     </StaggerItem>
                   ))}
                 </Stagger>

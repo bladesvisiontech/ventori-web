@@ -4,6 +4,7 @@ import { Icon } from '@/components/ui/Icon'
 import { MediaFrame } from '@/components/ui/MediaFrame'
 import { Section } from '@/components/ui/Section'
 import { SECTORS } from '@/content/sectors'
+import { cmsField } from '@/lib/cms'
 import { cn, formatIndex } from '@/lib/utils'
 
 /**
@@ -22,7 +23,7 @@ import { cn, formatIndex } from '@/lib/utils'
  */
 export function SectorsGrid() {
   return (
-    <Section tone="paper" grid>
+    <Section tone="paper" grid cms="sectores:sectors">
       <Container>
         <div className="space-y-20 lg:space-y-32">
           {SECTORS.map((sector, position) => {
@@ -42,6 +43,7 @@ export function SectorsGrid() {
                 >
                   <MediaFrame
                     image={sector.image}
+                    cms={`sectores:sectors.${position}.image`}
                     ratio="landscape"
                     sizes="(min-width: 1024px) 45vw, 100vw"
                   />
@@ -58,13 +60,13 @@ export function SectorsGrid() {
                   </Reveal>
 
                   <Reveal delay={0.1}>
-                    <h2 className="mt-6 stretch-display text-display-sm font-semibold text-navy-950">
+                    <h2 className="mt-6 stretch-display text-display-sm font-semibold text-navy-950" {...cmsField(`sectores:sectors.${position}.title`)}>
                       {sector.title}
                     </h2>
                   </Reveal>
 
                   <Reveal delay={0.18}>
-                    <p className="mt-5 max-w-xl text-base leading-relaxed text-navy-700 sm:text-lg">
+                    <p className="mt-5 max-w-xl text-base leading-relaxed text-navy-700 sm:text-lg" {...cmsField(`sectores:sectors.${position}.description`)}>
                       {sector.description}
                     </p>
                   </Reveal>
