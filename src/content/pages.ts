@@ -56,14 +56,6 @@ export const PAGES = {
       'Infraestructura vial, obras civiles, equipamientos públicos, urbanismo y desarrollo territorial para entidades públicas y empresas privadas.',
   },
   projects: {
-    eyebrow: 'Proyectos',
-    title: 'Alumbrado público con contratos a largo plazo',
-    titleLines: [
-      'Alumbrado público',
-      'con contratos a',
-      { text: 'largo plazo', accent: true },
-    ] as const satisfies readonly HeadlineLine[],
-    lead: 'Concesiones e interventorías del servicio de alumbrado público en Cauca y Norte de Santander. Cada ficha recoge el contrato, su objeto, la vigencia y el registro fotográfico del proyecto.',
     metaTitle: 'Proyectos',
     description: `Proyectos de concesión e interventoría de alumbrado público de ${SITE.name} en Timbío, El Tambo, Chitagá y Mutiscua: contratos, vigencia, luminarias y registro fotográfico.`,
   },

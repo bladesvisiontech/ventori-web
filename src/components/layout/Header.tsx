@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { Logo } from '@/components/layout/Logo'
 import { ShinyButton } from '@/components/ui/ShinyButton'
-import { NAV_LINKS, ROUTES } from '@/lib/constants'
+import { NAV_LINKS, ROUTES, SOLID_HEADER_ROUTES } from '@/lib/constants'
 import { cn } from '@/lib/utils'
 
 /** Desplazamiento a partir del cual el header deja de ser transparente. */
@@ -34,6 +34,8 @@ export function Header() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
+  const isSolid = solid || SOLID_HEADER_ROUTES.includes(pathname)
+
   const isActive = (href: string) =>
     href === ROUTES.home ? pathname === href : pathname.startsWith(href)
 
@@ -41,7 +43,7 @@ export function Header() {
     <header
       className={cn(
         'fixed inset-x-0 top-0 z-50 h-(--header-height) transition-colors duration-300 lg:h-(--header-height-lg)',
-        solid ? 'bg-navy-950/95 backdrop-blur-md' : 'bg-transparent',
+        isSolid ? 'bg-navy-950/95 backdrop-blur-md' : 'bg-transparent',
       )}
     >
       {/* Filo inferior. Se desvanece con el header transparente en vez de
@@ -50,7 +52,7 @@ export function Header() {
         aria-hidden="true"
         className={cn(
           'absolute inset-x-0 bottom-0 h-px bg-navy-700 transition-opacity duration-300',
-          solid ? 'opacity-100' : 'opacity-0',
+          isSolid ? 'opacity-100' : 'opacity-0',
         )}
       />
 

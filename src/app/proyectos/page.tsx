@@ -5,7 +5,6 @@ import { ProjectRecords } from '@/components/sections/ProjectRecords'
 import { StatsBar } from '@/components/sections/StatsBar'
 import { Container } from '@/components/ui/Container'
 import { JsonLd } from '@/components/seo/JsonLd'
-import { PageHero } from '@/components/ui/PageHero'
 import { Section } from '@/components/ui/Section'
 import { SectionHead } from '@/components/ui/SectionHead'
 import { PAGES } from '@/content/pages'
@@ -22,13 +21,12 @@ export const metadata: Metadata = buildMetadata({
 export default function ProjectsPage() {
   return (
     <>
-      <PageHero
-        eyebrow={PAGES.projects.eyebrow}
-        lines={PAGES.projects.titleLines}
-        lead={PAGES.projects.lead}
-      />
-
-      <Section tone="paper" grid>
+      {/* Sin hero: la página abre en el mapa. El relleno superior reserva el header fijo. */}
+      <Section
+        tone="paper"
+        grid
+        className="pt-(--header-height) sm:pt-[calc(var(--header-height)+1rem)] lg:pt-(--header-height-lg)"
+      >
         <Container width="wide">
           <ProjectExplorer projects={CONCESSION_PROJECTS}>
             <SectionHead
@@ -37,6 +35,8 @@ export default function ProjectsPage() {
               lines={PROJECTS_PAGE.map.lines}
               intro={PROJECTS_PAGE.map.intro}
               tone="light"
+              as="h1"
+              trigger="mount"
             />
           </ProjectExplorer>
         </Container>

@@ -1,5 +1,6 @@
 import { Headline } from '@/components/motion/Headline'
 import { Reveal } from '@/components/motion/Reveal'
+import type { EntranceTrigger } from '@/components/motion/entrance'
 import { Rule } from '@/components/motion/Rule'
 import { cn, formatIndex } from '@/lib/utils'
 import type { HeadlineLine } from '@/types/content'
@@ -19,6 +20,10 @@ interface SectionHeadProps {
   /** Tamaño del titular. `lg` para la apertura de una página. */
   size?: 'md' | 'lg'
   className?: string
+  /** `h1` cuando la cabecera abre la página, sin hero encima. */
+  as?: 'h1' | 'h2'
+  /** `mount` cuando la cabecera está en pantalla al cargar (ver AGENTS.md). */
+  trigger?: EntranceTrigger
 }
 
 /*
@@ -81,25 +86,28 @@ export function SectionHead({
   tone = 'dark',
   size = 'md',
   className,
+  as = 'h2',
+  trigger = 'view',
 }: SectionHeadProps) {
   const palette = TONES[tone]
 
   return (
     <div className={cn('max-w-3xl', className)}>
-      <Reveal>
+      <Reveal trigger={trigger}>
         <div className="flex items-center gap-4">
           <span className={cn('font-mono text-label tabular', palette.index)}>
             {formatIndex(index)}
           </span>
 
-          <Rule className={cn('w-10 flex-none', palette.rule)} delay={0.1} />
+          <Rule trigger={trigger} className={cn('w-10 flex-none', palette.rule)} delay={0.1} />
 
           <span className={cn('font-mono text-label uppercase', palette.eyebrow)}>{eyebrow}</span>
         </div>
       </Reveal>
 
       <Headline
-        as="h2"
+        as={as}
+        trigger={trigger}
         lines={lines}
         delay={0.15}
         accentClassName={palette.accent}
@@ -111,7 +119,7 @@ export function SectionHead({
       />
 
       {intro && (
-        <Reveal delay={0.25}>
+        <Reveal trigger={trigger} delay={0.25}>
           <p className={cn('mt-7 max-w-2xl text-base leading-relaxed sm:text-lg', palette.intro)}>
             {intro}
           </p>

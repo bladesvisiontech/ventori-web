@@ -184,9 +184,9 @@ export const CONCESSION_TOTALS = {
 export const PROJECTS_PAGE = {
   map: {
     eyebrow: 'Cobertura',
-    lines: ['Dónde están', { text: 'nuestros proyectos', accent: true }],
+    lines: ['Nuestros', { text: 'proyectos', accent: true }],
     intro:
-      'Selecciona un municipio en el mapa o en la lista para ver su contrato y sus fotos.',
+      'Concesiones e interventorías del servicio de alumbrado público en Cauca y Norte de Santander. Selecciona un municipio en el mapa o en la lista para ver su contrato y sus fotos.',
   },
   records: {
     eyebrow: 'Fichas',

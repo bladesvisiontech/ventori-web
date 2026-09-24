@@ -226,9 +226,9 @@ export function ProjectExplorer({ projects, children, moreHref }: ProjectExplore
 
               <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-4 p-6">
                 <div>
-                  <h3 className="stretch-display text-xl font-semibold text-white sm:text-2xl">
+                  <p className="stretch-display text-xl font-semibold text-white sm:text-2xl">
                     {active.name}
-                  </h3>
+                  </p>
                   <p className="mt-1 font-mono text-label uppercase text-navy-200">
                     {active.department}
                   </p>

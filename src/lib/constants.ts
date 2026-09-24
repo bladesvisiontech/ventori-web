@@ -52,6 +52,12 @@ export const NAV_LINKS = [
   { label: 'Contacto', href: ROUTES.contact },
 ] as const
 
+/**
+ * Rutas que abren sobre fondo claro, sin hero oscuro debajo del header: ahí el
+ * header transparente dejaría el menú blanco sobre papel, así que va sólido.
+ */
+export const SOLID_HEADER_ROUTES: readonly string[] = [ROUTES.projects]
+
 /** Enlaces legales del pie de página. */
 export const LEGAL_LINKS = [
   { label: 'Política de privacidad', href: ROUTES.privacy },
