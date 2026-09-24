@@ -25,7 +25,7 @@ src/
 │   │             Parallax, PinnedSequence, Marquee, ScrollProgress
 │   ├── sections/ secciones compuestas por las páginas
 │   └── ui/       primitivas de diseño
-├── content/      TODO el copy y los datos, tipados
+├── content/      data/*.json (contenido editable desde el CMS), schema.ts (validación) y módulos que los leen
 ├── lib/          constants, env, seo, utils, validación
 ├── styles/       tokens de marca
 └── types/
@@ -72,6 +72,12 @@ Con `prefers-reduced-motion` no queda contenido invisible en ninguna ruta, no se
 ## SEO
 
 Metadatos y canonical por página, Open Graph y Twitter con imagen generada (`app/opengraph-image.tsx`), JSON-LD de organización, migas de pan y proyectos, `sitemap.xml` con las fotos de proyectos, `robots.txt`, `manifest.webmanifest`, favicon `.ico` + SVG + `apple-icon`.
+
+## CMS
+
+El contenido se edita en el CMS (`bladesvisiontech/cms-ventori`), que guarda los JSON de `src/content/data/` con un commit en este repositorio; Vercel vuelve a desplegar el sitio en 1–2 minutos. El build valida cada JSON contra `src/content/schema.ts`: si algo llega mal, el build falla y queda publicada la versión anterior. `/api/version` devuelve el commit publicado para que el CMS sepa cuándo terminó.
+
+Variables del sitio relacionadas: `CMS_ORIGIN` (dominio del CMS, permite su vista previa en iframe).
 
 ## Pendiente del cliente
 

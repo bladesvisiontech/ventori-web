@@ -1,7 +1,11 @@
 <!-- BEGIN:nextjs-agent-rules -->
+
 # This is NOT the Next.js you know
 
-This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` before writing any code. Heed deprecation notices.
+This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` (resolved from this file's directory; in monorepos the `next` package may not be visible from the repo root) before writing any code. Heed deprecation notices.
+
+This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
+
 <!-- END:nextjs-agent-rules -->
 
 # Ventori — reglas del proyecto
@@ -10,7 +14,7 @@ This version has breaking changes — APIs, conventions, and file structure may 
 
 Ningún literal de negocio vive en JSX. Antes de escribir un string o número que no sea sintaxis:
 
-- **Copy, listas, cifras** → `src/content/*.ts`
+- **Copy, listas, cifras, fotos y vídeos** → `src/content/data/*.json`, que edita el CMS (`bladesvisiontech/cms-ventori`). Su forma está en `src/content/schema.ts` y se valida en build; los módulos de `src/content/*.ts` solo los leen y reexportan. Si cambias el esquema, copia el archivo a `cms-ventori/src/lib/content-schema.ts` y añade el campo al editor en `cms-ventori/src/lib/pages.ts`.
 - **Rutas, navegación, datos de empresa, contacto, límites de formulario** → `src/lib/constants.ts`
 - **Secretos** → env var leída con un getter en `src/lib/env.ts` que lanza error si falta
 
