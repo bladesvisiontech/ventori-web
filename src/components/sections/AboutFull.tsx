@@ -33,7 +33,7 @@ export function AboutFull({ index }: { index: number }) {
         </div>
 
         <Reveal mask from="bottom" delay={0.2} className="mt-16">
-          <MediaFrame media="aboutSplit" ratio="wide" sizes="(min-width: 1280px) 1152px, 100vw" />
+          <MediaFrame image={ABOUT.image} ratio="wide" sizes="(min-width: 1280px) 1152px, 100vw" />
         </Reveal>
       </Container>
     </Section>

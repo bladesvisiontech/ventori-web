@@ -19,7 +19,7 @@ export function Commitment({ index }: { index: number }) {
       <Container>
         <div className="grid items-center gap-14 lg:grid-cols-2 lg:gap-20">
           <Reveal mask from="bottom" className="lg:order-1">
-            <MediaFrame media="whyUs" ratio="landscape" sizes="(min-width: 1024px) 45vw, 100vw" />
+            <MediaFrame image={COMMITMENT.image} ratio="landscape" sizes="(min-width: 1024px) 45vw, 100vw" />
           </Reveal>
 
           <div className="lg:order-2">

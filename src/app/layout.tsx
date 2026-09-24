@@ -8,7 +8,7 @@ import { MotionProvider } from '@/components/motion/MotionProvider'
 import { ScrollProgress } from '@/components/motion/ScrollProgress'
 import { PAGES } from '@/content/pages'
 import { BRAND_COLORS } from '@/lib/brand'
-import { ROUTES, SITE } from '@/lib/constants'
+import { ROUTES, SITE, UI_TEXT } from '@/lib/constants'
 import { buildMetadata, buildOrganizationJsonLd } from '@/lib/seo'
 import './globals.css'
 
@@ -103,7 +103,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           href="#contenido"
           className="sr-only bevel-sm focus:not-sr-only focus:fixed focus:top-6 focus:left-6 focus:z-[70] focus:bg-terracota-500 focus:px-5 focus:py-3 focus:font-mono focus:text-label focus:uppercase focus:text-navy-950"
         >
-          Saltar al contenido
+          {UI_TEXT.skipToContent}
         </a>
 
         <MotionProvider>

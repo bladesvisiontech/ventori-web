@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { Logo } from '@/components/layout/Logo'
 import { GridPaper } from '@/components/ui/GridPaper'
 import { Container } from '@/components/ui/Container'
-import { CONTACT, LEGAL_LINKS, NAV_LINKS, SITE, getContactChannels } from '@/lib/constants'
+import { CONTACT, LEGAL_LINKS, NAV_LINKS, SITE, UI_TEXT, getContactChannels } from '@/lib/constants'
 
 export function Footer() {
   const channels = getContactChannels()
@@ -22,7 +22,7 @@ export function Footer() {
           </div>
 
           <nav aria-label="Pie de página" className="lg:col-span-3">
-            <h2 className="font-mono text-label uppercase text-navy-600">Navegación</h2>
+            <h2 className="font-mono text-label uppercase text-navy-600">{UI_TEXT.footer.navHeading}</h2>
             {/*
               Los enlaces son `flex min-h-11`, no texto suelto: como texto en
               línea el área táctil quedaba en 17 px de alto. El mínimo de 44 px
@@ -44,7 +44,7 @@ export function Footer() {
           </nav>
 
           <div className="lg:col-span-4">
-            <h2 className="font-mono text-label uppercase text-navy-600">Contacto</h2>
+            <h2 className="font-mono text-label uppercase text-navy-600">{UI_TEXT.footer.contactHeading}</h2>
 
             {/*
               Solo se listan los canales que ya tienen dato. Mientras el cliente

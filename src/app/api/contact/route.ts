@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server'
 import { Resend } from 'resend'
-import { CONTACT_CONSENT } from '@/content/legal'
+import { CONTACT_CONSENT } from '@/content/consent'
 import { CONTACT_SUBJECTS, FORM_MESSAGES, SITE } from '@/lib/constants'
 import {
   getContactFromEmail,

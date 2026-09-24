@@ -1,16 +1,9 @@
-import type { Stat } from '@/types/content'
+import { PROYECTOS } from '@/content/data/proyectos'
 
 /**
- * Cifras de la barra de indicadores.
- *
- * PENDIENTE DEL CLIENTE. Deliberadamente vacío: no inventamos cifras de una
- * empresa real. Cuando lleguen los datos (proyectos ejecutados, años de
- * experiencia, municipios atendidos, km o m² intervenidos) se agregan aquí y la
- * sección aparece sola — `<StatsBar />` no se renderiza si el arreglo está vacío.
- *
- * Ejemplo del formato esperado:
- *   { id: 'proyectos', value: 120, prefix: '+', label: 'Proyectos ejecutados' }
+ * Cifras de la barra de indicadores. Vacío hasta que el cliente las entregue:
+ * `<StatsBar />` no se renderiza mientras no haya ninguna.
  */
-export const STATS: readonly Stat[] = [] as const
+export const STATS = PROYECTOS.stats
 
 export const HAS_STATS = STATS.length > 0

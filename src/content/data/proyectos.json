@@ -1,0 +1,120 @@
+{
+  "seo": {
+    "metaTitle": "Proyectos",
+    "description": "Proyectos de concesión e interventoría de alumbrado público de {empresa} en Timbío, El Tambo, Chitagá y Mutiscua: contratos, vigencia, luminarias y registro fotográfico."
+  },
+  "map": {
+    "eyebrow": "Cobertura",
+    "lines": [
+      "Nuestros",
+      {
+        "text": "proyectos",
+        "accent": true
+      }
+    ],
+    "intro": "Concesiones e interventorías del servicio de alumbrado público en Cauca y Norte de Santander. Selecciona un municipio en el mapa o en la lista para ver su contrato y sus fotos."
+  },
+  "records": {
+    "eyebrow": "Fichas",
+    "lines": [
+      "Proyecto",
+      {
+        "text": "por proyecto",
+        "accent": true
+      }
+    ],
+    "intro": "El detalle completo de cada contrato vigente."
+  },
+  "totals": {
+    "projects": "Municipios",
+    "departments": "Departamentos",
+    "luminaires": "Luminarias"
+  },
+  "labels": {
+    "startDate": "Fecha de inicio",
+    "endDate": "Fecha de terminación",
+    "term": "Vigencia",
+    "termUnit": "años",
+    "luminaires": "N.º luminarias",
+    "contract": "Contrato",
+    "company": "Ejecuta",
+    "object": "Objeto del contrato",
+    "department": "Departamento",
+    "gallery": "Registro fotográfico",
+    "photosPending": "Registro fotográfico pendiente de publicación.",
+    "photoAltPending": "Registro fotográfico próximamente",
+    "previousPhoto": "Foto anterior",
+    "nextPhoto": "Foto siguiente",
+    "photoOf": "de",
+    "moreInfo": "Más información",
+    "mapLabel": "Mapa de Colombia con los municipios donde hay proyectos",
+    "selectorLabel": "Seleccionar proyecto"
+  },
+  "projects": [
+    {
+      "id": "timbio",
+      "name": "Timbío",
+      "department": "Cauca",
+      "company": "Grupo Ventori S.A.S.",
+      "contract": "No. CINT-157-2023",
+      "object": "Interventoría técnica, administrativa y financiera para el proyecto: convenio interadministrativo para prestar el servicio de alumbrado público, desarrollos tecnológicos asociados y de generación de energía con fuentes no convencionales, en el municipio de Timbío.",
+      "startDate": "25/05/2023",
+      "endDate": "27/03/2048",
+      "termYears": 25,
+      "luminaires": 1666,
+      "images": []
+    },
+    {
+      "id": "chitaga",
+      "name": "Chitagá",
+      "department": "Norte de Santander",
+      "company": "Grupo Ventori S.A.S.",
+      "contract": "No 083",
+      "object": "Interventoría técnica, administrativa y financiera para el proyecto: convenio interadministrativo para prestar el servicio de alumbrado público, desarrollos tecnológicos asociados y de generación de energía con fuentes no convencionales, en el municipio de Chitagá.",
+      "startDate": "10/05/2022",
+      "endDate": "10/05/2047",
+      "termYears": 25,
+      "luminaires": 651,
+      "images": [
+        "/proyectos/chitaga-1.jpg",
+        "/proyectos/chitaga-2.jpg",
+        "/proyectos/chitaga-3.jpg",
+        "/proyectos/chitaga-4.jpg"
+      ]
+    },
+    {
+      "id": "mutiscua",
+      "name": "Mutiscua",
+      "department": "Norte de Santander",
+      "company": "Grupo Ventori S.A.S.",
+      "contract": "No 056",
+      "object": "Concesión para la prestación del servicio de alumbrado público, desarrollos tecnológicos asociados y de generación de energía con fuentes no convencionales, en el municipio de Mutiscua, Norte de Santander.",
+      "startDate": "28/03/2025",
+      "endDate": "28/03/2055",
+      "termYears": 30,
+      "luminaires": 344,
+      "images": [
+        "/proyectos/mutiscua-1.jpg",
+        "/proyectos/mutiscua-2.jpg",
+        "/proyectos/mutiscua-3.jpg",
+        "/proyectos/mutiscua-4.jpg",
+        "/proyectos/mutiscua-5.jpg",
+        "/proyectos/mutiscua-6.jpg"
+      ]
+    },
+    {
+      "id": "tambo",
+      "name": "El Tambo",
+      "department": "Cauca",
+      "company": "Proyectos y Estudios Técnicos S.A.S.",
+      "contract": "No C-003-2023",
+      "object": "Interventoría técnica, administrativa y financiera para el proyecto: convenio interadministrativo para prestar el servicio de alumbrado público, desarrollos tecnológicos asociados y de generación de energía con fuentes no convencionales, en el municipio del Tambo - Cauca.",
+      "startDate": "20/06/2023",
+      "endDate": "20/06/2048",
+      "termYears": 25,
+      "luminaires": 1903,
+      "images": []
+    }
+  ],
+  "stats": []
+}

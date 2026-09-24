@@ -1,4 +1,5 @@
-import type { ConcessionProject } from '@/types/content'
+import { PROYECTOS } from '@/content/data/proyectos'
+import type { ConcessionProject, ProjectGeometry } from '@/types/content'
 
 /**
  * Sistema de coordenadas compartido por todas las capas del mapa: el mismo
@@ -56,122 +57,48 @@ export const DEPARTMENT_PATHS: Record<string, string> = {
 } as const
 
 /**
- * Proyectos de concesión e interventoría de alumbrado público en ejecución.
- *
- * Fuente: contratos vigentes de Grupo Ventori S.A.S. y Proyectos y Estudios
- * Técnicos S.A.S. `boundaryPath` es el límite real del municipio y `point` su
- * centroide, ambos proyectados con la misma fórmula que `COLOMBIA_MAP_PATH`
- * sobre `COLOMBIA_MAP_VIEWBOX` —caen donde caen el municipio y su centro en
- * el mapa real, no en una posición aproximada.
+ * Geometría de cada proyecto sobre `COLOMBIA_MAP_VIEWBOX`, por `id`: límite real
+ * del municipio (OSM/Nominatim), su centroide para el pin y la posición de la
+ * etiqueta. Es código, no contenido: un proyecto nuevo creado desde el CMS sale
+ * en la lista y en las fichas, y aparece en el mapa cuando se añade aquí.
  */
-export const CONCESSION_PROJECTS: readonly ConcessionProject[] = [
-  {
-    id: 'timbio',
-    name: 'Timbío',
-    department: 'Cauca',
-    company: 'Grupo Ventori S.A.S.',
-    contract: 'No. CINT-157-2023',
-    object:
-      'Interventoría técnica, administrativa y financiera para el proyecto: convenio interadministrativo para prestar el servicio de alumbrado público, desarrollos tecnológicos asociados y de generación de energía con fuentes no convencionales, en el municipio de Timbío.',
-    startDate: '25/05/2023',
-    endDate: '27/03/2048',
-    termYears: 25,
-    luminaires: 1666,
+export const PROJECT_GEOMETRY: Record<string, ProjectGeometry> = {
+  timbio: {
     point: { x: 100.4, y: 419.1 },
     callout: { x: 45, y: 480 },
     boundaryPath:
       'M95.6,419.1 L96.8,419.6 L97.8,420.5 L99.2,420.8 L99.1,421.0 L99.0,421.0 L98.7,421.4 L98.5,421.4 L98.4,421.7 L99.8,422.2 L100.2,422.5 L100.7,422.0 L100.7,421.7 L100.9,421.7 L101.0,421.6 L102.2,422.0 L102.4,421.7 L102.7,421.7 L102.8,421.2 L102.6,420.8 L102.7,420.3 L102.3,419.3 L102.9,419.0 L102.6,418.3 L102.8,417.7 L102.8,417.3 L103.1,417.4 L103.2,417.1 L103.7,417.2 L103.7,417.0 L104.0,417.2 L103.7,416.8 L103.1,416.5 L101.6,416.2 L100.6,415.1 L99.8,414.7 L99.6,415.3 L100.1,415.7 L100.5,416.3 L100.0,416.7 L99.9,417.2 L99.6,417.2 L99.5,417.4 L99.2,417.3 L99.2,417.5 L99.2,417.8 L99.5,418.0 L99.4,418.4 L99.1,418.6 L98.8,418.5 L98.6,418.8 L98.2,418.6 L97.8,418.8 L97.7,418.5 L97.5,418.4 L97.2,418.7 L96.8,418.8 L96.2,418.4 L95.7,418.7 L95.6,419.1 Z',
   },
-  {
-    id: 'chitaga',
-    name: 'Chitagá',
-    department: 'Norte de Santander',
-    company: 'Grupo Ventori S.A.S.',
-    contract: 'No 083',
-    object:
-      'Interventoría técnica, administrativa y financiera para el proyecto: convenio interadministrativo para prestar el servicio de alumbrado público, desarrollos tecnológicos asociados y de generación de energía con fuentes no convencionales, en el municipio de Chitagá.',
-    startDate: '10/05/2022',
-    endDate: '10/05/2047',
-    termYears: 25,
-    luminaires: 651,
+  chitaga: {
     point: { x: 266.2, y: 228.8 },
     callout: { x: 380, y: 190 },
     boundaryPath:
       'M257.0,229.0 L257.0,229.3 L257.2,229.5 L257.2,229.9 L257.5,230.5 L257.6,231.0 L257.9,231.4 L258.2,231.2 L258.4,230.7 L259.1,230.7 L259.3,230.9 L259.7,230.6 L260.2,230.6 L260.1,231.0 L260.6,232.1 L261.0,231.5 L261.0,231.2 L261.3,231.0 L262.0,231.5 L262.1,231.4 L262.5,231.4 L262.7,231.2 L263.4,231.3 L263.7,231.0 L264.3,230.9 L264.7,230.9 L265.1,231.4 L265.1,232.2 L265.5,232.8 L265.5,233.6 L265.1,234.1 L265.2,234.5 L265.3,234.9 L265.3,235.2 L265.4,235.4 L266.4,235.8 L266.7,235.5 L266.9,235.6 L266.9,234.7 L267.1,234.6 L267.3,234.1 L267.8,233.8 L267.8,234.1 L268.7,235.0 L270.7,236.0 L271.5,236.1 L272.6,235.3 L273.0,235.4 L273.2,235.0 L274.3,234.0 L274.7,233.3 L275.0,232.1 L275.5,231.1 L275.2,230.6 L275.1,230.2 L274.8,229.7 L274.7,229.1 L274.1,228.2 L273.6,227.9 L273.3,227.9 L272.2,226.5 L272.0,226.7 L271.7,226.5 L271.5,226.8 L271.2,226.4 L271.0,226.3 L270.8,226.4 L270.2,225.8 L270.0,225.8 L269.4,224.7 L268.5,224.9 L267.1,224.0 L266.6,224.0 L266.3,224.4 L266.0,224.3 L265.6,224.5 L265.1,224.6 L264.6,224.3 L264.2,224.2 L263.5,224.6 L263.7,223.8 L264.1,223.8 L264.3,223.7 L264.6,222.3 L264.9,221.8 L264.6,221.0 L264.3,220.7 L264.1,220.2 L263.9,220.4 L263.8,220.7 L263.4,220.7 L262.5,221.4 L261.8,222.5 L261.7,222.9 L261.4,223.0 L261.2,223.2 L260.7,222.4 L260.4,222.1 L260.3,221.8 L260.4,221.4 L259.9,220.6 L259.2,221.2 L259.2,221.6 L259.5,221.9 L259.5,222.2 L259.4,223.6 L258.6,223.9 L258.1,224.5 L258.0,224.8 L258.0,225.7 L257.7,226.6 L257.5,228.0 L257.0,229.0 Z',
-    images: [
-      '/proyectos/chitaga-1.jpg',
-      '/proyectos/chitaga-2.jpg',
-      '/proyectos/chitaga-3.jpg',
-      '/proyectos/chitaga-4.jpg',
-    ],
   },
-  {
-    id: 'mutiscua',
-    name: 'Mutiscua',
-    department: 'Norte de Santander',
-    company: 'Grupo Ventori S.A.S.',
-    contract: 'No 056',
-    object:
-      'Concesión para la prestación del servicio de alumbrado público, desarrollos tecnológicos asociados y de generación de energía con fuentes no convencionales, en el municipio de Mutiscua, Norte de Santander.',
-    startDate: '28/03/2025',
-    endDate: '28/03/2055',
-    termYears: 30,
-    luminaires: 344,
+  mutiscua: {
     point: { x: 256.5, y: 218.0 },
     callout: { x: 130, y: 170 },
     boundaryPath:
       'M253.6,218.1 L253.9,218.6 L254.6,218.8 L254.5,219.2 L254.8,219.7 L255.2,220.0 L255.5,220.8 L256.0,220.8 L256.1,220.6 L256.1,220.5 L256.3,220.4 L256.8,220.6 L257.0,220.5 L257.1,220.5 L257.4,220.7 L257.6,220.7 L257.8,220.6 L258.2,220.6 L258.0,220.2 L258.1,219.8 L258.3,219.5 L258.8,219.5 L258.7,219.2 L259.0,218.9 L259.0,218.0 L259.1,217.8 L259.1,217.5 L259.3,217.2 L259.2,217.3 L259.2,216.8 L259.1,216.8 L259.1,216.7 L258.7,216.2 L258.7,215.9 L258.5,215.6 L257.8,215.6 L257.5,215.5 L256.9,215.8 L256.6,216.2 L255.9,216.4 L255.4,216.4 L255.2,216.1 L254.9,216.0 L254.6,215.7 L254.3,216.3 L253.8,216.3 L253.8,216.5 L253.6,216.9 L253.7,217.9 L253.6,218.1 Z',
-    images: [
-      '/proyectos/mutiscua-1.jpg',
-      '/proyectos/mutiscua-2.jpg',
-      '/proyectos/mutiscua-3.jpg',
-      '/proyectos/mutiscua-4.jpg',
-      '/proyectos/mutiscua-5.jpg',
-      '/proyectos/mutiscua-6.jpg',
-    ],
   },
-  {
-    id: 'tambo',
-    name: 'El Tambo',
-    department: 'Cauca',
-    company: 'Proyectos y Estudios Técnicos S.A.S.',
-    contract: 'No C-003-2023',
-    object:
-      'Interventoría técnica, administrativa y financiera para el proyecto: convenio interadministrativo para prestar el servicio de alumbrado público, desarrollos tecnológicos asociados y de generación de energía con fuentes no convencionales, en el municipio del Tambo - Cauca.',
-    startDate: '20/06/2023',
-    endDate: '20/06/2048',
-    termYears: 25,
-    luminaires: 1903,
+  tambo: {
     point: { x: 88.7, y: 412.4 },
     callout: { x: 40, y: 380 },
     boundaryPath:
       'M76.5,411.6 L76.8,412.4 L76.8,413.1 L76.6,413.4 L76.9,413.5 L77.3,413.9 L77.5,414.3 L78.2,414.4 L78.9,414.7 L79.3,414.6 L80.3,415.3 L81.0,415.8 L82.1,416.1 L82.8,416.1 L83.4,416.4 L83.6,417.2 L83.4,417.5 L83.5,418.1 L83.5,419.0 L83.1,418.9 L83.3,419.8 L83.1,420.4 L83.5,421.3 L83.9,421.1 L84.2,420.7 L84.4,420.8 L84.7,420.7 L85.1,420.8 L85.2,421.2 L85.9,421.1 L86.6,421.6 L86.9,421.4 L87.4,421.4 L87.5,421.1 L87.8,421.2 L88.2,422.0 L88.3,423.0 L88.1,423.8 L87.9,423.9 L87.9,424.2 L88.7,424.9 L88.7,425.3 L88.3,425.6 L89.1,425.7 L89.5,425.5 L89.8,425.1 L90.2,425.0 L90.7,424.3 L90.9,424.1 L90.9,423.7 L91.2,423.3 L91.6,423.6 L92.3,423.3 L92.4,423.3 L92.7,423.6 L93.0,424.6 L94.0,424.9 L94.2,424.8 L95.3,424.9 L95.4,424.6 L95.1,424.4 L95.4,424.2 L95.4,424.1 L95.3,423.1 L95.2,423.0 L95.5,422.3 L95.4,422.1 L95.8,422.0 L96.4,422.4 L96.8,422.1 L96.6,422.1 L96.8,421.9 L96.9,421.1 L97.5,421.5 L98.1,421.5 L98.4,421.7 L98.5,421.4 L99.1,420.9 L99.2,420.8 L97.8,420.5 L96.8,419.6 L95.6,419.1 L95.7,418.7 L96.2,418.4 L96.8,418.8 L97.2,418.7 L97.5,418.4 L97.7,418.5 L97.8,418.8 L98.2,418.6 L98.6,418.8 L98.8,418.5 L99.1,418.6 L99.4,418.4 L99.5,418.0 L99.2,417.8 L99.2,417.5 L99.2,417.3 L99.5,417.4 L99.6,417.2 L99.9,417.2 L100.0,416.7 L100.3,416.5 L100.4,416.2 L99.6,415.3 L99.8,414.7 L98.5,413.5 L97.9,412.3 L98.0,411.7 L98.2,411.6 L98.2,411.4 L97.8,410.7 L97.9,410.4 L97.7,410.2 L97.9,409.7 L97.8,409.6 L97.8,409.8 L97.6,409.9 L96.9,409.8 L96.6,409.5 L96.3,409.5 L96.1,409.1 L95.5,408.9 L95.3,408.0 L94.5,407.3 L94.3,406.9 L93.7,406.2 L93.7,406.0 L94.0,405.6 L94.1,405.0 L94.6,403.9 L94.7,403.3 L94.2,402.4 L93.9,402.2 L93.9,402.0 L94.1,401.8 L93.7,401.4 L93.6,401.1 L93.2,401.0 L93.0,401.2 L92.6,401.2 L92.2,401.0 L92.1,401.7 L91.3,402.0 L91.3,402.3 L90.9,402.8 L90.4,402.6 L89.6,401.5 L89.2,401.5 L88.8,401.0 L88.3,400.8 L88.1,401.0 L87.5,400.9 L86.2,400.5 L86.0,400.8 L86.1,401.4 L85.9,401.7 L84.7,401.9 L84.4,401.7 L83.7,401.8 L83.2,402.0 L82.5,403.0 L82.0,403.1 L80.2,402.8 L80.2,402.2 L78.6,401.0 L78.4,401.8 L78.5,402.1 L78.4,403.0 L78.1,403.4 L78.1,404.1 L77.9,404.5 L78.4,404.6 L78.9,405.3 L78.9,405.5 L80.1,405.6 L80.5,405.9 L80.8,406.2 L80.5,406.8 L80.8,406.9 L81.0,407.4 L80.7,407.8 L80.4,408.0 L79.0,408.0 L78.5,408.2 L78.7,409.1 L78.6,409.6 L78.1,409.6 L77.9,409.8 L77.6,409.9 L77.5,410.1 L77.5,410.6 L76.8,411.2 L76.5,411.6 Z',
   },
-] as const
+}
+
+/** Contratos (editables desde el CMS) con su geometría en el mapa, si la tiene. */
+export const CONCESSION_PROJECTS: readonly ConcessionProject[] = PROYECTOS.projects.map((project) => ({
+  ...project,
+  ...PROJECT_GEOMETRY[project.id],
+}))
 
 export const HAS_CONCESSION_PROJECTS = CONCESSION_PROJECTS.length > 0
 
 /** Rótulos de la ficha de proyecto, compartidos por el mapa y la página de proyectos. */
-export const PROJECT_LABELS = {
-  startDate: 'Fecha de inicio',
-  endDate: 'Fecha de terminación',
-  term: 'Vigencia',
-  termUnit: 'años',
-  luminaires: 'N.º luminarias',
-  contract: 'Contrato',
-  company: 'Ejecuta',
-  object: 'Objeto del contrato',
-  department: 'Departamento',
-  gallery: 'Registro fotográfico',
-  photosPending: 'Registro fotográfico pendiente de publicación.',
-  photoAltPending: 'Registro fotográfico próximamente',
-  previousPhoto: 'Foto anterior',
-  nextPhoto: 'Foto siguiente',
-  photoOf: 'de',
-  moreInfo: 'Más información',
-  mapLabel: 'Mapa de Colombia con los municipios donde hay proyectos',
-  selectorLabel: 'Seleccionar proyecto',
-} as const
+export const PROJECT_LABELS = PROYECTOS.labels
 
 /** Cifras de conjunto calculadas de los contratos cargados, nunca escritas a mano. */
 export const CONCESSION_TOTALS = {
@@ -181,21 +108,4 @@ export const CONCESSION_TOTALS = {
 } as const
 
 /** Encabezados de la página de proyectos. */
-export const PROJECTS_PAGE = {
-  map: {
-    eyebrow: 'Cobertura',
-    lines: ['Nuestros', { text: 'proyectos', accent: true }],
-    intro:
-      'Concesiones e interventorías del servicio de alumbrado público en Cauca y Norte de Santander. Selecciona un municipio en el mapa o en la lista para ver su contrato y sus fotos.',
-  },
-  records: {
-    eyebrow: 'Fichas',
-    lines: ['Proyecto', { text: 'por proyecto', accent: true }],
-    intro: 'El detalle completo de cada contrato vigente.',
-  },
-  totals: {
-    projects: 'Municipios',
-    departments: 'Departamentos',
-    luminaires: 'Luminarias',
-  },
-} as const
+export const PROJECTS_PAGE = { map: PROYECTOS.map, records: PROYECTOS.records, totals: PROYECTOS.totals }

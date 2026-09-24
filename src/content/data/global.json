@@ -1,0 +1,92 @@
+{
+  "site": {
+    "name": "Grupo Ventori",
+    "legalName": "Grupo Ventori S.A.S.",
+    "nit": "",
+    "tagline": "Ingeniería, consultoría e interventoría",
+    "description": "Empresa colombiana especializada en ingeniería, consultoría e interventoría, enfocada en soluciones técnicas integrales para proyectos de infraestructura pública y privada."
+  },
+  "contact": {
+    "email": "",
+    "phone": "",
+    "whatsapp": "",
+    "address": "",
+    "city": "",
+    "schedule": {
+      "days": "Lunes a viernes",
+      "hours": "7:30 a.m. – 5:30 p.m."
+    }
+  },
+  "social": {
+    "linkedin": ""
+  },
+  "nav": {
+    "links": {
+      "about": "Nosotros",
+      "services": "Servicios",
+      "sectors": "Sectores",
+      "projects": "Proyectos",
+      "contact": "Contacto"
+    },
+    "headerCta": "Hablemos",
+    "legalLinks": {
+      "privacy": "Política de privacidad",
+      "terms": "Términos y condiciones",
+      "cookies": "Política de cookies"
+    }
+  },
+  "ctaBand": {
+    "eyebrow": "Siguiente paso",
+    "lines": [
+      "¿Tienes un proyecto",
+      {
+        "text": "de infraestructura",
+        "accent": true
+      },
+      "en marcha?"
+    ],
+    "text": "Cuéntanos en qué etapa está y qué necesitas resolver. Te respondemos con una propuesta de alcance concreta.",
+    "cta": "Contáctanos",
+    "image": {
+      "src": "/media/ctaBand.jpg",
+      "alt": "Corredor vial al atardecer visto desde el aire"
+    }
+  },
+  "footer": {
+    "navHeading": "Navegación",
+    "contactHeading": "Contacto"
+  },
+  "ui": {
+    "skipToContent": "Saltar al contenido",
+    "mobileBar": {
+      "menu": "Menú",
+      "openMenu": "Abrir menú",
+      "closeMenu": "Cerrar menú",
+      "call": "Llamar",
+      "cta": "Contacto"
+    }
+  },
+  "systemPages": {
+    "notFound": {
+      "eyebrow": "Error 404",
+      "titleLines": [
+        "Esta página",
+        {
+          "text": "no existe",
+          "accent": true
+        }
+      ],
+      "lead": "Es posible que la dirección haya cambiado o que el enlace esté mal escrito.",
+      "metaTitle": "Página no encontrada",
+      "primaryCta": "Ir al inicio",
+      "secondaryCta": "Contactarnos"
+    },
+    "error": {
+      "eyebrow": "Error",
+      "title": "Algo salió mal",
+      "lead": "No pudimos cargar esta página. Intenta de nuevo en unos segundos.",
+      "retry": "Intentar de nuevo",
+      "home": "Ir al inicio"
+    }
+  }
+}

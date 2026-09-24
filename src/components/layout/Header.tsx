@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { Logo } from '@/components/layout/Logo'
 import { ShinyButton } from '@/components/ui/ShinyButton'
-import { NAV_LINKS, ROUTES, TRANSPARENT_HEADER_ROUTES } from '@/lib/constants'
+import { HEADER_CTA, NAV_LINKS, ROUTES, TRANSPARENT_HEADER_ROUTES } from '@/lib/constants'
 import { cn } from '@/lib/utils'
 
 /** Desplazamiento a partir del cual el header deja de ser transparente. */
@@ -95,7 +95,7 @@ export function Header() {
 
         <div className="hidden lg:block">
           <ShinyButton href={ROUTES.contact} className="min-h-11 px-6 py-2 text-sm">
-            Hablemos
+            {HEADER_CTA}
           </ShinyButton>
         </div>
       </div>

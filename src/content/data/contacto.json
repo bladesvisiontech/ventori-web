@@ -1,0 +1,76 @@
+{
+  "seo": {
+    "metaTitle": "Contacto",
+    "description": "Contacta al equipo de {empresa} para proyectos de ingeniería, consultoría e interventoría en Colombia. Atención de lunes a viernes."
+  },
+  "hero": {
+    "eyebrow": "Contacto",
+    "titleLines": [
+      "Cuéntanos qué",
+      {
+        "text": "necesitas resolver",
+        "accent": true
+      }
+    ],
+    "lead": "Escríbenos con el contexto del proyecto y la etapa en la que se encuentra. Te respondemos con una propuesta de alcance concreta."
+  },
+  "panel": {
+    "channelsHeading": "Canales directos",
+    "scheduleHeading": "Horario de atención",
+    "channelLabels": {
+      "email": "Correo electrónico",
+      "phone": "Teléfono",
+      "address": "Dirección",
+      "city": "Ciudad"
+    }
+  },
+  "form": {
+    "labels": {
+      "name": "Nombre completo",
+      "organization": "Entidad o empresa",
+      "organizationHint": "Opcional",
+      "email": "Correo electrónico",
+      "phone": "Teléfono",
+      "subject": "Asunto",
+      "message": "Mensaje",
+      "messageHint": "Etapa del proyecto, alcance estimado y qué necesitas resolver."
+    },
+    "submit": "Enviar mensaje",
+    "submitting": "Enviando…",
+    "requiredNote": "Campos obligatorios",
+    "subjects": [
+      {
+        "value": "interventoria",
+        "label": "Interventoría"
+      },
+      {
+        "value": "consultoria",
+        "label": "Consultoría en ingeniería"
+      },
+      {
+        "value": "gerencia",
+        "label": "Gerencia de proyectos"
+      },
+      {
+        "value": "estudios",
+        "label": "Estudios y diseños"
+      },
+      {
+        "value": "otro",
+        "label": "Otro"
+      }
+    ],
+    "messages": {
+      "success": "Gracias por escribirnos. Un miembro del equipo se pondrá en contacto contigo.",
+      "error": "No pudimos enviar tu mensaje. Intenta de nuevo en unos minutos.",
+      "errorWithEmail": "No pudimos enviar tu mensaje. Intenta de nuevo o escríbenos a {correo}.",
+      "rateLimited": "Recibimos varios envíos desde esta conexión. Espera un momento antes de volver a intentar."
+    },
+    "consent": {
+      "before": "Autorizo el tratamiento de mis datos personales conforme a la ",
+      "link": "política de privacidad",
+      "after": ".",
+      "error": "Necesitamos tu autorización para responder tu mensaje."
+    }
+  }
+}

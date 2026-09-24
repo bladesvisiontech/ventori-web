@@ -2,6 +2,9 @@ import type { NextConfig } from 'next'
 
 const isDev = process.env.NODE_ENV === 'development'
 
+/** Fotos y vídeos subidos desde el CMS (Vercel Blob). */
+const BLOB_HOST = 'https://*.public.blob.vercel-storage.com'
+
 /**
  * Política de contenido: el sitio solo carga recursos propios (fuentes
  * autoalojadas por `next/font`, imágenes y vídeo en /public). `unsafe-inline`
@@ -12,9 +15,9 @@ const contentSecurityPolicy = [
   "default-src 'self'",
   `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ''}`,
   "style-src 'self' 'unsafe-inline'",
-  "img-src 'self' blob: data:",
+  `img-src 'self' blob: data: ${BLOB_HOST}`,
   "font-src 'self'",
-  "media-src 'self'",
+  `media-src 'self' ${BLOB_HOST}`,
   `connect-src 'self'${isDev ? ' ws:' : ''}`,
   "object-src 'none'",
   "base-uri 'self'",
@@ -39,6 +42,9 @@ const securityHeaders = [
 
 const nextConfig: NextConfig = {
   poweredByHeader: false,
+  images: {
+    remotePatterns: [{ protocol: 'https', hostname: '*.public.blob.vercel-storage.com' }],
+  },
   async headers() {
     return [
       { source: '/(.*)', headers: securityHeaders },

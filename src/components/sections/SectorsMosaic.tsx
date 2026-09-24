@@ -60,7 +60,7 @@ export function SectorsMosaic({ index }: { index: number }) {
                   aria-label={`${sector.title}. Ver detalle del sector`}
                 >
                   <MediaFrame
-                    media={sector.media}
+                    image={sector.image}
                     ratio={layout.ratio}
                     sizes={layout.sizes}
                     className={cn(

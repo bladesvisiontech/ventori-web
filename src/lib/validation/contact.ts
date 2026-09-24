@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { CONTACT_CONSENT } from '@/content/legal'
+import { CONTACT_CONSENT } from '@/content/consent'
 import { CONTACT_FORM, CONTACT_SUBJECT_VALUES } from '@/lib/constants'
 
 /** Sin caracteres de control: un salto de línea en el nombre acabaría en el asunto del correo. */

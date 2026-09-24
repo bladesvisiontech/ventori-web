@@ -3,7 +3,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import { useInView } from 'framer-motion'
-import { MEDIA } from '@/content/media'
 import { cn, formatIndex } from '@/lib/utils'
 import type { Pillar } from '@/types/content'
 
@@ -74,8 +73,8 @@ function Phase({ item, index, last, onEnter }: PhaseProps) {
       */}
       <div className="relative mt-8 aspect-4/3 w-full overflow-hidden bevel lg:hidden">
         <Image
-          src={MEDIA[item.media].src}
-          alt={MEDIA[item.media].alt}
+          src={item.image.src}
+          alt={item.image.alt}
           fill
           sizes="(min-width: 1024px) 1px, 100vw"
           className="object-cover"
@@ -131,8 +130,8 @@ export function PinnedSequence({ items }: PinnedSequenceProps) {
             {items.map((item, index) => (
               <Image
                 key={item.id}
-                src={MEDIA[item.media].src}
-                alt={MEDIA[item.media].alt}
+                src={item.image.src}
+                alt={item.image.alt}
                 fill
                 sizes="(min-width: 1024px) 45vw, 1px"
                 priority={index === 0}

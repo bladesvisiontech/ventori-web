@@ -41,7 +41,7 @@ export function SectorsGrid() {
                   className={cn(flipped ? 'lg:order-2' : 'lg:order-1')}
                 >
                   <MediaFrame
-                    media={sector.media}
+                    image={sector.image}
                     ratio="landscape"
                     sizes="(min-width: 1024px) 45vw, 100vw"
                   />

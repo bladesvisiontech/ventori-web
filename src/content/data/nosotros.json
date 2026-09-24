@@ -1,0 +1,116 @@
+{
+  "seo": {
+    "metaTitle": "Nosotros",
+    "description": "Conoce a {empresa}: misión, visión y compromiso de una empresa colombiana de ingeniería, consultoría e interventoría para proyectos de infraestructura."
+  },
+  "hero": {
+    "eyebrow": "Nosotros",
+    "titleLines": [
+      "Ingeniería con",
+      "responsabilidad",
+      {
+        "text": "sobre el resultado",
+        "accent": true
+      }
+    ],
+    "lead": "Somos una empresa colombiana de ingeniería, consultoría e interventoría. Acompañamos proyectos de infraestructura pública y privada en todas sus etapas."
+  },
+  "about": {
+    "section": {
+      "eyebrow": "Quiénes somos",
+      "lines": [
+        "Soluciones técnicas",
+        "integrales para la",
+        {
+          "text": "infraestructura",
+          "accent": true
+        }
+      ],
+      "intro": "Trabajamos con altos estándares de calidad, eficiencia e innovación, acompañando a nuestros clientes en cada etapa del proyecto."
+    },
+    "heading": "Soluciones técnicas integrales para la infraestructura del país",
+    "eyebrow": "Quiénes somos",
+    "paragraphs": [
+      "En {empresa} somos una empresa colombiana especializada en ingeniería, consultoría e interventoría, enfocada en desarrollar soluciones técnicas integrales para proyectos de infraestructura pública y privada.",
+      "Trabajamos con altos estándares de calidad, eficiencia e innovación, acompañando a nuestros clientes en cada etapa del proyecto, desde la planeación y estructuración hasta la ejecución, supervisión y cierre, garantizando el cumplimiento de los objetivos técnicos, financieros, ambientales y sociales.",
+      "Nuestro compromiso es generar proyectos sostenibles que contribuyan al desarrollo del territorio, optimizando recursos y creando valor para nuestros clientes y las comunidades."
+    ],
+    "image": {
+      "src": "/media/aboutSplit.jpg",
+      "alt": "Profesional revisando y marcando a mano planos estructurales sobre una mesa de trabajo"
+    }
+  },
+  "whyUs": {
+    "section": {
+      "eyebrow": "Por qué elegirnos",
+      "lines": [
+        "Lo que sostiene",
+        "cada entrega"
+      ],
+      "intro": "No es una lista de buenas intenciones: es lo que verifica un auditor cuando revisa el expediente de un proyecto nuestro."
+    },
+    "items": [
+      {
+        "id": "experiencia",
+        "title": "Experiencia en proyectos de infraestructura",
+        "description": "Conocemos cómo se comporta un proyecto de infraestructura en campo, no solo en el papel.",
+        "icon": "Award"
+      },
+      {
+        "id": "equipo",
+        "title": "Equipo profesional multidisciplinario",
+        "description": "Ingeniería, gestión ambiental, componente social, jurídico y financiero trabajando sobre el mismo proyecto.",
+        "icon": "Users"
+      },
+      {
+        "id": "normatividad",
+        "title": "Cumplimiento de estándares técnicos y normativos",
+        "description": "Cada entregable se construye contra la norma aplicable y queda soportado documentalmente.",
+        "icon": "Scale"
+      },
+      {
+        "id": "soluciones-integrales",
+        "title": "Soluciones integrales adaptadas a cada cliente",
+        "description": "Ajustamos el alcance a la realidad del proyecto y de la entidad, no al revés.",
+        "icon": "Layers"
+      },
+      {
+        "id": "transparencia",
+        "title": "Transparencia y responsabilidad en la ejecución",
+        "description": "Información clara y verificable en cada informe, con trazabilidad de las decisiones.",
+        "icon": "SearchCheck"
+      },
+      {
+        "id": "innovacion",
+        "title": "Enfoque en innovación y sostenibilidad",
+        "description": "Buscamos soluciones que optimicen recursos y sostengan su valor en el tiempo.",
+        "icon": "Leaf"
+      },
+      {
+        "id": "acompanamiento",
+        "title": "Acompañamiento permanente en todas las fases",
+        "description": "Desde la planeación hasta el cierre, con el mismo equipo respondiendo por el proyecto.",
+        "icon": "Handshake"
+      }
+    ]
+  },
+  "mission": {
+    "eyebrow": "Misión",
+    "text": "Desarrollamos soluciones integrales en ingeniería, consultoría e interventoría mediante un equipo altamente calificado, ofreciendo servicios con excelencia técnica, innovación y compromiso para impulsar infraestructura sostenible, generar valor para nuestros clientes y contribuir al desarrollo del país.",
+    "icon": "Target"
+  },
+  "vision": {
+    "eyebrow": "Visión",
+    "text": "Ser una empresa líder y referente en Colombia en servicios de ingeniería, consultoría e interventoría, reconocida por la calidad de nuestros proyectos, la innovación, la transparencia y nuestro compromiso con el desarrollo sostenible y el bienestar de las comunidades.",
+    "icon": "Eye"
+  },
+  "commitment": {
+    "eyebrow": "Nuestro compromiso",
+    "heading": "Cada proyecto es una oportunidad para generar desarrollo",
+    "text": "En {empresa} creemos que cada proyecto representa una oportunidad para generar desarrollo. Por ello trabajamos con responsabilidad, ética y excelencia, ofreciendo soluciones que respondan a las necesidades de nuestros clientes y aporten al crecimiento sostenible de las regiones.",
+    "image": {
+      "src": "/media/whyUs.jpg",
+      "alt": "Profesionales de ingeniería coordinando trabajos en terreno"
+    }
+  }
+}

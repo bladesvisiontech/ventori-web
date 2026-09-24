@@ -5,7 +5,6 @@ import { Rule } from '@/components/motion/Rule'
 import { ShinyButton } from '@/components/ui/ShinyButton'
 import { Container } from '@/components/ui/Container'
 import { CTA_BAND } from '@/content/about'
-import { MEDIA } from '@/content/media'
 import { ROUTES } from '@/lib/constants'
 import { formatIndex } from '@/lib/utils'
 
@@ -21,7 +20,7 @@ import { formatIndex } from '@/lib/utils'
  * sitio, y biselarla partiría la banda en diagonal contra el pie.
  */
 export function CtaBand({ index }: { index: number }) {
-  const asset = MEDIA.ctaBand
+  const asset = CTA_BAND.image
 
   return (
     <section className="relative isolate overflow-hidden bg-navy-950">

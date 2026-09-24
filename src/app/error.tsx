@@ -4,11 +4,11 @@ import { useEffect } from 'react'
 import { Button } from '@/components/ui/Button'
 import { Container } from '@/components/ui/Container'
 import { ShinyButton } from '@/components/ui/ShinyButton'
-import { SYSTEM_PAGES } from '@/content/pages'
+import { GLOBAL } from '@/content/data/global'
 import { ROUTES } from '@/lib/constants'
 
 export default function Error({ error, reset }: { error: Error & { digest?: string }; reset: () => void }) {
-  const copy = SYSTEM_PAGES.error
+  const copy = GLOBAL.systemPages.error
 
   useEffect(() => {
     console.error(error)

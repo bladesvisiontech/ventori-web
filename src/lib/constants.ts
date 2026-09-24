@@ -1,17 +1,14 @@
+import { CONTACTO } from '@/content/data/contacto'
+import { GLOBAL } from '@/content/data/global'
+
 /**
  * Fuente única de verdad para identidad, rutas y datos de contacto.
- * Ningún valor de negocio debe escribirse directamente en un componente.
+ * Los textos y datos de empresa vienen de `src/content/data/*.json` (editables
+ * desde el CMS); aquí solo queda lo que es código: rutas, límites y motion.
  */
 
 export const SITE = {
-  /** Nombre de marca tal como aparece en el logotipo oficial. */
-  name: 'Grupo Ventori',
-  legalName: 'Grupo Ventori S.A.S.',
-  /** PENDIENTE DEL CLIENTE. La política de privacidad lo muestra solo cuando tenga dato. */
-  nit: '',
-  tagline: 'Ingeniería, consultoría e interventoría',
-  description:
-    'Empresa colombiana especializada en ingeniería, consultoría e interventoría, enfocada en soluciones técnicas integrales para proyectos de infraestructura pública y privada.',
+  ...GLOBAL.site,
   locale: 'es_CO',
   lang: 'es',
   country: 'CO',
@@ -45,12 +42,14 @@ export type Route = (typeof ROUTES)[keyof typeof ROUTES]
 
 /** Navegación principal. El orden aquí es el orden en header, menú móvil y footer. */
 export const NAV_LINKS = [
-  { label: 'Nosotros', href: ROUTES.about },
-  { label: 'Servicios', href: ROUTES.services },
-  { label: 'Sectores', href: ROUTES.sectors },
-  { label: 'Proyectos', href: ROUTES.projects },
-  { label: 'Contacto', href: ROUTES.contact },
+  { label: GLOBAL.nav.links.about, href: ROUTES.about },
+  { label: GLOBAL.nav.links.services, href: ROUTES.services },
+  { label: GLOBAL.nav.links.sectors, href: ROUTES.sectors },
+  { label: GLOBAL.nav.links.projects, href: ROUTES.projects },
+  { label: GLOBAL.nav.links.contact, href: ROUTES.contact },
 ] as const
+
+export const HEADER_CTA = GLOBAL.nav.headerCta
 
 /**
  * Rutas cuyo header arranca transparente, sobre la fotografía oscura del hero.
@@ -61,9 +60,9 @@ export const TRANSPARENT_HEADER_ROUTES: readonly string[] = [ROUTES.home]
 
 /** Enlaces legales del pie de página. */
 export const LEGAL_LINKS = [
-  { label: 'Política de privacidad', href: ROUTES.privacy },
-  { label: 'Términos y condiciones', href: ROUTES.terms },
-  { label: 'Política de cookies', href: ROUTES.cookies },
+  { label: GLOBAL.nav.legalLinks.privacy, href: ROUTES.privacy },
+  { label: GLOBAL.nav.legalLinks.terms, href: ROUTES.terms },
+  { label: GLOBAL.nav.legalLinks.cookies, href: ROUTES.cookies },
 ] as const
 
 /**
@@ -78,51 +77,40 @@ export const LEGAL_LINKS = [
  */
 export const MOBILE_BAR = {
   label: 'Acciones rápidas',
-  menu: { label: 'Menú', open: 'Abrir menú', close: 'Cerrar menú' },
-  call: { label: 'Llamar' },
-  cta: { label: 'Contacto', href: ROUTES.contact },
-} as const
-
-/**
- * Datos de contacto.
- *
- * PENDIENTE DEL CLIENTE: correo, teléfono, dirección y ciudad llegaron en blanco
- * en el brief. Mientras estén vacíos, la UI omite la fila correspondiente en vez
- * de mostrar un campo vacío — ver `getContactChannels()`.
- */
-export const CONTACT = {
-  email: '',
-  phone: '',
-  whatsapp: '',
-  address: '',
-  city: '',
-  schedule: {
-    days: 'Lunes a viernes',
-    hours: '7:30 a.m. – 5:30 p.m.',
+  menu: {
+    label: GLOBAL.ui.mobileBar.menu,
+    open: GLOBAL.ui.mobileBar.openMenu,
+    close: GLOBAL.ui.mobileBar.closeMenu,
   },
+  call: { label: GLOBAL.ui.mobileBar.call },
+  cta: { label: GLOBAL.ui.mobileBar.cta, href: ROUTES.contact },
 } as const
 
-export const SOCIAL = {
-  linkedin: '',
-} as const
+/** Datos de contacto. Los vacíos se omiten en la UI en vez de mostrarse en blanco. */
+export const CONTACT = GLOBAL.contact
+
+export const SOCIAL = GLOBAL.social
+
+/** Textos de interfaz compartidos (salto al contenido, pie, páginas de sistema). */
+export const UI_TEXT = { ...GLOBAL.ui, footer: GLOBAL.footer }
 
 /** Devuelve solo los canales de contacto que ya tienen dato cargado. */
 export function getContactChannels() {
   return [
     {
       id: 'email',
-      label: 'Correo electrónico',
+      label: CONTACTO.panel.channelLabels.email,
       value: CONTACT.email,
       href: `mailto:${CONTACT.email}`,
     },
     {
       id: 'phone',
-      label: 'Teléfono',
+      label: CONTACTO.panel.channelLabels.phone,
       value: CONTACT.phone,
       href: `tel:${CONTACT.phone.replace(/\s/g, '')}`,
     },
-    { id: 'address', label: 'Dirección', value: CONTACT.address, href: null },
-    { id: 'city', label: 'Ciudad', value: CONTACT.city, href: null },
+    { id: 'address', label: CONTACTO.panel.channelLabels.address, value: CONTACT.address, href: null },
+    { id: 'city', label: CONTACTO.panel.channelLabels.city, value: CONTACT.city, href: null },
   ].filter((channel) => channel.value.length > 0)
 }
 
@@ -139,13 +127,7 @@ export const CONTACT_FORM = {
 } as const
 
 /** Asuntos disponibles en el formulario. El `value` es lo que viaja al servidor. */
-export const CONTACT_SUBJECTS = [
-  { value: 'interventoria', label: 'Interventoría' },
-  { value: 'consultoria', label: 'Consultoría en ingeniería' },
-  { value: 'gerencia', label: 'Gerencia de proyectos' },
-  { value: 'estudios', label: 'Estudios y diseños' },
-  { value: 'otro', label: 'Otro' },
-] as const
+export const CONTACT_SUBJECTS = CONTACTO.form.subjects
 
 export const CONTACT_SUBJECT_VALUES = CONTACT_SUBJECTS.map((subject) => subject.value)
 
@@ -160,14 +142,13 @@ export const FORM_STATUS = {
 export type FormStatus = (typeof FORM_STATUS)[keyof typeof FORM_STATUS]
 
 export const FORM_MESSAGES = {
-  success: 'Gracias por escribirnos. Un miembro del equipo se pondrá en contacto contigo.',
+  success: CONTACTO.form.messages.success,
   /* Solo remite al correo cuando hay uno publicado al que escribir. */
   error: CONTACT.email
-    ? `No pudimos enviar tu mensaje. Intenta de nuevo o escríbenos a ${CONTACT.email}.`
-    : 'No pudimos enviar tu mensaje. Intenta de nuevo en unos minutos.',
-  rateLimited:
-    'Recibimos varios envíos desde esta conexión. Espera un momento antes de volver a intentar.',
-} as const
+    ? CONTACTO.form.messages.errorWithEmail.replace('{correo}', CONTACT.email)
+    : CONTACTO.form.messages.error,
+  rateLimited: CONTACTO.form.messages.rateLimited,
+}
 
 /**
  * Parámetros del sistema de movimiento. Las primitivas de `components/motion/`

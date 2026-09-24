@@ -1,10 +1,10 @@
 import Image from 'next/image'
 import { Parallax } from '@/components/motion/Parallax'
-import { MEDIA, type MediaKey } from '@/content/media'
+import type { MediaImage } from '@/types/content'
 import { cn } from '@/lib/utils'
 
 interface MediaFrameProps {
-  media: MediaKey
+  image: MediaImage
   /** Proporción del marco. La fotografía se recorta para llenarlo. */
   ratio?: 'portrait' | 'landscape' | 'square' | 'wide' | 'fill'
   /** Descriptor de anchos para el srcset. Sin él el navegador asume 100vw. */
@@ -33,12 +33,11 @@ const RATIOS = {
  * se lea como sistema y no como capricho: aparece siempre en las mismas dos
  * esquinas y con el mismo tamaño relativo.
  *
- * El alto y el ancho salen del manifiesto de `content/media.ts`, así que el
- * navegador reserva el espacio antes de descargar la imagen y el bloque no salta
- * (CLS). Con `fill` el espacio lo reserva la proporción del contenedor.
+ * El espacio lo reserva la proporción del marco, así que el bloque no salta
+ * (CLS) aunque la foto se sustituya desde el CMS por otra de distinto tamaño.
  */
 export function MediaFrame({
-  media,
+  image,
   ratio = 'landscape',
   sizes,
   priority = false,
@@ -46,12 +45,11 @@ export function MediaFrame({
   className,
   children,
 }: MediaFrameProps) {
-  const asset = MEDIA[media]
 
-  const image = (
+  const photo = (
     <Image
-      src={asset.src}
-      alt={asset.alt}
+      src={image.src}
+      alt={image.alt}
       fill
       sizes={sizes}
       priority={priority}
@@ -61,7 +59,7 @@ export function MediaFrame({
 
   return (
     <div className={cn('relative overflow-hidden bevel', RATIOS[ratio], className)}>
-      {parallax ? <Parallax>{image}</Parallax> : image}
+      {parallax ? <Parallax>{photo}</Parallax> : photo}
       {children}
     </div>
   )

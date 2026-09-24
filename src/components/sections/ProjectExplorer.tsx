@@ -40,6 +40,13 @@ export function ProjectExplorer({ projects, children, moreHref }: ProjectExplore
 
   const activeDepartments = new Set(projects.map((project) => project.department))
 
+  /* Solo los proyectos con geometría cargada tienen pin; el resto sigue en los chips. */
+  const mapped = projects.flatMap((project, position) =>
+    project.point && project.callout && project.boundaryPath
+      ? [{ ...project, position, point: project.point, callout: project.callout, boundaryPath: project.boundaryPath }]
+      : [],
+  )
+
   if (!active) return null
 
   const photos = active.images ?? []
@@ -65,7 +72,7 @@ export function ProjectExplorer({ projects, children, moreHref }: ProjectExplore
               viewBox={COLOMBIA_MAP_VIEWBOX}
               className="absolute inset-0 size-full"
               role="img"
-              aria-label={`${PROJECT_LABELS.mapLabel}: ${projects
+              aria-label={`${PROJECT_LABELS.mapLabel}: ${mapped
                 .map((project) => `${project.name} (${project.department})`)
                 .join(', ')}`}
             >
@@ -83,7 +90,7 @@ export function ProjectExplorer({ projects, children, moreHref }: ProjectExplore
                   strokeLinejoin="round"
                 />
               ))}
-              {projects.map((project) => (
+              {mapped.map((project) => (
                 <path
                   key={project.id}
                   d={project.boundaryPath}
@@ -92,7 +99,7 @@ export function ProjectExplorer({ projects, children, moreHref }: ProjectExplore
                   strokeWidth={1}
                 />
               ))}
-              {projects.map((project) => (
+              {mapped.map((project) => (
                 <line
                   key={`line-${project.id}`}
                   x1={project.callout.x}
@@ -105,7 +112,7 @@ export function ProjectExplorer({ projects, children, moreHref }: ProjectExplore
               ))}
             </svg>
 
-            {projects.map((project, position) => {
+            {mapped.map(({ position, ...project }) => {
               const isActive = project.id === active.id
 
               return (
@@ -134,7 +141,7 @@ export function ProjectExplorer({ projects, children, moreHref }: ProjectExplore
 
             {/* Pines y etiquetas son atajos de ratón y táctiles: al teclado y al lector
                 de pantalla los sirven los chips, que hacen lo mismo con área suficiente. */}
-            {projects.map((project, position) => {
+            {mapped.map(({ position, ...project }) => {
               const isActive = project.id === active.id
 
               return (

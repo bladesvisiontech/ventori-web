@@ -6,7 +6,8 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { AlertCircle, Check, CheckCircle2 } from 'lucide-react'
 import Link from 'next/link'
 import { ShinyButton } from '@/components/ui/ShinyButton'
-import { CONTACT_CONSENT } from '@/content/legal'
+import { CONTACT_CONSENT } from '@/content/consent'
+import { CONTACTO } from '@/content/data/contacto'
 import {
   CONTACT_FORM,
   CONTACT_SUBJECTS,
@@ -17,6 +18,8 @@ import {
 } from '@/lib/constants'
 import { cn } from '@/lib/utils'
 import { contactSchema, type ContactInput } from '@/lib/validation/contact'
+
+const FORM_TEXT = CONTACTO.form
 
 /* Un solo juego de clases para todos los campos: mezclar alturas o grosores de
    borde entre un input y un select es de lo que más delata un formulario. */
@@ -151,7 +154,7 @@ export function ContactForm() {
       </div>
 
       <div className="grid gap-7 sm:grid-cols-2">
-        <FieldShell id="name" label="Nombre completo" error={errors.name?.message} required>
+        <FieldShell id="name" label={FORM_TEXT.labels.name} error={errors.name?.message} required>
           <input
             id="name"
             type="text"
@@ -165,8 +168,8 @@ export function ContactForm() {
 
         <FieldShell
           id="organization"
-          label="Entidad o empresa"
-          hint="Opcional"
+          label={FORM_TEXT.labels.organization}
+          hint={FORM_TEXT.labels.organizationHint}
           error={errors.organization?.message}
         >
           <input
@@ -180,7 +183,7 @@ export function ContactForm() {
           />
         </FieldShell>
 
-        <FieldShell id="email" label="Correo electrónico" error={errors.email?.message} required>
+        <FieldShell id="email" label={FORM_TEXT.labels.email} error={errors.email?.message} required>
           {/* `type="email"` abre el teclado con arroba en móvil. */}
           <input
             id="email"
@@ -194,7 +197,7 @@ export function ContactForm() {
           />
         </FieldShell>
 
-        <FieldShell id="phone" label="Teléfono" error={errors.phone?.message} required>
+        <FieldShell id="phone" label={FORM_TEXT.labels.phone} error={errors.phone?.message} required>
           <input
             id="phone"
             type="tel"
@@ -208,7 +211,7 @@ export function ContactForm() {
         </FieldShell>
       </div>
 
-      <FieldShell id="subject" label="Asunto" error={errors.subject?.message} required>
+      <FieldShell id="subject" label={FORM_TEXT.labels.subject} error={errors.subject?.message} required>
         <select
           id="subject"
           aria-invalid={Boolean(errors.subject)}
@@ -226,8 +229,8 @@ export function ContactForm() {
 
       <FieldShell
         id="message"
-        label="Mensaje"
-        hint={`Etapa del proyecto, alcance estimado y qué necesitas resolver. Mínimo ${CONTACT_FORM.minMessageLength} caracteres.`}
+        label={FORM_TEXT.labels.message}
+        hint={`${FORM_TEXT.labels.messageHint} Mínimo ${CONTACT_FORM.minMessageLength} caracteres.`}
         error={errors.message?.message}
         required
       >
@@ -289,14 +292,14 @@ export function ContactForm() {
 
       <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
         <ShinyButton type="submit" disabled={submitting}>
-          {submitting ? 'Enviando…' : 'Enviar mensaje'}
+          {submitting ? FORM_TEXT.submitting : FORM_TEXT.submit}
         </ShinyButton>
 
         <p className="font-mono text-label uppercase text-navy-300">
           <span aria-hidden="true" className="text-terracota-500">
             *
           </span>{' '}
-          Campos obligatorios
+          {FORM_TEXT.requiredNote}
         </p>
       </div>
 

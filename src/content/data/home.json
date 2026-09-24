@@ -1,0 +1,42 @@
+{
+  "seo": {
+    "metaTitle": "{empresa} | Ingeniería, consultoría e interventoría en Colombia",
+    "description": "Empresa colombiana especializada en ingeniería, consultoría e interventoría, enfocada en soluciones técnicas integrales para proyectos de infraestructura pública y privada."
+  },
+  "hero": {
+    "disciplines": [
+      "Ingeniería",
+      "Consultoría",
+      "Interventoría"
+    ],
+    "lines": [
+      "Infraestructura",
+      "que responde",
+      {
+        "text": "por sus resultados",
+        "accent": true
+      }
+    ],
+    "subheadline": "Acompañamos proyectos de infraestructura pública y privada en Colombia, desde la planeación y estructuración hasta la ejecución, supervisión y cierre.",
+    "primaryCta": "Hablemos de tu proyecto",
+    "secondaryCta": "Ver servicios",
+    "videos": [
+      {
+        "src": "/media/hero.mp4",
+        "poster": "/media/hero-poster.jpg",
+        "alt": "Montaje de obra: excavación y cimentaciones vistas desde el aire, encofrado en altura, vía en concreto atravesando un barrio, cuadrilla vaciando una placa entre columnas de acero de refuerzo, y una grúa torre sobre un edificio en construcción con la ciudad al fondo"
+      }
+    ]
+  },
+  "projects": {
+    "eyebrow": "Cobertura",
+    "lines": [
+      "Nuestros",
+      {
+        "text": "proyectos",
+        "accent": true
+      }
+    ],
+    "intro": "Ejecutamos proyectos de concesión e interventoría del servicio de alumbrado público en varios departamentos del país, con contratos vigentes a 25 y 30 años."
+  }
+}

@@ -36,4 +36,4 @@ en `src/content/hero-video.ts`.
 | hero2 | vídeo | Altaf Shah | https://www.pexels.com/video/drone-footage-of-a-highway-and-a-roundabout-9369897/ |
 | hero3 | vídeo | Toan Huynh | https://www.pexels.com/video/bridge-near-city-12965605/ |
 
-Regenerar con `npm run media`. Las elecciones están fijadas en `media.lock.json`.
+Las elecciones de Pexels quedaron fijadas en `media.lock.json`. Desde que existe el CMS, las fotos nuevas se suben ahí.

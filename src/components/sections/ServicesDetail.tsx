@@ -5,7 +5,7 @@ import { Stagger, StaggerItem } from '@/components/motion/Stagger'
 import { Container } from '@/components/ui/Container'
 import { Icon } from '@/components/ui/Icon'
 import { Section } from '@/components/ui/Section'
-import { SERVICES } from '@/content/services'
+import { SERVICE_DETAIL, SERVICES } from '@/content/services'
 import { formatIndex } from '@/lib/utils'
 
 /**
@@ -64,7 +64,7 @@ export function ServicesDetail() {
 
                 <Reveal delay={0.24}>
                   <h3 className="mt-10 font-mono text-label uppercase text-navy-700">
-                    Qué entregamos
+                    {SERVICE_DETAIL.deliverablesHeading}
                   </h3>
                 </Reveal>
 

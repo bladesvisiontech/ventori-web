@@ -43,7 +43,7 @@ export function AboutSplit({ index }: { index: number }) {
 
           <Reveal mask from="bottom" delay={0.15}>
             <MediaFrame
-              media="aboutSplit"
+              image={ABOUT.image}
               ratio="portrait"
               sizes="(min-width: 1024px) 45vw, 100vw"
             />
