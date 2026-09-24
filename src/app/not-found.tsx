@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
 import { Button } from '@/components/ui/Button'
-import { Container } from '@/components/ui/Container'
 import { PageHero } from '@/components/ui/PageHero'
 import { ShinyButton } from '@/components/ui/ShinyButton'
 import { SYSTEM_PAGES } from '@/content/pages'
@@ -15,18 +14,13 @@ export default function NotFound() {
   const copy = SYSTEM_PAGES.notFound
 
   return (
-    <>
-      <PageHero eyebrow={copy.eyebrow} lines={copy.titleLines} lead={copy.lead} />
-      <section className="bg-navy-hero pb-24">
-        <Container>
-          <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-            <ShinyButton href={ROUTES.home}>{copy.primaryCta}</ShinyButton>
-            <Button href={ROUTES.contact} variant="outline">
-              {copy.secondaryCta}
-            </Button>
-          </div>
-        </Container>
-      </section>
-    </>
+    <PageHero eyebrow={copy.eyebrow} lines={copy.titleLines} lead={copy.lead}>
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+        <ShinyButton href={ROUTES.home}>{copy.primaryCta}</ShinyButton>
+        <Button href={ROUTES.contact} variant="onPaper">
+          {copy.secondaryCta}
+        </Button>
+      </div>
+    </PageHero>
   )
 }

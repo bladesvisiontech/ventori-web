@@ -40,14 +40,6 @@
   --color-navy-950: #010133;
   /* Un paso por debajo del navy base, para el bloque más profundo de la página */
   --color-navy-975: #01012a;
-  /*
-   * Fondo de los heros internos: navy-950 al 70 % sobre blanco (#010133 con un
-   * 30 % menos de opacidad). Pedido del cliente para aclarar las aperturas.
-   * No se puede aclarar más sin romper AA: sobre este tono blanco da 8.0:1,
-   * navy-100 5.8:1 y terracota-400 3.6:1 (solo titulares grandes). Con un 40 %
-   * menos, navy-100 bajaría a 3.9:1 y el texto de entrada dejaría de pasar.
-   */
-  --color-navy-hero: #4d4d70;
 
   /* ── Terracota · acento estructural ─────────────────────────────────── */
   --color-terracota-50: #fdf6f2;

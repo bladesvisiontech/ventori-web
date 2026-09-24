@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { Logo } from '@/components/layout/Logo'
 import { ShinyButton } from '@/components/ui/ShinyButton'
-import { NAV_LINKS, ROUTES, SOLID_HEADER_ROUTES } from '@/lib/constants'
+import { NAV_LINKS, ROUTES, TRANSPARENT_HEADER_ROUTES } from '@/lib/constants'
 import { cn } from '@/lib/utils'
 
 /** Desplazamiento a partir del cual el header deja de ser transparente. */
@@ -34,7 +34,7 @@ export function Header() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  const isSolid = solid || SOLID_HEADER_ROUTES.includes(pathname)
+  const isSolid = solid || !TRANSPARENT_HEADER_ROUTES.includes(pathname)
 
   const isActive = (href: string) =>
     href === ROUTES.home ? pathname === href : pathname.startsWith(href)

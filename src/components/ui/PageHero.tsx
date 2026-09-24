@@ -9,6 +9,8 @@ interface PageHeroProps {
   eyebrow: string
   lines: readonly HeadlineLine[]
   lead: string
+  /** Acciones opcionales bajo la entrada (p. ej. en la página 404). */
+  children?: React.ReactNode
 }
 
 /**
@@ -21,16 +23,16 @@ interface PageHeroProps {
  * El relleno superior reserva la altura del header fijo, que se superpone al
  * contenido. Sin él, el eyebrow quedaría debajo de la barra.
  */
-export function PageHero({ eyebrow, lines, lead }: PageHeroProps) {
+export function PageHero({ eyebrow, lines, lead, children }: PageHeroProps) {
   return (
-    <section className="relative isolate overflow-hidden bg-navy-hero pt-(--header-height) pb-16 sm:pb-20 lg:pt-(--header-height-lg) lg:pb-28">
-      <GridPaper />
+    <section className="relative isolate overflow-hidden border-b border-paper-200 bg-paper-50 text-navy-950 pt-(--header-height) pb-16 sm:pb-20 lg:pt-(--header-height-lg) lg:pb-28">
+      <GridPaper tone="light" />
 
       <Container className="relative pt-16 lg:pt-24">
         <Reveal trigger="mount">
           <div className="flex items-center gap-4">
             <Rule trigger="mount" className="w-10 flex-none text-terracota-500" />
-            <span className="font-mono text-label uppercase text-navy-100">{eyebrow}</span>
+            <span className="font-mono text-label uppercase text-navy-700">{eyebrow}</span>
           </div>
         </Reveal>
 
@@ -39,15 +41,21 @@ export function PageHero({ eyebrow, lines, lead }: PageHeroProps) {
           lines={lines}
           delay={0.12}
           trigger="mount"
-          accentClassName="text-terracota-400"
-          className="mt-7 max-w-4xl text-display-lg font-semibold text-white"
+          accentClassName="text-terracota-800"
+          className="mt-7 max-w-4xl text-display-lg font-semibold text-navy-950"
         />
 
         <Reveal trigger="mount" delay={0.35}>
-          <p className="mt-8 max-w-2xl text-base leading-relaxed text-navy-100 sm:text-lg">
+          <p className="mt-8 max-w-2xl text-base leading-relaxed text-navy-700 sm:text-lg">
             {lead}
           </p>
         </Reveal>
+
+        {children && (
+          <Reveal trigger="mount" delay={0.45}>
+            <div className="mt-10">{children}</div>
+          </Reveal>
+        )}
       </Container>
     </section>
   )

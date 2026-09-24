@@ -53,10 +53,11 @@ export const NAV_LINKS = [
 ] as const
 
 /**
- * Rutas que abren sobre fondo claro, sin hero oscuro debajo del header: ahí el
- * header transparente dejaría el menú blanco sobre papel, así que va sólido.
+ * Rutas cuyo header arranca transparente, sobre la fotografía oscura del hero.
+ * En el resto las páginas abren sobre crema y el header va sólido desde el
+ * principio: transparente dejaría el menú blanco sobre fondo claro.
  */
-export const SOLID_HEADER_ROUTES: readonly string[] = [ROUTES.projects]
+export const TRANSPARENT_HEADER_ROUTES: readonly string[] = [ROUTES.home]
 
 /** Enlaces legales del pie de página. */
 export const LEGAL_LINKS = [
