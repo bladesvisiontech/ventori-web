@@ -44,10 +44,10 @@ export const HOME_SECTIONS = {
       'Cada etapa tiene sus propios riesgos. Estar en las tres es lo que permite que las decisiones tempranas no se paguen caro al final.',
   },
   services: {
-    eyebrow: 'Servicios',
-    lines: ['Nueve frentes,', 'un solo', { text: 'responsable', accent: true }],
+    eyebrow: 'Índice',
+    lines: ['Qué hacemos', { text: 'en cada etapa', accent: true }],
     intro:
-      'Cubrimos el ciclo completo del proyecto. Cada servicio puede contratarse por separado o como parte de un alcance integral.',
+      'Los nueve servicios de un vistazo. Elige uno para bajar a su alcance detallado, más abajo en esta página.',
   },
   whyUs: {
     eyebrow: 'Por qué elegirnos',
