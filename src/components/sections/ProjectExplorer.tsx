@@ -309,7 +309,11 @@ export function ProjectExplorer({ projects, children, moreHref }: ProjectExplore
 
             {moreHref && (
               <div className="mt-6">
-                <ShinyButton href={`${moreHref}#${active.id}`}>{PROJECT_LABELS.moreInfo}</ShinyButton>
+                <ShinyButton href={`${moreHref}#${active.id}`}>
+                  {PROJECT_LABELS.moreInfo}
+                  {/* El destino exacto, para lectores de pantalla y buscadores. */}
+                  <span className="sr-only"> · {active.name}</span>
+                </ShinyButton>
               </div>
             )}
           </div>

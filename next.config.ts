@@ -1,4 +1,8 @@
 import type { NextConfig } from 'next'
+import { validateContent } from './src/content/validate'
+
+/* El contenido que edita el CMS se valida antes de compilar. */
+validateContent()
 
 const isDev = process.env.NODE_ENV === 'development'
 

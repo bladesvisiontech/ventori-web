@@ -1,6 +1,7 @@
-import { nosotrosSchema } from '@/content/schema'
-import { parseContent } from './parse'
+import type { z } from 'zod'
+import type { nosotrosSchema } from '@/content/schema'
 import { fillTokens } from './tokens'
 import json from './nosotros.json'
 
-export const NOSOTROS = fillTokens(parseContent('nosotros.json', nosotrosSchema, json))
+/* Validado al compilar (src/content/validate.ts); aquí solo se tipa, para no enviar zod al navegador. */
+export const NOSOTROS = fillTokens(json as unknown as z.infer<typeof nosotrosSchema>)

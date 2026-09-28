@@ -1,6 +1,7 @@
-import { legalSchema } from '@/content/schema'
-import { parseContent } from './parse'
+import type { z } from 'zod'
+import type { legalSchema } from '@/content/schema'
 import { fillTokens } from './tokens'
 import json from './legal.json'
 
-export const LEGAL = fillTokens(parseContent('legal.json', legalSchema, json))
+/* Validado al compilar (src/content/validate.ts); aquí solo se tipa, para no enviar zod al navegador. */
+export const LEGAL = fillTokens(json as unknown as z.infer<typeof legalSchema>)

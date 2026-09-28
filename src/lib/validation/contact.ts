@@ -1,4 +1,7 @@
 import { z } from 'zod'
+
+/* Sin la prueba de `eval` que zod hace al cargar: la CSP la bloquea y queda como incidencia. */
+z.config({ jitless: true })
 import { CONTACT_CONSENT } from '@/content/consent'
 import { CONTACT_FORM, CONTACT_SUBJECT_VALUES } from '@/lib/constants'
 

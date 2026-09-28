@@ -1,5 +1,8 @@
 import { z } from 'zod'
 
+/* Sin la prueba de `eval` que zod hace al cargar: la CSP la bloquea y queda como incidencia. */
+z.config({ jitless: true })
+
 /**
  * Forma de los archivos de `src/content/data/*.json`, que edita el CMS.
  *

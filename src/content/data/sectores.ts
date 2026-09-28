@@ -1,6 +1,7 @@
-import { sectoresSchema } from '@/content/schema'
-import { parseContent } from './parse'
+import type { z } from 'zod'
+import type { sectoresSchema } from '@/content/schema'
 import { fillTokens } from './tokens'
 import json from './sectores.json'
 
-export const SECTORES = fillTokens(parseContent('sectores.json', sectoresSchema, json))
+/* Validado al compilar (src/content/validate.ts); aquí solo se tipa, para no enviar zod al navegador. */
+export const SECTORES = fillTokens(json as unknown as z.infer<typeof sectoresSchema>)

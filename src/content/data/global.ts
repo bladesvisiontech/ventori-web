@@ -1,5 +1,6 @@
-import { globalSchema } from '@/content/schema'
-import { parseContent } from './parse'
-import globalJson from './global.json'
+import type { z } from 'zod'
+import type { globalSchema } from '@/content/schema'
+import json from './global.json'
 
-export const GLOBAL = parseContent('global.json', globalSchema, globalJson)
+/* Validado al compilar (src/content/validate.ts); aquí solo se tipa, para no enviar zod al navegador. */
+export const GLOBAL = json as unknown as z.infer<typeof globalSchema>

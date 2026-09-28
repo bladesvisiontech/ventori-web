@@ -146,7 +146,7 @@ export function PinnedSequence({ items, cms }: PinnedSequenceProps) {
                 alt={item.image.alt}
                 fill
                 sizes="(min-width: 1024px) 45vw, 1px"
-                priority={index === 0}
+                loading={index === 0 ? 'eager' : undefined}
                 {...cmsField(cms && `${cms}.${index}.image`)}
                 data-cms-kind={cms ? 'image' : undefined}
                 className={cn(

@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
+import Image from 'next/image'
 import { useReducedMotion } from 'framer-motion'
 import { HERO_CLIPS } from '@/content/hero-video'
 import { cn } from '@/lib/utils'
@@ -37,6 +38,8 @@ const CLIP_DURATION = 7000
 export function HeroVideo() {
   const prefersReducedMotion = useReducedMotion()
   const [active, setActive] = useState(0)
+  /* El vídeo aparece sobre su póster solo cuando ya está reproduciendo: sin salto ni fotograma negro. */
+  const [playing, setPlaying] = useState<number | null>(null)
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([])
 
   useEffect(() => {
@@ -83,19 +86,35 @@ export function HeroVideo() {
             index === active ? 'opacity-100' : 'opacity-0',
           )}
         >
+          {/*
+            El póster es el LCP de la home: va como imagen optimizada (AVIF/WebP
+            al ancho del dispositivo) y precargada, en vez de como atributo
+            `poster`, que el navegador descarga tarde y a tamaño completo.
+          */}
+          <Image
+            src={clip.poster}
+            alt=""
+            fill
+            sizes="100vw"
+            preload={index === 0}
+            className="object-cover"
+          />
           <video
             ref={(node) => {
               videoRefs.current[index] = node
             }}
             src={clip.src}
-            poster={clip.poster}
+            onPlaying={() => setPlaying(index)}
             muted
             loop
             playsInline
             preload="none"
             {...cmsField(`home:hero.videos.${index}`)}
             data-cms-kind="video"
-            className="size-full object-cover"
+            className={cn(
+              'absolute inset-0 size-full object-cover transition-opacity duration-700',
+              playing === index ? 'opacity-100' : 'opacity-0',
+            )}
           />
         </div>
       ))}
