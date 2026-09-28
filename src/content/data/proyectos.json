@@ -62,7 +62,9 @@
       "endDate": "27/03/2048",
       "termYears": 25,
       "luminaires": 1666,
-      "images": []
+      "images": [
+        "/proyectos/timbio.jpg"
+      ]
     },
     {
       "id": "chitaga",
@@ -76,6 +78,7 @@
       "termYears": 25,
       "luminaires": 651,
       "images": [
+        "/proyectos/chitaga.jpg",
         "/proyectos/chitaga-1.jpg",
         "/proyectos/chitaga-2.jpg",
         "/proyectos/chitaga-3.jpg",
@@ -94,6 +97,7 @@
       "termYears": 30,
       "luminaires": 344,
       "images": [
+        "/proyectos/mutiscua.jpg",
         "/proyectos/mutiscua-1.jpg",
         "/proyectos/mutiscua-2.jpg",
         "/proyectos/mutiscua-3.jpg",
@@ -113,7 +117,9 @@
       "endDate": "20/06/2048",
       "termYears": 25,
       "luminaires": 1903,
-      "images": []
+      "images": [
+        "/proyectos/tambo.jpg"
+      ]
     }
   ],
   "stats": []
