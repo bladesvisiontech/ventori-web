@@ -222,29 +222,29 @@ export function ProjectExplorer({ projects, children, moreHref }: ProjectExplore
                 className="object-cover"
               />
 
-              <span
-                aria-hidden="true"
-                className="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/10 to-transparent"
-              />
-
               <p
                 aria-hidden="true"
-                className="stretch-display absolute left-6 top-6 font-display text-display-md font-semibold text-white/90"
+                className="stretch-display absolute left-6 top-6 font-display text-display-md font-semibold text-white [text-shadow:0_2px_16px_rgb(1_1_51/0.7)]"
               >
                 {formatIndex(activeIndex)}
               </p>
 
-              <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-4 p-6">
-                <div>
-                  <p className="stretch-display text-xl font-semibold text-white sm:text-2xl">
+              {/*
+                Sin velo sobre la foto (las del cliente son nocturnas y se ven
+                enteras). El texto va en etiquetas navy, como las del mapa: se lee
+                sobre cualquier foto, también las que se suban desde el CMS.
+              */}
+              <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-3 p-4 sm:p-5">
+                <div className="bevel-sm bg-navy-950/90 px-4 py-3">
+                  <p className="stretch-display text-lg font-semibold text-white sm:text-xl">
                     <span {...cmsField(`proyectos:projects.${activeIndex}.name`)}>{active.name}</span>
                   </p>
-                  <p className="mt-1 font-mono text-label uppercase text-navy-200">
+                  <p className="mt-1 font-mono text-label uppercase text-navy-100">
                     <span {...cmsField(`proyectos:projects.${activeIndex}.department`)}>{active.department}</span>
                   </p>
                 </div>
                 {photos.length > 1 && (
-                  <p className="font-mono text-label tabular text-navy-100">
+                  <p className="bg-navy-950/90 px-2.5 py-1.5 font-mono text-label tabular text-white">
                     {formatIndex(photoIndex)} / {formatIndex(photos.length - 1)}
                   </p>
                 )}
